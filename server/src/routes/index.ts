@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import fp from 'fastify-plugin';
-import { customerRoutes } from "../controller/customerController";
-import { productRoutes } from "../controller/productController";
+import { customerRoutes } from "../controllers/customerController";
+import { productRoutes } from "../controllers/productController";
 
 const routes = async (server: FastifyInstance, options: FastifyPluginOptions)=> {
     server.get('/', async (request, reply) => {
@@ -12,8 +12,9 @@ const routes = async (server: FastifyInstance, options: FastifyPluginOptions)=> 
         return { info: 'This is for health check' };
     });
 
-    server.register(customerRoutes);
-    server.register(productRoutes);
+    const apiV1 = '/api/v1';
+    server.register(customerRoutes, { prefix: `${apiV1}/customers` });
+    server.register(productRoutes, { prefix: `${apiV1}/products` });
 }
 
 export default fp(routes);
