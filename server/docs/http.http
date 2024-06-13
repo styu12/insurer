@@ -67,3 +67,14 @@ Content-Type: application/json
 
 ### product - Delete
 DELETE {{http-host}}/api/v1/products/1
+
+### notification - Email
+POST {{http-host}}/api/v1/notifications/email
+Content-Type: application/json
+
+{
+  "to": "na911025@gmail.com",
+  "subject": "Insurer 이메일 테스트",
+  "content": "테스트 테스트 테스트 Insurer"
+}
+
