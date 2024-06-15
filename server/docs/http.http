@@ -67,3 +67,15 @@ Content-Type: application/json
 
 ### product - Delete
 DELETE {{http-host}}/api/v1/products/1
+
+### notification - Email
+POST {{http-host}}/api/v1/notifications/email
+Content-Type: application/json
+
+{
+  "to": "styu17@gmail.com",
+  "subject": "[Insurer] 한승오님 실손 보험금 청구 가능 기간이 시작되었습니다.",
+  "contractStartDate": "2024-03-15",
+  "customerName": "한승오"
+}
+
