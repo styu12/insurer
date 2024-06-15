@@ -9,10 +9,15 @@ const server = fastify({
 
 const envSchema = {
     type: 'object',
-    required: ['PORT', 'POSTGRES_URL'],
+    required: ['PORT', 'POSTGRES_URL', 'NAVER_USER', 'NAVER_PASS', 'NAVER_EMAIL', 'NAVER_SMTP_HOST', 'NAVER_SMTP_PORT'],
     properties: {
         PORT: {type: 'string', default: '5000'},
         POSTGRES_URL: {type: 'string'},
+        NAVER_USER: {type: 'string'},
+        NAVER_PASS: {type: 'string'},
+        NAVER_EMAIL: {type: 'string'},
+        NAVER_SMTP_HOST: {type: 'string'},
+        NAVER_SMTP_PORT: {type: 'string', default: '587'},
     }
 };
 

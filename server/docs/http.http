@@ -73,8 +73,9 @@ POST {{http-host}}/api/v1/notifications/email
 Content-Type: application/json
 
 {
-  "to": "na911025@gmail.com",
-  "subject": "Insurer 이메일 테스트",
-  "content": "테스트 테스트 테스트 Insurer"
+  "to": "styu17@gmail.com",
+  "subject": "[Insurer] 한승오님 실손 보험금 청구 가능 기간이 시작되었습니다.",
+  "contractStartDate": "2024-03-15",
+  "customerName": "한승오"
 }
 
