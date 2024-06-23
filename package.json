@@ -1,0 +1,21 @@
+{
+  "name": "@insurer/monorepo",
+  "packageManager": "yarn@4.3.1",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/client",
+      "packages/server"
+    ]
+  },
+  "scripts": {
+    "prettify": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "~8",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.2"
+  }
+}
