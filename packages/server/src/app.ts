@@ -43,7 +43,6 @@ server
   })
 
 server.register(postgresConnector)
-
 server.register(routes)
 
 export default server

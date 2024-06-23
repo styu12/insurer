@@ -11,7 +11,6 @@ const routes = async (
   server.get('/', async (request, reply) => {
     return { hello: 'world' }
   })
-
   server.get('/health', async (request, reply) => {
     return { info: 'This is for health check' }
   })
