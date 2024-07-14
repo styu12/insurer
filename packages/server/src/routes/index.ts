@@ -3,6 +3,7 @@ import fp from 'fastify-plugin'
 import { customerRoutes } from '../controllers/customerController'
 import { productRoutes } from '../controllers/productController'
 import { notificationRoutes } from '../controllers/notificationController'
+import { userRoutes } from '../controllers/userController'
 
 const routes = async (
   server: FastifyInstance,
@@ -16,6 +17,7 @@ const routes = async (
   server.register(customerRoutes, { prefix: `${apiV1}/customers` })
   server.register(productRoutes, { prefix: `${apiV1}/products` })
   server.register(notificationRoutes, { prefix: `${apiV1}/notifications` })
+  server.register(userRoutes, { prefix: `${apiV1}/users` })
 }
 
 export default fp(routes)
