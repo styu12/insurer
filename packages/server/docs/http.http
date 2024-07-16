@@ -68,6 +68,39 @@ Content-Type: application/json
 ### product - Delete
 DELETE {{http-host}}/api/v1/products/1
 
+### users - Create
+POST {{http-host}}/api/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "styu123",
+  "password": "12345678",
+  "email": "styu12@naver.com"
+}
+
+### users - Login
+POST {{http-host}}/api/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "styu123",
+  "password": "12345678"
+}
+
+> {%
+  client.global.set("access_token", response.body.token);
+%}
+
+
+### users - Logout
+POST {{http-host}}/api/v1/users/logout
+
+### users - Profile
+GET {{http-host}}/api/v1/users/me
+Authorization: Bearer {{access_token}}
+
+
+
 ### notification - Email
 POST {{http-host}}/api/v1/notifications/email
 Content-Type: application/json

@@ -1,8 +1,10 @@
-import fastify from 'fastify'
+import fastify, { FastifyReply, FastifyRequest } from 'fastify'
 import fastifyEnv from '@fastify/env'
+import fastifyJwt from '@fastify/jwt'
 import postgresConnector from './plugins/postgres'
 import fastifySwagger from './plugins/swagger'
 import routes from './routes'
+import * as process from 'process'
 
 const server = fastify({
   logger: true,
@@ -18,6 +20,7 @@ const envSchema = {
     'NAVER_EMAIL',
     'NAVER_SMTP_HOST',
     'NAVER_SMTP_PORT',
+    'JWT_SECRET',
   ],
   properties: {
     PORT: { type: 'string', default: '5000' },
@@ -27,6 +30,7 @@ const envSchema = {
     NAVER_EMAIL: { type: 'string' },
     NAVER_SMTP_HOST: { type: 'string' },
     NAVER_SMTP_PORT: { type: 'string', default: '587' },
+    JWT_SECRET: { type: 'string' },
   },
 }
 
@@ -42,6 +46,23 @@ server
     }
     console.log('Environment variables loaded successfully')
   })
+
+server.register(fastifyJwt, {
+  secret: "supersecret",
+})
+
+server.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply) => {
+  try {
+    const token = request.headers.authorization?.replace('Bearer ', '');
+    if (!token) {
+      reply.status(401).send({ error: 'Unauthorized' });
+    }
+
+    request.user = await server.jwt.decode(token);
+  } catch (err) {
+    reply.send(err);
+  }
+})
 
 server.register(postgresConnector)
 server.register(fastifySwagger)

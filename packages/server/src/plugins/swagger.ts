@@ -80,6 +80,18 @@ const fastifySwagger = async (server: FastifyInstance) => {
           claimDate: { type: 'string' },
         }
       }
+    )
+    .addSchema(
+      {
+        $id: 'User',
+        description: 'a user object',
+        type: 'object',
+        properties: {
+          id: { type: 'number' },
+          username: { type: 'string' },
+          email: { type: 'string' },
+        }
+      }
     );
 
   server.register(swaggerUI, {
