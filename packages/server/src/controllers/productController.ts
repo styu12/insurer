@@ -30,7 +30,7 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
           }
         },
         response: {
@@ -39,7 +39,7 @@ export const productRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
+    const { id } = request.params as { id: number }
     const { rows } = await server.pg.query(
       'SELECT * FROM products WHERE id = $1',
       [id]
