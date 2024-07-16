@@ -177,7 +177,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "a customer object",
             "content": {
               "application/json": {
@@ -218,7 +218,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -395,7 +395,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -403,7 +403,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "a contract object",
             "content": {
               "application/json": {
@@ -446,21 +446,25 @@
         "description": "list all products",
         "responses": {
           "200": {
-            "description": "a product object",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a product object",
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
+                  "description": "Successful response",
+                  "type": "array",
+                  "items": {
+                    "description": "a product object",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
                     }
                   }
                 }
@@ -493,7 +497,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "a product object",
             "content": {
               "application/json": {
@@ -586,7 +590,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -627,7 +631,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -735,7 +739,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "a user object",
             "content": {
               "application/json": {
@@ -811,24 +815,19 @@
           "user"
         ],
         "description": "logout",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Default Response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Successful response",
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }

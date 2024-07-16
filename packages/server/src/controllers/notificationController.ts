@@ -1,5 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import nodemailer from 'nodemailer'
+import CustomError from '../errors/CustomError'
 
 export const notificationRoutes = async (
   server: FastifyInstance,
@@ -86,11 +87,10 @@ export const notificationRoutes = async (
 
     try {
       await transporter.sendMail(mailOptions)
-      reply.send({ success: true, message: 'Email sent successfully' })
-    } catch (error) {
-      reply
-        .status(500)
-        .send({ success: false, message: 'Failed to send email', error: error })
+      reply.status(200).send({ success: true, message: 'Email sent successfully' })
+    } catch (e) {
+      server.log.error(e)
+      throw new CustomError('Failed to send email', 500)
     }
   })
 }

@@ -1,9 +1,16 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { Product } from '../models/product'
+import {
+  createProduct,
+  deleteProductById,
+  findAllProducts,
+  findProductById,
+  Product,
+  updateProductById,
+} from '../models/product'
+import CustomError from '../errors/CustomError'
 
 export const productRoutes = async (
   server: FastifyInstance,
-  options: FastifyPluginOptions
 ) => {
   server.get('/',
     {
@@ -12,13 +19,17 @@ export const productRoutes = async (
         description: 'list all products',
         summary: 'list all products',
         response: {
-          200: server.getSchema('Product'),
+          200: {
+            description: 'Successful response',
+            type: 'array',
+            items: server.getSchema('Product')
+          }
         }
       }
     },
     async (request, reply) => {
-    const { rows } = await server.pg.query('SELECT * FROM products')
-    reply.send(rows)
+    const result = await findAllProducts(server)
+    reply.status(200).send(result)
   })
 
   server.get('/:id',
@@ -40,15 +51,12 @@ export const productRoutes = async (
     },
     async (request, reply) => {
     const { id } = request.params as { id: number }
-    const { rows } = await server.pg.query(
-      'SELECT * FROM products WHERE id = $1',
-      [id]
-    )
-    if (rows.length > 0) {
-      return rows[0]
-    } else {
-      reply.status(404).send({ error: 'Product not found' })
+    const result = await findProductById(server, id)
+    if (!result) {
+      throw new CustomError('Product not found', 404)
     }
+
+    reply.status(200).send(result)
   })
 
   server.post('/',
@@ -65,17 +73,14 @@ export const productRoutes = async (
           },
         },
         response: {
-          200: server.getSchema('Product'),
+          201: server.getSchema('Product'),
         }
       }
     },
     async (request, reply) => {
     const { name, description } = request.body as Product
-    const { rows } = await server.pg.query(
-      'INSERT INTO products (name, description) VALUES ($1, $2) RETURNING *',
-      [name, description]
-    )
-    return rows[0]
+    const result = await createProduct(server, name, description)
+    reply.status(201).send(result)
   })
 
   server.put('/:id',
@@ -87,7 +92,7 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
           }
         },
         body: {
@@ -103,17 +108,14 @@ export const productRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
+    const { id } = request.params as { id: number }
     const { name, description } = request.body as Product
-    const { rows } = await server.pg.query(
-      'UPDATE products SET name = $1, description = $2 WHERE id = $3 RETURNING *',
-      [name, description, id]
-    )
-    if (rows.length > 0) {
-      return rows[0]
-    } else {
-      reply.status(404).send({ error: 'Product not found' })
+    const result = await updateProductById(server, id, name, description)
+    if (!result) {
+      throw new CustomError('Product not found', 404)
     }
+
+    reply.status(200).send(result)
   })
 
   server.delete('/:id',
@@ -125,7 +127,7 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
           }
         },
         response: {
@@ -140,10 +142,11 @@ export const productRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
-    await server.pg.query('DELETE FROM products WHERE id = $1 RETURNING *', [
-      id,
-    ])
-    reply.send({ message: 'Product deleted' })
+    const { id } = request.params as { id: number }
+    const result = await deleteProductById(server, id)
+    if (!result) {
+      throw new CustomError('Product not found', 404)
+    }
+    reply.status(200).send({ message: 'Product deleted' })
   })
 }
