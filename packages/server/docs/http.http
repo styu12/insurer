@@ -14,14 +14,14 @@ Content-Type: application/json
 GET {{http-host}}/api/v1/customers
 
 ### customer - Read
-GET {{http-host}}/api/v1/customers/1
+GET {{http-host}}/api/v1/customers/2
 
 ### customer - Update
 PUT {{http-host}}/api/v1/customers/1
 Content-Type: application/json
 
 {
-  "name": "제리",
+  "name": "테디",
   "email": "jarry@gmail.com",
   "phone": "1234567890",
   "address": "송파구 석촌동"
@@ -31,11 +31,11 @@ Content-Type: application/json
 DELETE {{http-host}}/api/v1/customers/1
 
 ### customer - Add a new contract
-POST {{http-host}}/api/v1/customers/1/contracts
+POST {{http-host}}/api/v1/customers/2/contracts
 Content-Type: application/json
 
 {
-  "productId": 1,
+  "productId": 3,
   "startDate": "2021-01-01",
   "renewalDate": "2022-02-01",
   "claimDate": "2022-04-01"
@@ -73,7 +73,7 @@ POST {{http-host}}/api/v1/users/register
 Content-Type: application/json
 
 {
-  "username": "styu123",
+  "username": "styu1234",
   "password": "12345678",
   "email": "styu12@naver.com"
 }
@@ -83,7 +83,7 @@ POST {{http-host}}/api/v1/users/login
 Content-Type: application/json
 
 {
-  "username": "styu123",
+  "username": "styu12345",
   "password": "12345678"
 }
 

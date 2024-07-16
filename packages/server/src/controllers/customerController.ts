@@ -1,6 +1,15 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { Customer } from '../models/customer'
-import { Contract } from '../models/contract'
+import {
+  createCustomer,
+  Customer,
+  deleteCustomerById,
+  findAllCustomers,
+  findCustomerById,
+  updateCustomerById,
+} from '../models/customer'
+import { Contract, createContract } from '../models/contract'
+import CustomError from '../errors/CustomError'
+import { findProductById } from '../models/product'
 
 export const customerRoutes = async (
   server: FastifyInstance,
@@ -22,8 +31,8 @@ export const customerRoutes = async (
       }
     },
     async (request, reply) => {
-    const { rows } = await server.pg.query('SELECT * FROM customers')
-    reply.send(rows)
+    const result = await findAllCustomers(server)
+    reply.status(200).send(result)
   })
 
   server.get('/:id',
@@ -35,7 +44,7 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
           }
         },
         response: {
@@ -44,16 +53,13 @@ export const customerRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
-    const { rows } = await server.pg.query(
-      'SELECT * FROM customers WHERE id = $1',
-      [id]
-    )
-    if (rows.length > 0) {
-      return rows[0]
-    } else {
-      reply.status(404).send({ error: 'Customer not found' })
+    const { id } = request.params as { id: number }
+    const result = await findCustomerById(server, id)
+    if (!result) {
+      throw new CustomError('Customer not found', 404)
     }
+
+    reply.status(200).send(result)
   })
 
   server.post('/',
@@ -72,17 +78,14 @@ export const customerRoutes = async (
           }
         },
         response: {
-          200: server.getSchema('Customer'),
+          201: server.getSchema('Customer'),
         }
       }
     },
     async (request, reply) => {
     const { name, email, phone, address } = request.body as Customer
-    const { rows } = await server.pg.query(
-      'INSERT INTO customers (name, email, phone, address) VALUES ($1, $2, $3, $4) RETURNING *',
-      [name, email, phone, address]
-    )
-    return rows[0]
+    const result = await createCustomer(server, name, email, phone, address)
+    reply.status(201).send(result)
   })
 
   server.put('/:id',
@@ -114,15 +117,12 @@ export const customerRoutes = async (
     async (request, reply) => {
     const { id } = request.params as { id: string }
     const { name, email, phone, address } = request.body as Customer
-    const { rows } = await server.pg.query(
-      'UPDATE customers SET name = $1, email = $2, phone = $3, address = $4 WHERE id = $5 RETURNING *',
-      [name, email, phone, address, id]
-    )
-    if (rows.length > 0) {
-      return rows[0]
-    } else {
-      reply.status(404).send({ error: 'Customer not found' })
+    const result = await updateCustomerById(server, id, name, email, phone, address)
+    if (!result) {
+      throw new CustomError('Customer not found', 404)
     }
+
+    reply.status(200).send(result);
   })
 
   server.delete('/:id',
@@ -150,10 +150,12 @@ export const customerRoutes = async (
     },
     async (request, reply) => {
     const { id } = request.params as { id: string }
-    await server.pg.query('DELETE FROM customers WHERE id = $1 RETURNING *', [
-      id,
-    ])
-    reply.send({ message: 'Customer deleted' })
+    const result = await deleteCustomerById(server, id)
+    if (!result) {
+      throw new CustomError('Customer not found', 404)
+    }
+
+    reply.status(200).send({ message: 'Customer deleted' })
   })
 
   server.post('/:id/contracts',
@@ -165,7 +167,7 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id: { type: 'number' }
           }
         },
         body: {
@@ -178,36 +180,24 @@ export const customerRoutes = async (
           }
         },
         response: {
-          200: server.getSchema('Contract'),
+          201: server.getSchema('Contract'),
         }
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
-    const { productId, startDate, renewalDate, claimDate } =
-      request.body as Contract
+    const { id } = request.params as { id: number }
+    const { productId, startDate, renewalDate, claimDate } = request.body as Contract
 
-    const customerCheck = await server.pg.query(
-      'SELECT * FROM customers WHERE id = $1',
-      [id]
-    )
-    if (customerCheck.rows.length === 0) {
-      reply.status(404).send({ error: 'Customer not found' })
-      return
+    const customer = await findCustomerById(server, id)
+    if (!customer) {
+      throw new CustomError('Customer not found', 404)
     }
-    const productCheck = await server.pg.query(
-      'SELECT * FROM products WHERE id = $1',
-      [productId]
-    )
-    if (productCheck.rows.length === 0) {
-      reply.status(404).send({ error: 'Product not found' })
-      return
+    const product = await findProductById(server, productId)
+    if (!product) {
+      throw new CustomError('Product not found', 404)
     }
 
-    const { rows } = await server.pg.query(
-      'INSERT INTO contracts (customer_id, product_id, start_date, renewal_date, claim_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [id, productId, startDate, renewalDate, claimDate]
-    )
-    return rows[0]
+    const contract = await createContract(server, id, productId, startDate, renewalDate, claimDate)
+    reply.status(201).send(contract)
   })
 }

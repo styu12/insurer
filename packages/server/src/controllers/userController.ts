@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import bcrypt from 'bcrypt'
 import { createUser, findUserById, findUserByUsername } from '../models/user'
+import CustomError from '../errors/CustomError'
 
 export const userRoutes = async (
   server: FastifyInstance,
@@ -20,23 +21,20 @@ export const userRoutes = async (
           },
         },
         response: {
-          200: server.getSchema('User'),
+          201: server.getSchema('User'),
         }
       }
     },
     async (request, reply) => {
-    try {
-      const { username, password, email } = request.body as { username: string; password: string, email: string };
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await createUser(server, username, hashedPassword, email);
-      reply.send({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-      });
-    } catch (err) {
-      reply.status(500).send({ error: 'Registration failed' });
-    }
+    const { username, password, email } = request.body as { username: string; password: string, email: string };
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await createUser(server, username, hashedPassword, email);
+
+    reply.status(201).send({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
   })
 
   server.post('/login',
@@ -64,23 +62,18 @@ export const userRoutes = async (
       }
     },
     async (request, reply) => {
-    try {
-      const { username, password } = request.body as { username: string; password: string };
-      const user = await findUserByUsername(server, username);
-      if (!user) {
-        return reply.status(404).send({ error: 'User not found' });
-      }
-
-      if (!await bcrypt.compare(password, user.password)) {
-        return reply.status(401).send({ error: 'Invalid password' });
-      }
-
-      const token = server.jwt.sign({ id: user.id, username: user.username });
-      reply.send({ token });
-
-    } catch (err) {
-      reply.status(500).send({ error: 'Login failed' });
+    const { username, password } = request.body as { username: string; password: string };
+    const user = await findUserByUsername(server, username);
+    if (!user) {
+      throw new CustomError('User not found', 404);
     }
+
+    if (!await bcrypt.compare(password, user.password)) {
+      throw new CustomError('Invalid password', 400);
+    }
+
+    const token = server.jwt.sign({ id: user.id, username: user.username });
+    reply.status(200).send({ token });
   })
 
   server.post('/logout',
@@ -89,15 +82,20 @@ export const userRoutes = async (
         tags: ['user'],
         description: 'logout',
         summary: 'logout',
-        body: {},
         response: {
-          200: {}
+          200: {
+            description: 'Successful response',
+            type: 'object',
+            properties: {
+              message: { type: 'string' },
+            },
+          }
         }
       }
     },
     async (request, reply) => {
     // token should be removed from client side
-    reply.send({ message: 'Logout successful' });
+    reply.status(200).send({ message: 'Logout successful' });
   })
 
   server.get('/me',
@@ -121,19 +119,15 @@ export const userRoutes = async (
     async (request, reply) => {
     const userId = (request.user as { id: number }).id;
 
-    try {
-      const user = await findUserById(server, userId);
-      if (!user) {
-        return reply.status(404).send({ error: 'User not found' });
-      }
-
-      reply.send({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-      });
-    } catch(err) {
-      reply.status(500).send({ error: 'Failed to fetch user' });
+    const user = await findUserById(server, userId);
+    if (!user) {
+      throw new CustomError('User not found', 404);
     }
+
+    reply.status(200).send({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
   })
 }

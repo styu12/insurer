@@ -1,10 +1,11 @@
-import fastify, { FastifyReply, FastifyRequest } from 'fastify'
+import fastify, { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import fastifyEnv from '@fastify/env'
 import fastifyJwt from '@fastify/jwt'
 import postgresConnector from './plugins/postgres'
 import fastifySwagger from './plugins/swagger'
 import routes from './routes'
 import * as process from 'process'
+import CustomError from './errors/CustomError'
 
 const server = fastify({
   logger: true,
@@ -51,16 +52,30 @@ server.register(fastifyJwt, {
   secret: "supersecret",
 })
 
-server.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply) => {
-  try {
-    const token = request.headers.authorization?.replace('Bearer ', '');
-    if (!token) {
-      reply.status(401).send({ error: 'Unauthorized' });
-    }
+server.setErrorHandler((error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
+  if (error instanceof CustomError) {
+    reply.status(error.statusCode).send({
+      error: error.name,
+      message: error.message,
+    });
+  } else {
+    reply.status(500).send({
+      error: 'InternalServerError',
+      message: 'An unexpected error occurred',
+    });
+  }
+})
 
-    request.user = await server.jwt.decode(token);
-  } catch (err) {
-    reply.send(err);
+server.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply) => {
+  const token = request.headers.authorization?.replace('Bearer ', '');
+  if (!token) {
+    throw new CustomError('Unauthorized', 401);
+  }
+
+  try {
+    request.user = await server.jwt.verify(token);
+  } catch (error) {
+    throw new CustomError('Unauthorized', 401);
   }
 })
 
