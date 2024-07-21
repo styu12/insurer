@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { isSameDay } from '../utils/date.ts'
 import { Event } from '../pages/PageContractList.tsx'
+import { convertEventTypeToKorean, EVENT_TYPES } from '../constants'
+import classNames from 'classnames'
 
 interface CalendarWeekViewProps {
   date: Date;
@@ -44,7 +46,7 @@ const CalendarWeekView: React.FC<CalendarWeekViewProps> = ({
     isCurrentMonth: day.getMonth() === date.getMonth(),
     isToday: isSameDay(day, today),
     isSelected: isSameDay(day, date),
-    events: events.filter(event => isSameDay(new Date(event.datetime), day)),
+    events: events.filter(event => isSameDay(new Date(event.date), day)),
   }));
 
   return (
@@ -122,7 +124,7 @@ const CalendarWeekView: React.FC<CalendarWeekViewProps> = ({
                 style={{ gridTemplateRows: '1.75rem repeat(288, minmax(0, 1fr)) auto' }}
               >
                 {events.map((event) => {
-                  const eventDate = new Date(event.datetime);
+                  const eventDate = new Date(event.date);
                   const dayIndex = days.findIndex(day => isSameDay(new Date(day.date), eventDate));
                   const start = (eventDate.getHours() * 60 + eventDate.getMinutes()) / 1440 * 48;
                   const duration = 12; // 예제에서는 모든 이벤트가 1시간으로 가정
@@ -135,11 +137,23 @@ const CalendarWeekView: React.FC<CalendarWeekViewProps> = ({
                     >
                       <a
                         href={event.href}
-                        className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100"
+                        className={classNames(
+                          "group absolute inset-1 flex flex-col overflow-y-auto rounded-lg p-2 text-xs leading-5",
+                          event.type === EVENT_TYPES.CONTRACT_START ? 'bg-green-50 hover:bg-green-100' : '',
+                          event.type === EVENT_TYPES.CLAIM_START ? 'bg-blue-50 hover:bg-blue-100' : '',
+                          event.type === EVENT_TYPES.CONTRACT_END ? 'bg-red-50 hover:bg-red-100' : '',
+                        )}
                       >
-                        <p className="order-1 font-semibold text-blue-700">{event.name}</p>
-                        <p className="text-blue-500 group-hover:text-blue-700">
-                          <time dateTime={event.datetime}>{event.time}</time>
+                        <p className="order-1 font-semibold">
+                          {event.customerName}
+                          <span className={classNames(
+                            "inline-flex items-center rounded-md ml-2 px-2 py-1 text-xs font-medium ring-1 bg-transparent",
+                            event.type === EVENT_TYPES.CONTRACT_START ? 'text-green-500 ring-green-600/20' : '',
+                            event.type === EVENT_TYPES.CLAIM_START ? 'text-blue-500 ring-blue-600/20' : '',
+                            event.type === EVENT_TYPES.CONTRACT_END ? 'text-red-500 ring-red-600/20' : '',
+                          )}>
+                            {convertEventTypeToKorean(event.type)}
+                          </span>
                         </p>
                       </a>
                     </li>

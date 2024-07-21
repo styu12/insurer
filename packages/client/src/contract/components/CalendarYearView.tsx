@@ -45,7 +45,7 @@ const getMonthDays = (year: number, month: number, today: Date, events: Event[])
       isCurrentMonth: true,
       isToday: date.toDateString() === today.toDateString(),
       isSelected: false,
-      events: events.filter(event => event.datetime.startsWith(dateString)),
+      events: events.filter(event => event.date.startsWith(dateString)),
     });
   }
 

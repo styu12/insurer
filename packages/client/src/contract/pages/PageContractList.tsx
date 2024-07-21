@@ -1,17 +1,16 @@
 import CalendarHeader from '../components/CalendarHeader.tsx'
 import CalendarMonthView from '../components/CalendarMonthView.tsx'
 import { useState } from 'react'
-import { View, VIEWS } from '../constants'
+import { EVENT_TYPES, EventType, View, VIEWS } from '../constants'
 import CalendarWeekView from '../components/CalendarWeekView.tsx'
 import CalendarYearView from '../components/CalendarYearView.tsx'
-import { toKST } from '../utils/date.ts'
 
 export interface Event {
   id: string;
-  name: string;
+  customerName: string;
   href: string;
-  datetime: string;
-  time: string;
+  date: string;
+  type: EventType;
 }
 
 const PageContractList = () => {
@@ -22,57 +21,54 @@ const PageContractList = () => {
   const allEvents: Event[] = [
     {
       id: '1',
-      name: '한승오 고객님 계약 완료',
+      customerName: '제리',
       href: '#',
-      datetime: '2024-07-14T12:00',
-      time: '12:00 PM',
+      date: '2024-07-29T12:00',
+      type: EVENT_TYPES.CONTRACT_START,
     },
     {
       id: '2',
-      name: '김기덕 고객님 계약 완료',
+      customerName: '테디',
       href: '#',
-      datetime: '2024-07-14T12:00',
-      time: '12:00 PM',
+      date: '2024-07-02T12:00',
+      type: EVENT_TYPES.CONTRACT_START,
     },
     {
       id: '3',
-      name: '임문규 고객님 계약 완료',
+      customerName: '테디',
       href: '#',
-      datetime: '2024-07-14T13:00',
-      time: '13:00 PM',
+      date: '2024-07-08T13:00',
+      type: EVENT_TYPES.CLAIM_START,
     },
     {
       id: '4',
-      name: '테디 고객님 계약 완료',
+      customerName: '좌니',
       href: '#',
-      datetime: '2024-07-17T12:00',
-      time: '12:00 PM',
+      date: '2024-07-10T12:00',
+      type: EVENT_TYPES.CONTRACT_START,
     },
     {
       id: '5',
-      name: '좌니 고객님 계약 완료',
+      customerName: '좌니',
       href: '#',
-      datetime: '2024-07-17T13:00',
-      time: '12:00 PM',
+      date: '2024-07-14T13:00',
+      type: EVENT_TYPES.CLAIM_START,
     },
     {
       id: '5',
-      name: '크리스 고객님 계약 완료',
+      customerName: '크리스',
       href: '#',
-      datetime: '2024-07-17T14:00',
-      time: '12:00 PM',
+      date: '2024-07-17T14:00',
+      type: EVENT_TYPES.CONTRACT_START,
     },
     {
       id: '6',
-      name: '나재성 고객님 계약 청구일 시작',
+      customerName: '크리스',
       href: '#',
-      datetime: '2024-07-21T10:00',
-      time: '10:00 AM',
+      date: '2024-07-19T14:00',
+      type: EVENT_TYPES.CLAIM_START,
     },
-  ].map((event) => ({
-    ...event,
-    datetime: toKST(new Date(event.datetime)).toISOString(),
-  }));
+  ];
 
   const renderCalendarView = () => {
     switch (view) {
@@ -99,8 +95,8 @@ const PageContractList = () => {
   return (
     <div className="lg:flex lg:h-full lg:flex-col">
       <CalendarHeader
-        view={'month'}
-        date={new Date()}
+        view={view}
+        date={date}
         onDateChange={handleDateChange}
         onViewChange={handleViewChange}
       />

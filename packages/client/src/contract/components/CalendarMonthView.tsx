@@ -3,6 +3,7 @@ import { ClockIcon } from '@heroicons/react/20/solid'
 import { Event } from '../pages/PageContractList.tsx'
 import { isSameDay } from '../utils/date.ts'
 import classNames from 'classnames';
+import { convertEventTypeToKorean, EVENT_TYPES } from '../constants'
 
 interface Day {
   date: string;
@@ -44,7 +45,7 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
     isCurrentMonth: day.getMonth() === month,
     isToday: isSameDay(day, today),
     isSelected: isSameDay(day, date),
-    events: events.filter(event => isSameDay(new Date(event.datetime), day)),
+    events: events.filter(event => isSameDay(new Date(event.date), day)),
   }));
 
   return (
@@ -103,15 +104,24 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
                   {day.events.slice(0, 2).map((event) => (
                     <li key={event.id}>
                       <a href={event.href} className="group flex">
-                        <p className="flex-auto truncate font-medium text-gray-900 group-hover:text-indigo-600">
-                          {event.name}
+                        <p className="flex-auto truncate text-sm font-medium text-gray-900 group-hover:text-indigo-600">
+                          {event.customerName}
+                          <span
+                            className={
+                            classNames(
+                              "inline-flex items-center rounded-md ml-2 px-2 py-1 text-xs font-medium ring-1 ring-inset",
+                              event.type === EVENT_TYPES.CONTRACT_START ? 'bg-green-50 text-green-700 ring-green-600/20' : '',
+                              event.type === EVENT_TYPES.CLAIM_START ? 'bg-blue-50 text-blue-700 ring-blue-600/20' : '',
+                              event.type === EVENT_TYPES.CONTRACT_END ? 'bg-red-50 text-red-700 ring-red-600/20' : '',
+                            )
+                            }>
+                        {convertEventTypeToKorean(event.type)}
+                      </span>
                         </p>
                         <time
-                          dateTime={event.datetime}
+                          dateTime={event.date}
                           className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
-                        >
-                          {event.time}
-                        </time>
+                        />
                       </a>
                     </li>
                   ))}
@@ -168,17 +178,16 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
             {events.map((event) => (
               <li key={event.id} className="group flex p-4 pr-6 focus-within:bg-gray-50 hover:bg-gray-50">
                 <div className="flex-auto">
-                  <p className="font-semibold text-gray-900">{event.name}</p>
-                  <time dateTime={event.datetime} className="mt-2 flex items-center text-gray-700">
+                  <p className="font-semibold text-gray-900">{event.customerName}</p>
+                  <time dateTime={event.date} className="mt-2 flex items-center text-gray-700">
                     <ClockIcon className="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
-                    {event.time}
                   </time>
                 </div>
                 <a
                   href={event.href}
                   className="ml-6 flex-none self-center rounded-md bg-white px-3 py-2 font-semibold text-gray-900 opacity-0 shadow-sm ring-1 ring-inset ring-gray-300 hover:ring-gray-400 focus:opacity-100 group-hover:opacity-100"
                 >
-                  Edit<span className="sr-only">, {event.name}</span>
+                  Edit<span className="sr-only">, {event.customerName}</span>
                 </a>
               </li>
             ))}
