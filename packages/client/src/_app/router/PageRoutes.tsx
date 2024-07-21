@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { routes } from './path.config'
+import { routePaths } from './path.config'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Suspense } from 'react'
 import PageErrorFallback from '../../_error/components/PageErrorFallback'
@@ -7,7 +7,7 @@ import PageErrorFallback from '../../_error/components/PageErrorFallback'
 const PageRoutes = () => {
   return (
     <Routes>
-      {routes.map((route) => {
+      {Object.values(routePaths).map((route) => {
         const PageComponent = route.element
         return (
           <Route
