@@ -6,7 +6,7 @@ import {
   ChevronRightIcon,
   EllipsisHorizontalIcon,
 } from '@heroicons/react/20/solid'
-import { View, VIEWS } from '../../constants'
+import { View, VIEWS } from '../../../constants'
 
 interface CalendarHeaderProps {
   view: View;

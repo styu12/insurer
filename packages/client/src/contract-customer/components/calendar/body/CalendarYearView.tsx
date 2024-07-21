@@ -1,5 +1,5 @@
 import React from 'react';
-import { Event } from '../Calendar.tsx';
+import { Event } from '../../../pages/PageContractCustomerList.tsx';
 import classNames from 'classnames';
 
 interface Day {
