@@ -11,6 +11,7 @@ const PageRoutes = () => {
         const PageComponent = route.element
         return (
           <Route
+            key={`${route.id}_${route.path}`}
             path={route.path}
             element={
               <ErrorBoundary fallback={<PageErrorFallback />}>

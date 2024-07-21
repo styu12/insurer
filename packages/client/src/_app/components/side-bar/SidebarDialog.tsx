@@ -82,7 +82,7 @@ const SidebarDialog = (props: SidebarDialogProps) => {
             className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-[closed]:-translate-x-full"
           >
             <TransitionChild>
-              <Container className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
+              <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
                 <button
                   type="button"
                   onClick={onCloseSidebar}
@@ -94,9 +94,8 @@ const SidebarDialog = (props: SidebarDialogProps) => {
                     className="h-6 w-6 text-white"
                   />
                 </button>
-              </Container>
+              </div>
             </TransitionChild>
-            {/* Sidebar component, swap this element with another sidebar if you like */}
             <Container className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
               <Container className="flex h-16 shrink-0 items-center">
                 <img
@@ -105,7 +104,7 @@ const SidebarDialog = (props: SidebarDialogProps) => {
                   className="h-8 w-auto"
                 />
               </Container>
-              <Container as='nav' className="flex flex-1 flex-col">
+              <Container as="nav" className="flex flex-1 flex-col">
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
                   <li>
                     <ul role="list" className="-mx-2 space-y-1">
