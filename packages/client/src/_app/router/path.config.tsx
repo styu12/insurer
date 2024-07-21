@@ -1,8 +1,16 @@
-import { LazyLoadRetryOnce } from '../components/lazyload/LazyLoad'
+import { homeNavigationPaths, homePaths } from '../../home/path.config'
+import {
+  templateNavigationPaths,
+  templatePaths,
+} from '../../template/path.config'
 
-export const routes = [
-  {
-    path: '/',
-    element: LazyLoadRetryOnce(() => import('../../home/pages/PageHome')),
-  },
-]
+
+export const routePaths = {
+  ...homePaths,
+  ...templatePaths,
+} as const
+
+export const navigationPaths = {
+  ...homeNavigationPaths,
+  ...templateNavigationPaths,
+}
