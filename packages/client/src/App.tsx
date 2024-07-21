@@ -3,12 +3,16 @@ import AppLayout from './_app/components/layout/AppLayout'
 import MainLayout from './_app/components/layout/MainLayout'
 import Sidebar from './_app/components/side-bar/Sidebar'
 import GlobalErrorFallback from './_error/components/GlobalErrorFallback'
+import Calendar from './calendar/components/Calendar'
+
 const App = () => {
   return (
     <ErrorBoundary fallback={<GlobalErrorFallback />}>
       <AppLayout>
         <Sidebar />
-        <MainLayout>hello-world</MainLayout>
+        <MainLayout>
+          <Calendar />
+        </MainLayout>
       </AppLayout>
     </ErrorBoundary>
   )
