@@ -2184,6 +2184,7 @@ const RAW_RUNTIME_STATE =
           ["@vanilla-extract/vite-plugin", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.0.11"],\
           ["@vitejs/plugin-react", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.3.1"],\
           ["autoprefixer", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:10.4.19"],\
+          ["classnames", "npm:2.5.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-plugin-react-hooks", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.6.2"],\
           ["eslint-plugin-react-refresh", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:0.4.7"],\
@@ -2727,6 +2728,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/chownr-npm-2.0.0-638f1c9c61-594754e130.zip/node_modules/chownr/",\
         "packageDependencies": [\
           ["chownr", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["classnames", [\
+      ["npm:2.5.1", {\
+        "packageLocation": "./.yarn/cache/classnames-npm-2.5.1-c7273f3423-afff4f77e6.zip/node_modules/classnames/",\
+        "packageDependencies": [\
+          ["classnames", "npm:2.5.1"]\
         ],\
         "linkType": "HARD"\
       }]\
