@@ -1,10 +1,7 @@
 import React from 'react';
 import { Event } from '../Calendar.tsx'
 import { isSameDay } from '../../utils/date.ts'
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+import classNames from 'classnames';
 
 interface Day {
   date: string;
