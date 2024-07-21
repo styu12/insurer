@@ -19,3 +19,17 @@ export const navigationPaths = {
   ...contractNavigationPaths,
   ...customerNavigationPaths,
 } as const
+
+type HasPath = { path: string }
+type PathKeys<T> = keyof T
+type ExtractPathParams<Path> =
+  Path extends `${string}/:${infer Param}/${infer Rest}`
+    ? Param | ExtractPathParams<`/${Rest}`>
+    : Path extends `${string}/:${infer Param}`
+      ? Param
+      : never
+
+export type PathParams<
+  T extends Record<string, HasPath>,
+  K extends PathKeys<T>,
+> = ExtractPathParams<T[K]['path']>

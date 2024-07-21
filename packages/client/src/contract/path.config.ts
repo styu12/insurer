@@ -1,6 +1,7 @@
 import { HomeIcon } from '@heroicons/react/24/outline'
 import { LazyLoadRetryOnce } from '../_app/components/lazyload/LazyLoad'
 import { createNavigationPath } from '../_app/router/createNavigationPath'
+import { PathParams } from '../_app/router/path.config'
 
 export const contractPaths = {
   constract: {
@@ -8,9 +9,14 @@ export const contractPaths = {
     path: '/contract',
     element: LazyLoadRetryOnce(() => import('./pages/PageContractList')),
   },
-  "constract-edit": {
-    id: 'contract',
-    path: '/contract/edit',
+  'constract-create': {
+    id: 'contract-create',
+    path: '/contract/create',
+    element: LazyLoadRetryOnce(() => import('./pages/PageContractEdit')),
+  },
+  'constract-edit': {
+    id: 'contract-edit',
+    path: '/contract/edit/:contractId',
     element: LazyLoadRetryOnce(() => import('./pages/PageContractEdit')),
   },
 } as const
@@ -21,3 +27,7 @@ export const contractNavigationPaths = createNavigationPath({
   path: contractPaths.constract.path,
   icon: HomeIcon,
 })
+export type ContractEditPathParamsType = PathParams<
+  typeof contractPaths,
+  'constract-edit'
+>
