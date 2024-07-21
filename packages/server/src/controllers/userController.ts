@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
 import bcrypt from 'bcrypt'
-import { createUser, findUserById, findUserByUsername } from '../models/user'
+import { createUser, findUserById, findUserByUsername, User } from '../models/user'
 import CustomError from '../errors/CustomError'
 
 export const userRoutes = async (
@@ -18,6 +18,9 @@ export const userRoutes = async (
             username: { type: 'string' },
             password: { type: 'string' },
             email: { type: 'string' },
+            emailNotification: { type: 'boolean' },
+            smsNotification: { type: 'boolean' },
+            kakaoNotification: { type: 'boolean' },
           },
         },
         response: {
@@ -26,9 +29,9 @@ export const userRoutes = async (
       }
     },
     async (request, reply) => {
-    const { username, password, email } = request.body as { username: string; password: string, email: string };
+    const { username, password, email, emailNotification, smsNotification, kakaoNotification } = request.body as User;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await createUser(server, username, hashedPassword, email);
+    const user = await createUser(server, username, hashedPassword, email, emailNotification, smsNotification, kakaoNotification);
 
     reply.status(201).send({
       id: user.id,
@@ -128,6 +131,9 @@ export const userRoutes = async (
       id: user.id,
       username: user.username,
       email: user.email,
+      emailNotification: user.emailNotification,
+      smsNotification: user.smsNotification,
+      kakaoNotification: user.kakaoNotification,
     });
   })
 }
