@@ -1,16 +1,21 @@
-import { homeNavigationPaths, homePaths } from '../../home/path.config'
 import {
-  templateNavigationPaths,
-  templatePaths,
-} from '../../template/path.config'
-
+  contractNavigationPaths,
+  contractPaths,
+} from '../../contract/path.config'
+import {
+  customerNavigationPaths,
+  customerPaths,
+} from '../../customer/path.config'
+import { homeNavigationPaths, homePaths } from '../../home/path.config'
 
 export const routePaths = {
   ...homePaths,
-  ...templatePaths,
+  ...contractPaths,
+  ...customerPaths,
 } as const
 
 export const navigationPaths = {
   ...homeNavigationPaths,
-  ...templateNavigationPaths,
-}
+  ...contractNavigationPaths,
+  ...customerNavigationPaths,
+} as const

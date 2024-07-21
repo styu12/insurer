@@ -12,7 +12,7 @@ export const homePaths = {
 
 export const homeNavigationPaths = createNavigationPath({
   id: homePaths.home.id,
-  label: 'Home',
+  label: '대시보드',
   path: homePaths.home.path,
   icon: HomeIcon,
 })
