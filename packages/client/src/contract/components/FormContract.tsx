@@ -1,4 +1,6 @@
-const FormContractCustomer = () => {
+import { customers } from '../../customer/components/TableCustomer.tsx'
+
+const FormContract = () => {
   return (
     <form>
       <div className="space-y-12">
@@ -47,70 +49,46 @@ const FormContractCustomer = () => {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">고객 정보</h2>
-
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                성함
-              </label>
-              <div className="mt-2">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
             <div className="sm:col-span-3">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email
+              <label htmlFor="customer" className="block text-sm font-medium leading-6 text-gray-900">
+                고객
               </label>
               <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label htmlFor="birthday" className="block text-sm font-medium leading-6 text-gray-900">
-                생년월일
-              </label>
-              <div className="mt-2">
-                <input
-                  id="birthday"
-                  name="birthday"
-                  type="date"
-                  autoComplete="birthday"
+                <select
+                  id="customer"
+                  name="customer"
+                  autoComplete="customer"
                   className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+                >
+                  {customers.map((customer) => (
+                    <option key={customer.email}>{customer.name}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
-            <div className="col-span-full">
-              <label htmlFor="address" className="block text-sm font-medium leading-6 text-gray-900">
-                주소
+            <div className="sm:col-span-3">
+              <label htmlFor="claim-wait-duration" className="block text-sm font-medium leading-6 text-gray-900">
+                계약 청구 대기 기간
               </label>
               <div className="mt-2">
-                <input
-                  id="address"
-                  name="address"
-                  type="text"
-                  autoComplete="address"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+                <select
+                  id="claim-wait-duration"
+                  name="claim-wait-duration"
+                  autoComplete="claim-wait-duration"
+                  className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                >
+                  <option>30일</option>
+                  <option>60일</option>
+                  <option>90일</option>
+                  <option>120일</option>
+                  <option>150일</option>
+                </select>
               </div>
             </div>
 
-            <div className="sm:col-span-2 sm:col-start-1">
+            <div className="sm:col-span-3 sm:col-start-1">
               <label htmlFor="start-date" className="block text-sm font-medium leading-6 text-gray-900">
                 계약일
               </label>
@@ -125,7 +103,7 @@ const FormContractCustomer = () => {
               </div>
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-3">
               <label htmlFor="end-date" className="block text-sm font-medium leading-6 text-gray-900">
                 계약 만기일
               </label>
@@ -139,33 +117,13 @@ const FormContractCustomer = () => {
                 />
               </div>
             </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="claim-wait-duration" className="block text-sm font-medium leading-6 text-gray-900">
-                계약 청구 대기 기간
-              </label>
-              <div className="mt-2">
-                <select
-                  id="claim-wait-duration"
-                  name="claim-wait-duration"
-                  autoComplete="claim-wait-duration"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                >
-                  <option>30일</option>
-                  <option>60일</option>
-                  <option>90일</option>
-                  <option>120일</option>
-                  <option>150일</option>
-                </select>
-              </div>
-            </div>
           </div>
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">알림</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Insurer는 보험금 청구 가능 기간이 다가올 때 알림을 보내드립니다. <br/>
+            Insurer는 보험금 청구 가능 기간이 다가올 때 알림을 보내드립니다. <br />
             고객, 설계사 모두 알림을 받을 수 있습니다.
           </p>
 
@@ -302,4 +260,4 @@ const FormContractCustomer = () => {
   )
 }
 
-export default FormContractCustomer;
+export default FormContract;

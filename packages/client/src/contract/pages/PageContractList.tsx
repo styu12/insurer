@@ -14,7 +14,7 @@ export interface Event {
   time: string;
 }
 
-const PageContractCustomerList = () => {
+const PageContractList = () => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(VIEWS.MONTH);
 
@@ -111,4 +111,4 @@ const PageContractCustomerList = () => {
   )
 }
 
-export default PageContractCustomerList;
+export default PageContractList;
