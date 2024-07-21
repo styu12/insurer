@@ -1,7 +1,7 @@
 import React from 'react';
 import { ClockIcon } from '@heroicons/react/20/solid'
-import { Event } from '../../../pages/PageContractList.tsx'
-import { isSameDay } from '../../../utils/date.ts'
+import { Event } from '../pages/PageContractList.tsx'
+import { isSameDay } from '../utils/date.ts'
 import classNames from 'classnames';
 
 interface Day {

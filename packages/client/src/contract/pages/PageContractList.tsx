@@ -1,9 +1,9 @@
-import CalendarHeader from '../components/calendar/header/CalendarHeader.tsx'
-import CalendarMonthView from '../components/calendar/body/CalendarMonthView.tsx'
+import CalendarHeader from '../components/CalendarHeader.tsx'
+import CalendarMonthView from '../components/CalendarMonthView.tsx'
 import { useState } from 'react'
 import { View, VIEWS } from '../constants'
-import CalendarWeekView from '../components/calendar/body/CalendarWeekView.tsx'
-import CalendarYearView from '../components/calendar/body/CalendarYearView.tsx'
+import CalendarWeekView from '../components/CalendarWeekView.tsx'
+import CalendarYearView from '../components/CalendarYearView.tsx'
 import { toKST } from '../utils/date.ts'
 
 export interface Event {
