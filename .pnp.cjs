@@ -2191,6 +2191,7 @@ const RAW_RUNTIME_STATE =
           ["postcss", "npm:8.4.38"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:18.3.1"],\
+          ["react-error-boundary", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.0.13"],\
           ["tailwindcss", "npm:3.4.4"],\
           ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"],\
           ["vite", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:5.3.1"]\
@@ -5555,6 +5556,29 @@ const RAW_RUNTIME_STATE =
           ["loose-envify", "npm:1.4.0"],\
           ["react", "npm:18.3.1"],\
           ["scheduler", "npm:0.23.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-error-boundary", [\
+      ["npm:4.0.13", {\
+        "packageLocation": "./.yarn/cache/react-error-boundary-npm-4.0.13-22e72c3a85-6f3e0e4d76.zip/node_modules/react-error-boundary/",\
+        "packageDependencies": [\
+          ["react-error-boundary", "npm:4.0.13"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.0.13", {\
+        "packageLocation": "./.yarn/__virtual__/react-error-boundary-virtual-6a6423694e/0/cache/react-error-boundary-npm-4.0.13-22e72c3a85-6f3e0e4d76.zip/node_modules/react-error-boundary/",\
+        "packageDependencies": [\
+          ["react-error-boundary", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.0.13"],\
+          ["@babel/runtime", "npm:7.24.7"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["react", "npm:18.3.1"]\
         ],\
         "packagePeers": [\
           "@types/react",\
