@@ -7,9 +7,7 @@ import {
   findCustomerById,
   updateCustomerById,
 } from '../models/customer'
-import { Contract, createContract } from '../models/contract'
 import CustomError from '../errors/CustomError'
-import { findProductById } from '../models/product'
 
 export const customerRoutes = async (
   server: FastifyInstance,
@@ -75,6 +73,9 @@ export const customerRoutes = async (
             email: { type: 'string' },
             phone: { type: 'string' },
             address: { type: 'string' },
+            emailNotification: { type: 'boolean' },
+            smsNotification: { type: 'boolean' },
+            kakaoNotification: { type: 'boolean' },
           }
         },
         response: {
@@ -83,8 +84,8 @@ export const customerRoutes = async (
       }
     },
     async (request, reply) => {
-    const { name, email, phone, address } = request.body as Customer
-    const result = await createCustomer(server, name, email, phone, address)
+    const { name, email, phone, address, emailNotification, smsNotification, kakaoNotification } = request.body as Customer
+    const result = await createCustomer(server, name, email, phone, address, emailNotification, smsNotification, kakaoNotification)
     reply.status(201).send(result)
   })
 
@@ -107,6 +108,9 @@ export const customerRoutes = async (
             email: { type: 'string' },
             phone: { type: 'string' },
             address: { type: 'string' },
+            emailNotification: { type: 'boolean' },
+            smsNotification: { type: 'boolean' },
+            kakaoNotification: { type: 'boolean' },
           }
         },
         response: {
@@ -115,9 +119,9 @@ export const customerRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
-    const { name, email, phone, address } = request.body as Customer
-    const result = await updateCustomerById(server, id, name, email, phone, address)
+    const { id } = request.params as { id: number }
+    const { name, email, phone, address, emailNotification, smsNotification, kakaoNotification } = request.body as Customer
+    const result = await updateCustomerById(server, id, name, email, phone, address, emailNotification, smsNotification, kakaoNotification)
     if (!result) {
       throw new CustomError('Customer not found', 404)
     }
@@ -149,55 +153,12 @@ export const customerRoutes = async (
       }
     },
     async (request, reply) => {
-    const { id } = request.params as { id: string }
+    const { id } = request.params as { id: number }
     const result = await deleteCustomerById(server, id)
     if (!result) {
       throw new CustomError('Customer not found', 404)
     }
 
     reply.status(200).send({ message: 'Customer deleted' })
-  })
-
-  server.post('/:id/contracts',
-    {
-      schema: {
-        tags: ['customers'],
-        description: 'create a contract for a customer by id',
-        summary: 'create a contract for a customer by id',
-        params: {
-          type: 'object',
-          properties: {
-            id: { type: 'number' }
-          }
-        },
-        body: {
-          type: 'object',
-          properties: {
-            productId: { type: 'number' },
-            startDate: { type: 'string' },
-            renewalDate: { type: 'string' },
-            claimDate: { type: 'string' },
-          }
-        },
-        response: {
-          201: server.getSchema('Contract'),
-        }
-      }
-    },
-    async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const { productId, startDate, renewalDate, claimDate } = request.body as Contract
-
-    const customer = await findCustomerById(server, id)
-    if (!customer) {
-      throw new CustomError('Customer not found', 404)
-    }
-    const product = await findProductById(server, productId)
-    if (!product) {
-      throw new CustomError('Product not found', 404)
-    }
-
-    const contract = await createContract(server, id, productId, startDate, renewalDate, claimDate)
-    reply.status(201).send(contract)
   })
 }

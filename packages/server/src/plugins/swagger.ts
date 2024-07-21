@@ -32,6 +32,7 @@ const fastifySwagger = async (server: FastifyInstance) => {
         description: 'Find more info here'
       },
       tags: [
+        { name: 'contracts', description: 'Contract related end-points' },
         { name: 'customers', description: 'Customer related end-points' },
         { name: 'products', description: 'Product related end-points' },
         { name: 'notifications', description: 'Notification related end-points' },
@@ -51,6 +52,9 @@ const fastifySwagger = async (server: FastifyInstance) => {
           email: { type: 'string' },
           phone: { type: 'string' },
           address: { type: 'string' },
+          emailNotification: { type: 'boolean' },
+          smsNotification: { type: 'boolean' },
+          kakaoNotification: { type: 'boolean' },
         }
       }
     )
@@ -73,11 +77,13 @@ const fastifySwagger = async (server: FastifyInstance) => {
         type: 'object',
         properties: {
           id: { type: 'number' },
+          title: { type: 'string' },
+          description: { type: 'string' },
           customerId: { type: 'number' },
           productId: { type: 'number' },
           startDate: { type: 'string' },
-          renewalDate: { type: 'string' },
           claimDate: { type: 'string' },
+          endDate: { type: 'string' },
         }
       }
     )
@@ -90,6 +96,9 @@ const fastifySwagger = async (server: FastifyInstance) => {
           id: { type: 'number' },
           username: { type: 'string' },
           email: { type: 'string' },
+          emailNotification: { type: 'boolean' },
+          smsNotification: { type: 'boolean' },
+          kakaoNotification: { type: 'boolean' },
         }
       }
     );

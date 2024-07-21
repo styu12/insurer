@@ -32,6 +32,15 @@
           },
           "address": {
             "type": "string"
+          },
+          "emailNotification": {
+            "type": "boolean"
+          },
+          "smsNotification": {
+            "type": "boolean"
+          },
+          "kakaoNotification": {
+            "type": "boolean"
           }
         },
         "title": "Customer"
@@ -59,6 +68,12 @@
           "id": {
             "type": "number"
           },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
           "customerId": {
             "type": "number"
           },
@@ -68,10 +83,10 @@
           "startDate": {
             "type": "string"
           },
-          "renewalDate": {
+          "claimDate": {
             "type": "string"
           },
-          "claimDate": {
+          "endDate": {
             "type": "string"
           }
         },
@@ -89,6 +104,15 @@
           },
           "email": {
             "type": "string"
+          },
+          "emailNotification": {
+            "type": "boolean"
+          },
+          "smsNotification": {
+            "type": "boolean"
+          },
+          "kakaoNotification": {
+            "type": "boolean"
           }
         },
         "title": "User"
@@ -101,6 +125,194 @@
         "responses": {
           "200": {
             "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/v1/contracts/": {
+      "get": {
+        "summary": "list all contracts",
+        "tags": [
+          "contracts"
+        ],
+        "description": "list all contracts",
+        "responses": {
+          "200": {
+            "description": "Succesful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Succesful response",
+                  "type": "array",
+                  "items": {
+                    "description": "a contract object",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "customerId": {
+                        "type": "number"
+                      },
+                      "productId": {
+                        "type": "number"
+                      },
+                      "startDate": {
+                        "type": "string"
+                      },
+                      "claimDate": {
+                        "type": "string"
+                      },
+                      "endDate": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create a contract",
+        "tags": [
+          "contracts"
+        ],
+        "description": "create a contract",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "customerId": {
+                    "type": "number"
+                  },
+                  "productId": {
+                    "type": "number"
+                  },
+                  "startDate": {
+                    "type": "string"
+                  },
+                  "claimDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "a contract object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "a contract object",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "customerId": {
+                      "type": "number"
+                    },
+                    "productId": {
+                      "type": "number"
+                    },
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "claimDate": {
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/contracts/{id}": {
+      "get": {
+        "summary": "list a contract by id",
+        "tags": [
+          "contracts"
+        ],
+        "description": "list a contract by id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a contract object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "a contract object",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "customerId": {
+                      "type": "number"
+                    },
+                    "productId": {
+                      "type": "number"
+                    },
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "claimDate": {
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -138,6 +350,15 @@
                       },
                       "address": {
                         "type": "string"
+                      },
+                      "emailNotification": {
+                        "type": "boolean"
+                      },
+                      "smsNotification": {
+                        "type": "boolean"
+                      },
+                      "kakaoNotification": {
+                        "type": "boolean"
                       }
                     }
                   }
@@ -170,6 +391,15 @@
                   },
                   "address": {
                     "type": "string"
+                  },
+                  "emailNotification": {
+                    "type": "boolean"
+                  },
+                  "smsNotification": {
+                    "type": "boolean"
+                  },
+                  "kakaoNotification": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -199,6 +429,15 @@
                     },
                     "address": {
                       "type": "string"
+                    },
+                    "emailNotification": {
+                      "type": "boolean"
+                    },
+                    "smsNotification": {
+                      "type": "boolean"
+                    },
+                    "kakaoNotification": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -248,6 +487,15 @@
                     },
                     "address": {
                       "type": "string"
+                    },
+                    "emailNotification": {
+                      "type": "boolean"
+                    },
+                    "smsNotification": {
+                      "type": "boolean"
+                    },
+                    "kakaoNotification": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -279,6 +527,15 @@
                   },
                   "address": {
                     "type": "string"
+                  },
+                  "emailNotification": {
+                    "type": "boolean"
+                  },
+                  "smsNotification": {
+                    "type": "boolean"
+                  },
+                  "kakaoNotification": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -318,6 +575,15 @@
                     },
                     "address": {
                       "type": "string"
+                    },
+                    "emailNotification": {
+                      "type": "boolean"
+                    },
+                    "smsNotification": {
+                      "type": "boolean"
+                    },
+                    "kakaoNotification": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -352,81 +618,6 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/customers/{id}/contracts": {
-      "post": {
-        "summary": "create a contract for a customer by id",
-        "tags": [
-          "customers"
-        ],
-        "description": "create a contract for a customer by id",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "productId": {
-                    "type": "number"
-                  },
-                  "startDate": {
-                    "type": "string"
-                  },
-                  "renewalDate": {
-                    "type": "string"
-                  },
-                  "claimDate": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "number"
-            },
-            "in": "path",
-            "name": "id",
-            "required": true
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "a contract object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "a contract object",
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "customerId": {
-                      "type": "number"
-                    },
-                    "productId": {
-                      "type": "number"
-                    },
-                    "startDate": {
-                      "type": "string"
-                    },
-                    "renewalDate": {
-                      "type": "string"
-                    },
-                    "claimDate": {
                       "type": "string"
                     }
                   }
@@ -732,6 +923,15 @@
                   },
                   "email": {
                     "type": "string"
+                  },
+                  "emailNotification": {
+                    "type": "boolean"
+                  },
+                  "smsNotification": {
+                    "type": "boolean"
+                  },
+                  "kakaoNotification": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -755,6 +955,15 @@
                     },
                     "email": {
                       "type": "string"
+                    },
+                    "emailNotification": {
+                      "type": "boolean"
+                    },
+                    "smsNotification": {
+                      "type": "boolean"
+                    },
+                    "kakaoNotification": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -869,6 +1078,15 @@
                     },
                     "email": {
                       "type": "string"
+                    },
+                    "emailNotification": {
+                      "type": "boolean"
+                    },
+                    "smsNotification": {
+                      "type": "boolean"
+                    },
+                    "kakaoNotification": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -886,6 +1104,10 @@
     }
   ],
   "tags": [
+    {
+      "name": "contracts",
+      "description": "Contract related end-points"
+    },
     {
       "name": "customers",
       "description": "Customer related end-points"

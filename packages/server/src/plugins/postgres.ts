@@ -42,11 +42,13 @@ const postgresConnector = async (server: FastifyInstance) => {
     await server.pg.query(`
             CREATE TABLE IF NOT EXISTS contracts (
             id SERIAL PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            description TEXT,
             customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
-            product_id INTEGER REFERENCES products(id),
+            product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
             start_date DATE NOT NULL,
-            renewal_date DATE NOT NULL,
-            claim_date DATE NOT NULL
+            claim_date DATE NOT NULL,
+            end_date DATE NOT NULL
         );
     `)
   })
