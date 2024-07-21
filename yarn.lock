@@ -1627,6 +1627,7 @@ __metadata:
     "@vanilla-extract/vite-plugin": "npm:^4.0.11"
     "@vitejs/plugin-react": "npm:^4.3.1"
     autoprefixer: "npm:^10.4.19"
+    await-to-js: "npm:^3.0.0"
     classnames: "npm:^2.5.1"
     eslint: "npm:~8"
     eslint-plugin-react-hooks: "npm:^4.6.2"
@@ -1908,6 +1909,13 @@ __metadata:
     "@fastify/error": "npm:^3.3.0"
     fastq: "npm:^1.17.1"
   checksum: 10c0/280767ca1259cac1e78fc75ee4f1f6a735914e045015b1ac4c0ce9c5b0933edcb7e9a31fb286a479e51e56562b352dcfa35941e6f555edd341ed5d355e36e4ac
+  languageName: node
+  linkType: hard
+
+"await-to-js@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "await-to-js@npm:3.0.0"
+  checksum: 10c0/1e6184cf4090acf24f6573a475901623ec25df494a3e4b9c27eab9cd4a9f1c0bdb8150c41dbb98e719fd2513dbf32ab8cb88d2ac2c2c4c2fa57024e82128a3db
   languageName: node
   linkType: hard
 

@@ -1,19 +1,22 @@
 import { ErrorBoundary } from 'react-error-boundary'
+import { BrowserRouter } from 'react-router-dom'
 import AppLayout from './_app/components/layout/AppLayout'
 import MainLayout from './_app/components/layout/MainLayout'
 import Sidebar from './_app/components/side-bar/Sidebar'
 import GlobalErrorFallback from './_error/components/GlobalErrorFallback'
-import Calendar from './calendar/components/Calendar'
+import PageRoutes from './_app/router/PageRoutes'
 
 const App = () => {
   return (
     <ErrorBoundary fallback={<GlobalErrorFallback />}>
-      <AppLayout>
-        <Sidebar />
-        <MainLayout>
-          <Calendar />
-        </MainLayout>
-      </AppLayout>
+      <BrowserRouter>
+        <AppLayout>
+          <Sidebar />
+          <MainLayout>
+            <PageRoutes />
+          </MainLayout>
+        </AppLayout>
+      </BrowserRouter>
     </ErrorBoundary>
   )
 }

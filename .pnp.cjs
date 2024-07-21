@@ -2193,6 +2193,7 @@ const RAW_RUNTIME_STATE =
           ["@vanilla-extract/vite-plugin", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.0.11"],\
           ["@vitejs/plugin-react", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.3.1"],\
           ["autoprefixer", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:10.4.19"],\
+          ["await-to-js", "npm:3.0.0"],\
           ["classnames", "npm:2.5.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-plugin-react-hooks", "virtual:000a6a32249f94e0faded9cce6fc9bdc465adf6167fb13acf3e4794c63bdfebb8d8af5332a29d7647ad517f7717c0ecc1b4ad1fec703b249b2a5db06c5cd43c4#npm:4.6.2"],\
@@ -2535,6 +2536,15 @@ const RAW_RUNTIME_STATE =
           ["avvio", "npm:8.3.2"],\
           ["@fastify/error", "npm:3.4.1"],\
           ["fastq", "npm:1.17.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["await-to-js", [\
+      ["npm:3.0.0", {\
+        "packageLocation": "./.yarn/cache/await-to-js-npm-3.0.0-e2a325d38a-1e6184cf40.zip/node_modules/await-to-js/",\
+        "packageDependencies": [\
+          ["await-to-js", "npm:3.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
