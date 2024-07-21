@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { isSameDay } from '../../utils/date.ts'
-import { Event } from '../Calendar.tsx'
+import { isSameDay } from '../../../utils/date.ts'
+import { Event } from '../../../pages/PageContractCustomerList.tsx'
 
 interface CalendarWeekViewProps {
   date: Date;

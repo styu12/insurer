@@ -1,10 +1,6 @@
 import React from 'react';
-import { Event } from '../Calendar.tsx';
-
-// TODO: className function 공통 utils 함수로 빼기
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+import { Event } from '../../../pages/PageContractCustomerList.tsx';
+import classNames from 'classnames';
 
 interface Day {
   date: string;
