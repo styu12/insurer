@@ -1,4 +1,4 @@
-import { HomeIcon } from '@heroicons/react/24/outline'
+import { UsersIcon } from '@heroicons/react/24/outline'
 import { LazyLoadRetryOnce } from '../_app/components/lazyload/LazyLoad'
 import { createNavigationPath } from '../_app/router/createNavigationPath'
 import { PathParams } from '../_app/router/path.config'
@@ -25,7 +25,7 @@ export const customerNavigationPaths = createNavigationPath({
   id: customerPaths.customer.id,
   label: '고객관리',
   path: customerPaths.customer.path,
-  icon: HomeIcon,
+  icon: UsersIcon,
 })
 
 export type CustomerEditPathParamsType = PathParams<

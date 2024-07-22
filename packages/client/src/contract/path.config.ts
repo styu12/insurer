@@ -1,4 +1,4 @@
-import { HomeIcon } from '@heroicons/react/24/outline'
+import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { LazyLoadRetryOnce } from '../_app/components/lazyload/LazyLoad'
 import { createNavigationPath } from '../_app/router/createNavigationPath'
 import { PathParams } from '../_app/router/path.config'
@@ -25,7 +25,7 @@ export const contractNavigationPaths = createNavigationPath({
   id: contractPaths.constract.id,
   label: '계약관리',
   path: contractPaths.constract.path,
-  icon: HomeIcon,
+  icon: CalendarDaysIcon,
 })
 export type ContractEditPathParamsType = PathParams<
   typeof contractPaths,
