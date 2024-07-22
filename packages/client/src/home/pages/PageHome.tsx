@@ -1,5 +1,5 @@
-import SectionHeading from '../../_app/components/section-heading/SectionHeading'
-import SectionPage from '../../_app/components/section-page/SectionPage'
+import SectionHeading from '../../_app/components/section/SectionHeading'
+import SectionPage from '../../_app/components/section/SectionPage'
 import { Fragment } from 'react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {

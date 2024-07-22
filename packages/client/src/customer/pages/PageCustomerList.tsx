@@ -1,6 +1,7 @@
 import Button from '../../_app/components/button/Button.tsx'
-import SectionHeading from '../../_app/components/section-heading/SectionHeading.tsx'
-import SectionPage from '../../_app/components/section-page/SectionPage.tsx'
+import SectionBody from '../../_app/components/section/SectionBody.tsx'
+import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
+import SectionPage from '../../_app/components/section/SectionPage.tsx'
 import TableCustomer from '../components/TableCustomer.tsx'
 
 const PageCustomerList = () => {
@@ -16,7 +17,9 @@ const PageCustomerList = () => {
           </>
         }
       />
-      <TableCustomer />
+      <SectionBody>
+        <TableCustomer />
+      </SectionBody>
     </SectionPage>
   )
 }
