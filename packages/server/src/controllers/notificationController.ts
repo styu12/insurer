@@ -12,7 +12,8 @@ export const notificationRoutes = async (
     contractStartDate: string // 보험 계약 시작일
     customerName: string // 고객 이름
   }
-  server.post('/email',
+  server.post(
+    '/email',
     {
       schema: {
         tags: ['notifications'],
@@ -35,20 +36,22 @@ export const notificationRoutes = async (
               success: { type: 'boolean' },
               message: { type: 'string' },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const { to, subject, contractStartDate, customerName } =
-      request.body as EmailRequestBody
+      const { to, subject, contractStartDate, customerName } =
+        request.body as EmailRequestBody
 
-    // 보험 청구일 계산 (계약 시작일로부터 90일 후)
-    const startDate = new Date(contractStartDate)
-    const claimStartDate = new Date(startDate.setDate(startDate.getDate() + 90))
-    const claimStartDateString = claimStartDate.toISOString().split('T')[0] // 'YYYY-MM-DD' 형식
+      // 보험 청구일 계산 (계약 시작일로부터 90일 후)
+      const startDate = new Date(contractStartDate)
+      const claimStartDate = new Date(
+        startDate.setDate(startDate.getDate() + 90)
+      )
+      const claimStartDateString = claimStartDate.toISOString().split('T')[0] // 'YYYY-MM-DD' 형식
 
-    const html = `
+      const html = `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
             <h1 style="color: #4CAF50;">Insurer 서비스 알림</h1>
             <h2>${subject}</h2>
@@ -63,34 +66,37 @@ export const notificationRoutes = async (
         </div>
     `
 
-    // 이메일 전송 설정
-    let smtpPort = 587
-    if (process.env.NAVER_SMTP_PORT) {
-      smtpPort = parseInt(process.env.NAVER_SMTP_PORT)
-    }
-    const transporter = nodemailer.createTransport({
-      service: 'naver',
-      host: process.env.NAVER_SMTP_HOST, // SMTP 서버명
-      port: smtpPort, // SMTP 포트
-      auth: {
-        user: process.env.NAVER_USER,
-        pass: process.env.NAVER_PASS,
-      },
-    })
+      // 이메일 전송 설정
+      let smtpPort = 587
+      if (process.env.NAVER_SMTP_PORT) {
+        smtpPort = parseInt(process.env.NAVER_SMTP_PORT)
+      }
+      const transporter = nodemailer.createTransport({
+        service: 'naver',
+        host: process.env.NAVER_SMTP_HOST, // SMTP 서버명
+        port: smtpPort, // SMTP 포트
+        auth: {
+          user: process.env.NAVER_USER,
+          pass: process.env.NAVER_PASS,
+        },
+      })
 
-    const mailOptions = {
-      from: process.env.NAVER_EMAIL,
-      to: to,
-      subject: subject,
-      html: html,
-    }
+      const mailOptions = {
+        from: process.env.NAVER_EMAIL,
+        to: to,
+        subject: subject,
+        html: html,
+      }
 
-    try {
-      await transporter.sendMail(mailOptions)
-      reply.status(200).send({ success: true, message: 'Email sent successfully' })
-    } catch (e) {
-      server.log.error(e)
-      throw new CustomError('Failed to send email', 500)
+      try {
+        await transporter.sendMail(mailOptions)
+        reply
+          .status(200)
+          .send({ success: true, message: 'Email sent successfully' })
+      } catch (e) {
+        server.log.error(e)
+        throw new CustomError('Failed to send email', 500)
+      }
     }
-  })
+  )
 }

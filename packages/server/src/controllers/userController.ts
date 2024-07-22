@@ -1,12 +1,16 @@
 import { FastifyInstance } from 'fastify'
 import bcrypt from 'bcrypt'
-import { createUser, findUserById, findUserByUsername, User } from '../models/user'
+import {
+  createUser,
+  findUserById,
+  findUserByUsername,
+  User,
+} from '../models/user'
 import CustomError from '../errors/CustomError'
 
-export const userRoutes = async (
-  server: FastifyInstance,
-) => {
-  server.post('/register',
+export const userRoutes = async (server: FastifyInstance) => {
+  server.post(
+    '/register',
     {
       schema: {
         tags: ['user'],
@@ -25,22 +29,39 @@ export const userRoutes = async (
         },
         response: {
           201: server.getSchema('User'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { username, password, email, emailNotification, smsNotification, kakaoNotification } = request.body as User;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await createUser(server, username, hashedPassword, email, emailNotification, smsNotification, kakaoNotification);
+      const {
+        username,
+        password,
+        email,
+        emailNotification,
+        smsNotification,
+        kakaoNotification,
+      } = request.body as User
+      const hashedPassword = await bcrypt.hash(password, 10)
+      const user = await createUser(
+        server,
+        username,
+        hashedPassword,
+        email,
+        emailNotification,
+        smsNotification,
+        kakaoNotification
+      )
 
-    reply.status(201).send({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    });
-  })
+      reply.status(201).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      })
+    }
+  )
 
-  server.post('/login',
+  server.post(
+    '/login',
     {
       schema: {
         tags: ['user'],
@@ -60,26 +81,31 @@ export const userRoutes = async (
             properties: {
               token: { type: 'string' },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const { username, password } = request.body as { username: string; password: string };
-    const user = await findUserByUsername(server, username);
-    if (!user) {
-      throw new CustomError('User not found', 404);
+      const { username, password } = request.body as {
+        username: string
+        password: string
+      }
+      const user = await findUserByUsername(server, username)
+      if (!user) {
+        throw new CustomError('User not found', 404)
+      }
+
+      if (!(await bcrypt.compare(password, user.password))) {
+        throw new CustomError('Invalid password', 400)
+      }
+
+      const token = server.jwt.sign({ id: user.id, username: user.username })
+      reply.status(200).send({ token })
     }
+  )
 
-    if (!await bcrypt.compare(password, user.password)) {
-      throw new CustomError('Invalid password', 400);
-    }
-
-    const token = server.jwt.sign({ id: user.id, username: user.username });
-    reply.status(200).send({ token });
-  })
-
-  server.post('/logout',
+  server.post(
+    '/logout',
     {
       schema: {
         tags: ['user'],
@@ -92,17 +118,19 @@ export const userRoutes = async (
             properties: {
               message: { type: 'string' },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
     async (request, reply) => {
-    // token should be removed from client side
-    reply.status(200).send({ message: 'Logout successful' });
-  })
+      // token should be removed from client side
+      reply.status(200).send({ message: 'Logout successful' })
+    }
+  )
 
-  server.get('/me',
-{
+  server.get(
+    '/me',
+    {
       preHandler: [server.authenticate],
       schema: {
         tags: ['user'],
@@ -111,29 +139,30 @@ export const userRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'number' }
-          }
+            id: { type: 'number' },
+          },
         },
         response: {
           200: server.getSchema('User'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const userId = (request.user as { id: number }).id;
+      const userId = (request.user as { id: number }).id
 
-    const user = await findUserById(server, userId);
-    if (!user) {
-      throw new CustomError('User not found', 404);
+      const user = await findUserById(server, userId)
+      if (!user) {
+        throw new CustomError('User not found', 404)
+      }
+
+      reply.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        emailNotification: user.emailNotification,
+        smsNotification: user.smsNotification,
+        kakaoNotification: user.kakaoNotification,
+      })
     }
-
-    reply.status(200).send({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      emailNotification: user.emailNotification,
-      smsNotification: user.smsNotification,
-      kakaoNotification: user.kakaoNotification,
-    });
-  })
+  )
 }

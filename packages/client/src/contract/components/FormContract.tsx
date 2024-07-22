@@ -5,19 +5,23 @@ const FormContract = () => {
     <form>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">보험 계약 수정/생성 페이지</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            보험 계약 수정/생성 페이지
+          </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             신규 보험 계약을 등록하거나, 기존 계약을 수정하는 페이지입니다.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
-              <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 제목
               </label>
               <div className="mt-2">
-                <div
-                  className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input
                     id="title"
                     name="title"
@@ -31,7 +35,10 @@ const FormContract = () => {
             </div>
 
             <div className="col-span-full">
-              <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 설명
               </label>
               <div className="mt-2">
@@ -43,7 +50,9 @@ const FormContract = () => {
                   defaultValue={''}
                 />
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">해당 계약을 잘 관리하기 위해 기억해야 할 사항들을 적어주세요.</p>
+              <p className="mt-3 text-sm leading-6 text-gray-600">
+                해당 계약을 잘 관리하기 위해 기억해야 할 사항들을 적어주세요.
+              </p>
             </div>
           </div>
         </div>
@@ -51,7 +60,10 @@ const FormContract = () => {
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label htmlFor="customer" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="customer"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 고객
               </label>
               <div className="mt-2">
@@ -69,7 +81,10 @@ const FormContract = () => {
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="claim-wait-duration" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="claim-wait-duration"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 계약 청구 대기 기간
               </label>
               <div className="mt-2">
@@ -89,7 +104,10 @@ const FormContract = () => {
             </div>
 
             <div className="sm:col-span-3 sm:col-start-1">
-              <label htmlFor="start-date" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="start-date"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 계약일
               </label>
               <div className="mt-2">
@@ -104,7 +122,10 @@ const FormContract = () => {
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="end-date" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="end-date"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 계약 만기일
               </label>
               <div className="mt-2">
@@ -121,17 +142,23 @@ const FormContract = () => {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">알림</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            알림
+          </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Insurer는 보험금 청구 가능 기간이 다가올 때 알림을 보내드립니다. <br />
+            Insurer는 보험금 청구 가능 기간이 다가올 때 알림을 보내드립니다.{' '}
+            <br />
             고객, 설계사 모두 알림을 받을 수 있습니다.
           </p>
 
           <div className="mt-10 space-y-10">
             <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">고객 알림</legend>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                고객 알림
+              </legend>
               <p className="mt-3 text-sm leading-6 text-gray-600">
-                고객 알림 활성화 시, 고객에게 보험금 청구 가능 기간이 다가올 때 알림을 보냅니다.
+                고객 알림 활성화 시, 고객에게 보험금 청구 가능 기간이 다가올 때
+                알림을 보냅니다.
               </p>
               <div className="mt-6 space-y-6">
                 <div className="relative flex gap-x-3">
@@ -144,7 +171,10 @@ const FormContract = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="email" className="font-medium text-gray-900">
+                    <label
+                      htmlFor="email"
+                      className="font-medium text-gray-900"
+                    >
                       Email
                     </label>
                     <p className="text-gray-500">Email 알림 활성화</p>
@@ -160,7 +190,10 @@ const FormContract = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="kakao" className="font-medium text-gray-900">
+                    <label
+                      htmlFor="kakao"
+                      className="font-medium text-gray-900"
+                    >
                       카카오톡
                     </label>
                     <p className="text-gray-500">카카오톡 알림 활성화</p>
@@ -186,9 +219,12 @@ const FormContract = () => {
             </fieldset>
 
             <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">설계사 알림</legend>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">
+                설계사 알림
+              </legend>
               <p className="mt-3 text-sm leading-6 text-gray-600">
-                설계사 알림 활성화 시, 설계사에게 보험금 청구 가능 기간이 다가올 때 알림을 보냅니다.
+                설계사 알림 활성화 시, 설계사에게 보험금 청구 가능 기간이 다가올
+                때 알림을 보냅니다.
               </p>
               <div className="mt-6 space-y-6">
                 <div className="relative flex gap-x-3">
@@ -201,7 +237,10 @@ const FormContract = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="email" className="font-medium text-gray-900">
+                    <label
+                      htmlFor="email"
+                      className="font-medium text-gray-900"
+                    >
                       Email
                     </label>
                     <p className="text-gray-500">Email 알림 활성화</p>
@@ -217,7 +256,10 @@ const FormContract = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="kakao" className="font-medium text-gray-900">
+                    <label
+                      htmlFor="kakao"
+                      className="font-medium text-gray-900"
+                    >
                       카카오톡
                     </label>
                     <p className="text-gray-500">카카오톡 알림 활성화</p>
@@ -246,7 +288,10 @@ const FormContract = () => {
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+        <button
+          type="button"
+          className="text-sm font-semibold leading-6 text-gray-900"
+        >
           Cancel
         </button>
         <button
@@ -260,4 +305,4 @@ const FormContract = () => {
   )
 }
 
-export default FormContract;
+export default FormContract

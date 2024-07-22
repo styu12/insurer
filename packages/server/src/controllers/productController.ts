@@ -9,10 +9,9 @@ import {
 } from '../models/product'
 import CustomError from '../errors/CustomError'
 
-export const productRoutes = async (
-  server: FastifyInstance,
-) => {
-  server.get('/',
+export const productRoutes = async (server: FastifyInstance) => {
+  server.get(
+    '/',
     {
       schema: {
         tags: ['products'],
@@ -22,17 +21,19 @@ export const productRoutes = async (
           200: {
             description: 'Successful response',
             type: 'array',
-            items: server.getSchema('Product')
-          }
-        }
-      }
+            items: server.getSchema('Product'),
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const result = await findAllProducts(server)
-    reply.status(200).send(result)
-  })
+      const result = await findAllProducts(server)
+      reply.status(200).send(result)
+    }
+  )
 
-  server.get('/:id',
+  server.get(
+    '/:id',
     {
       schema: {
         tags: ['products'],
@@ -41,25 +42,27 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'number' }
-          }
+            id: { type: 'number' },
+          },
         },
         response: {
           200: server.getSchema('Product'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const result = await findProductById(server, id)
-    if (!result) {
-      throw new CustomError('Product not found', 404)
+      const { id } = request.params as { id: number }
+      const result = await findProductById(server, id)
+      if (!result) {
+        throw new CustomError('Product not found', 404)
+      }
+
+      reply.status(200).send(result)
     }
+  )
 
-    reply.status(200).send(result)
-  })
-
-  server.post('/',
+  server.post(
+    '/',
     {
       schema: {
         tags: ['products'],
@@ -74,16 +77,18 @@ export const productRoutes = async (
         },
         response: {
           201: server.getSchema('Product'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { name, description } = request.body as Product
-    const result = await createProduct(server, name, description)
-    reply.status(201).send(result)
-  })
+      const { name, description } = request.body as Product
+      const result = await createProduct(server, name, description)
+      reply.status(201).send(result)
+    }
+  )
 
-  server.put('/:id',
+  server.put(
+    '/:id',
     {
       schema: {
         tags: ['products'],
@@ -92,33 +97,35 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'number' }
-          }
+            id: { type: 'number' },
+          },
         },
         body: {
           type: 'object',
           properties: {
             name: { type: 'string' },
             description: { type: 'string' },
-          }
+          },
         },
         response: {
           200: server.getSchema('Product'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const { name, description } = request.body as Product
-    const result = await updateProductById(server, id, name, description)
-    if (!result) {
-      throw new CustomError('Product not found', 404)
+      const { id } = request.params as { id: number }
+      const { name, description } = request.body as Product
+      const result = await updateProductById(server, id, name, description)
+      if (!result) {
+        throw new CustomError('Product not found', 404)
+      }
+
+      reply.status(200).send(result)
     }
+  )
 
-    reply.status(200).send(result)
-  })
-
-  server.delete('/:id',
+  server.delete(
+    '/:id',
     {
       schema: {
         tags: ['products'],
@@ -127,8 +134,8 @@ export const productRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'number' }
-          }
+            id: { type: 'number' },
+          },
         },
         response: {
           200: {
@@ -137,16 +144,17 @@ export const productRoutes = async (
             properties: {
               message: { type: 'string' },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const result = await deleteProductById(server, id)
-    if (!result) {
-      throw new CustomError('Product not found', 404)
+      const { id } = request.params as { id: number }
+      const result = await deleteProductById(server, id)
+      if (!result) {
+        throw new CustomError('Product not found', 404)
+      }
+      reply.status(200).send({ message: 'Product deleted' })
     }
-    reply.status(200).send({ message: 'Product deleted' })
-  })
+  )
 }
