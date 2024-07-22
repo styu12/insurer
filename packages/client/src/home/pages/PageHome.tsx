@@ -41,11 +41,28 @@ const statuses = {
   Claim: 'text-gray-600 bg-gray-50 ring-gray-500/10',
   End: 'text-red-700 bg-red-50 ring-red-600/10',
 }
-const days = [
+
+interface Day {
+  date: string
+  dateTime: string
+  activities: Activity[]
+}
+interface Activity {
+  id: number
+  invoiceNumber: string
+  href: string
+  title: string
+  tax?: string
+  status: keyof typeof statuses
+  client: string
+  description: string
+  icon: React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & { title?: string, titleId?: string } & React.RefAttributes<SVGSVGElement>>
+}
+const days: Day[] = [
   {
     date: 'Today',
     dateTime: '2023-03-22',
-    transactions: [
+    activities: [
       {
         id: 1,
         invoiceNumber: '00012',
@@ -83,7 +100,7 @@ const days = [
   {
     date: 'Yesterday',
     dateTime: '2023-03-21',
-    transactions: [
+    activities: [
       {
         id: 4,
         invoiceNumber: '00010',
@@ -98,7 +115,19 @@ const days = [
     ],
   },
 ]
-const clients = [
+
+interface Client {
+  id: number
+  name: string
+  imageUrl: string
+  lastContract: {
+    date: string
+    dateTime: string
+    amount: string
+    status: keyof typeof statuses
+  }
+}
+const clients: Client[] = [
   {
     id: 1,
     name: '제리',
@@ -241,7 +270,7 @@ const PageHome = () => {
                             <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50" />
                           </th>
                         </tr>
-                        {day.transactions.map((transaction) => (
+                        {day.activities.map((transaction) => (
                           <tr key={transaction.id}>
                             <td className="relative py-5 pr-6">
                               <div className="flex gap-x-6">
