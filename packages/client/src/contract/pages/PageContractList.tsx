@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { EVENT_TYPES, EventType, View, VIEWS } from '../constants'
 import CalendarWeekView from '../components/CalendarWeekView.tsx'
 import CalendarYearView from '../components/CalendarYearView.tsx'
-import SectionHeading from '../../_app/components/section-heading/SectionHeading.tsx'
-import SectionPage from '../../_app/components/section-page/SectionPage.tsx'
+import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
+import SectionPage from '../../_app/components/section/SectionPage.tsx'
+import SectionBody from '../../_app/components/section/SectionBody.tsx'
 
 export interface Event {
   id: string
@@ -110,14 +111,16 @@ const PageContractList = () => {
   return (
     <SectionPage>
       <SectionHeading title="계약관리" />
-      <CalendarHeader
-        view={view}
-        date={date}
-        onDateChange={handleDateChange}
-        onViewChange={handleViewChange}
-      />
+      <SectionBody>
+        <CalendarHeader
+          view={view}
+          date={date}
+          onDateChange={handleDateChange}
+          onViewChange={handleViewChange}
+        />
 
-      {renderCalendarView()}
+        {renderCalendarView()}
+      </SectionBody>
     </SectionPage>
   )
 }
