@@ -56,7 +56,12 @@ interface Activity {
   status: keyof typeof statuses
   client: string
   description: string
-  icon: React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & { title?: string, titleId?: string } & React.RefAttributes<SVGSVGElement>>
+  icon: React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
+      title?: string
+      titleId?: string
+    } & React.RefAttributes<SVGSVGElement>
+  >
 }
 const days: Day[] = [
   {
