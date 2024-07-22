@@ -3,18 +3,25 @@ const FormCustomer = () => {
     <form>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">고객 수정/생성 페이지</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            고객 수정/생성 페이지
+          </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             신규 고객을 등록하거나, 기존 고객을 수정하는 페이지입니다.
           </p>
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">고객 정보</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            고객 정보
+          </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-2">
-              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 이름
               </label>
               <div className="mt-2">
@@ -29,7 +36,10 @@ const FormCustomer = () => {
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email
               </label>
               <div className="mt-2">
@@ -44,7 +54,10 @@ const FormCustomer = () => {
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="birthday" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="birthday"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 생년월일
               </label>
               <div className="mt-2">
@@ -59,7 +72,10 @@ const FormCustomer = () => {
             </div>
 
             <div className="col-span-full">
-              <label htmlFor="address" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 주소
               </label>
               <div className="mt-2">
@@ -74,7 +90,10 @@ const FormCustomer = () => {
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 연락처
               </label>
               <div className="mt-2">
@@ -89,7 +108,10 @@ const FormCustomer = () => {
             </div>
 
             <div className="sm:col-span-1">
-              <label htmlFor="gender" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="gender"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 성별
               </label>
               <div className="mt-2">
@@ -109,7 +131,10 @@ const FormCustomer = () => {
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+        <button
+          type="button"
+          className="text-sm font-semibold leading-6 text-gray-900"
+        >
           Cancel
         </button>
         <button
@@ -123,4 +148,4 @@ const FormCustomer = () => {
   )
 }
 
-export default FormCustomer;
+export default FormCustomer

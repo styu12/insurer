@@ -5,3 +5,6 @@
 /.pnp.loader.mjs
 
 /.history
+
+
+/packages/server/dist/*

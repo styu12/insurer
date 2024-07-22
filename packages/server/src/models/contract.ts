@@ -23,7 +23,7 @@ function convertToCamelCase(row: any): Contract {
     startDate: row.start_date,
     claimDate: row.claim_date,
     endDate: row.end_date,
-  };
+  }
 }
 
 export const createContract = async (
@@ -34,7 +34,7 @@ export const createContract = async (
   productId: number,
   startDate: string,
   claimDate: string,
-  endDate: string,
+  endDate: string
 ): Promise<Contract> => {
   try {
     const { rows } = await server.pg.query(
@@ -42,31 +42,39 @@ export const createContract = async (
       [title, description, customerId, productId, startDate, claimDate, endDate]
     )
     return convertToCamelCase(rows[0])
-  } catch(e) {
+  } catch (e) {
     server.log.error(e)
-    throw new CustomError("failed to create contract", 500);
+    throw new CustomError('failed to create contract', 500)
   }
 }
 
-export const findAllContracts = async (server: FastifyInstance): Promise<Contract[]> => {
+export const findAllContracts = async (
+  server: FastifyInstance
+): Promise<Contract[]> => {
   try {
     const { rows } = await server.pg.query('SELECT * FROM contracts')
     return rows.map(convertToCamelCase)
-  } catch(e) {
+  } catch (e) {
     server.log.error(e)
-    throw new CustomError("failed to find all contracts", 500);
+    throw new CustomError('failed to find all contracts', 500)
   }
 }
 
-export const findContractById = async (server: FastifyInstance, id: number): Promise<Contract | null> => {
+export const findContractById = async (
+  server: FastifyInstance,
+  id: number
+): Promise<Contract | null> => {
   try {
-    const { rows } = await server.pg.query('SELECT * FROM contracts WHERE id = $1', [id])
+    const { rows } = await server.pg.query(
+      'SELECT * FROM contracts WHERE id = $1',
+      [id]
+    )
     if (rows.length === 0) {
       return null
     }
     return convertToCamelCase(rows[0])
-  } catch(e) {
+  } catch (e) {
     server.log.error(e)
-    throw new CustomError("failed to find contract by id", 500);
+    throw new CustomError('failed to find contract by id', 500)
   }
 }

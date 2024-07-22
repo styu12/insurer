@@ -13,7 +13,8 @@ export const customerRoutes = async (
   server: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
-  server.get('/',
+  server.get(
+    '/',
     {
       schema: {
         tags: ['customers'],
@@ -23,17 +24,19 @@ export const customerRoutes = async (
           200: {
             description: 'Succesful response',
             type: 'array',
-            items: server.getSchema('Customer')
-          }
-        }
-      }
+            items: server.getSchema('Customer'),
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const result = await findAllCustomers(server)
-    reply.status(200).send(result)
-  })
+      const result = await findAllCustomers(server)
+      reply.status(200).send(result)
+    }
+  )
 
-  server.get('/:id',
+  server.get(
+    '/:id',
     {
       schema: {
         tags: ['customers'],
@@ -42,25 +45,27 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'number' }
-          }
+            id: { type: 'number' },
+          },
         },
         response: {
           200: server.getSchema('Customer'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const result = await findCustomerById(server, id)
-    if (!result) {
-      throw new CustomError('Customer not found', 404)
+      const { id } = request.params as { id: number }
+      const result = await findCustomerById(server, id)
+      if (!result) {
+        throw new CustomError('Customer not found', 404)
+      }
+
+      reply.status(200).send(result)
     }
+  )
 
-    reply.status(200).send(result)
-  })
-
-  server.post('/',
+  server.post(
+    '/',
     {
       schema: {
         tags: ['customers'],
@@ -76,20 +81,39 @@ export const customerRoutes = async (
             emailNotification: { type: 'boolean' },
             smsNotification: { type: 'boolean' },
             kakaoNotification: { type: 'boolean' },
-          }
+          },
         },
         response: {
           201: server.getSchema('Customer'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { name, email, phone, address, emailNotification, smsNotification, kakaoNotification } = request.body as Customer
-    const result = await createCustomer(server, name, email, phone, address, emailNotification, smsNotification, kakaoNotification)
-    reply.status(201).send(result)
-  })
+      const {
+        name,
+        email,
+        phone,
+        address,
+        emailNotification,
+        smsNotification,
+        kakaoNotification,
+      } = request.body as Customer
+      const result = await createCustomer(
+        server,
+        name,
+        email,
+        phone,
+        address,
+        emailNotification,
+        smsNotification,
+        kakaoNotification
+      )
+      reply.status(201).send(result)
+    }
+  )
 
-  server.put('/:id',
+  server.put(
+    '/:id',
     {
       schema: {
         tags: ['customers'],
@@ -98,8 +122,8 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
-          }
+            id: { type: 'string' },
+          },
         },
         body: {
           type: 'object',
@@ -111,25 +135,45 @@ export const customerRoutes = async (
             emailNotification: { type: 'boolean' },
             smsNotification: { type: 'boolean' },
             kakaoNotification: { type: 'boolean' },
-          }
+          },
         },
         response: {
           200: server.getSchema('Customer'),
-        }
-      }
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const { name, email, phone, address, emailNotification, smsNotification, kakaoNotification } = request.body as Customer
-    const result = await updateCustomerById(server, id, name, email, phone, address, emailNotification, smsNotification, kakaoNotification)
-    if (!result) {
-      throw new CustomError('Customer not found', 404)
+      const { id } = request.params as { id: number }
+      const {
+        name,
+        email,
+        phone,
+        address,
+        emailNotification,
+        smsNotification,
+        kakaoNotification,
+      } = request.body as Customer
+      const result = await updateCustomerById(
+        server,
+        id,
+        name,
+        email,
+        phone,
+        address,
+        emailNotification,
+        smsNotification,
+        kakaoNotification
+      )
+      if (!result) {
+        throw new CustomError('Customer not found', 404)
+      }
+
+      reply.status(200).send(result)
     }
+  )
 
-    reply.status(200).send(result);
-  })
-
-  server.delete('/:id',
+  server.delete(
+    '/:id',
     {
       schema: {
         tags: ['customers'],
@@ -138,8 +182,8 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
-          }
+            id: { type: 'string' },
+          },
         },
         response: {
           200: {
@@ -148,17 +192,18 @@ export const customerRoutes = async (
             properties: {
               message: { type: 'string' },
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
     async (request, reply) => {
-    const { id } = request.params as { id: number }
-    const result = await deleteCustomerById(server, id)
-    if (!result) {
-      throw new CustomError('Customer not found', 404)
-    }
+      const { id } = request.params as { id: number }
+      const result = await deleteCustomerById(server, id)
+      if (!result) {
+        throw new CustomError('Customer not found', 404)
+      }
 
-    reply.status(200).send({ message: 'Customer deleted' })
-  })
+      reply.status(200).send({ message: 'Customer deleted' })
+    }
+  )
 }

@@ -1,35 +1,35 @@
-import React from 'react';
+import React from 'react'
 import { ClockIcon } from '@heroicons/react/20/solid'
 import { Event } from '../pages/PageContractList.tsx'
 import { isSameDay } from '../utils/date.ts'
-import classNames from 'classnames';
+import classNames from 'classnames'
 import { convertEventTypeToKorean, EVENT_TYPES } from '../constants'
 
 interface Day {
-  date: string;
-  isCurrentMonth: boolean;
-  isToday: boolean;
-  isSelected: boolean;
-  events: Event[];
+  date: string
+  isCurrentMonth: boolean
+  isToday: boolean
+  isSelected: boolean
+  events: Event[]
 }
 
 interface CalendarMonthViewProps {
-  date: Date;
-  events: Event[];
-  today: Date;
-  onDateChange: (newDate: Date) => void;
+  date: Date
+  events: Event[]
+  today: Date
+  onDateChange: (newDate: Date) => void
 }
 
 const getDaysInMonth = (year: number, month: number) => {
-  const date = new Date(year, month, 1);
-  const days = [];
+  const date = new Date(year, month, 1)
+  const days = []
   while (date.getMonth() === month) {
-    days.push(new Date(date));
-    date.setDate(date.getDate() + 1);
+    days.push(new Date(date))
+    date.setDate(date.getDate() + 1)
   }
 
-  return days;
-};
+  return days
+}
 
 const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
   date,
@@ -37,21 +37,20 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
   today,
   onDateChange,
 }) => {
-  const year = date.getFullYear();
-  const month = date.getMonth();
+  const year = date.getFullYear()
+  const month = date.getMonth()
 
-  const days: Day[] = getDaysInMonth(year, month).map(day => ({
+  const days: Day[] = getDaysInMonth(year, month).map((day) => ({
     date: day.toISOString().split('T')[0],
     isCurrentMonth: day.getMonth() === month,
     isToday: isSameDay(day, today),
     isSelected: isSameDay(day, date),
-    events: events.filter(event => isSameDay(new Date(event.date), day)),
-  }));
+    events: events.filter((event) => isSameDay(new Date(event.date), day)),
+  }))
 
   return (
     <div className="shadow ring-1 ring-black ring-opacity-5 lg:flex lg:flex-auto lg:flex-col">
-      <div
-        className="grid grid-cols-7 gap-px border-b border-gray-300 bg-gray-200 text-center text-xs font-semibold leading-6 text-gray-700 lg:flex-none">
+      <div className="grid grid-cols-7 gap-px border-b border-gray-300 bg-gray-200 text-center text-xs font-semibold leading-6 text-gray-700 lg:flex-none">
         <div className="bg-white py-2">
           M<span className="sr-only sm:not-sr-only">on</span>
         </div>
@@ -81,18 +80,19 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
               key={day.date}
               className={classNames(
                 day.isCurrentMonth ? 'bg-white' : 'bg-gray-50 text-gray-500',
-                'relative px-3 py-2',
+                'relative px-3 py-2'
               )}
             >
               <time
                 dateTime={day.date}
-                className={
-                  classNames(
-                    day.isToday ? 'flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white' :
-                    day.isSelected ? 'flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 font-semibold text-white' : '',
-                    'cursor-pointer',
-                  )
-                }
+                className={classNames(
+                  day.isToday
+                    ? 'flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white'
+                    : day.isSelected
+                      ? 'flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 font-semibold text-white'
+                      : '',
+                  'cursor-pointer'
+                )}
                 onClick={() => {
                   onDateChange(new Date(day.date))
                 }}
@@ -107,16 +107,21 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
                         <p className="flex-auto truncate text-sm font-medium text-gray-900 group-hover:text-indigo-600">
                           {event.customerName}
                           <span
-                            className={
-                            classNames(
-                              "inline-flex items-center rounded-md ml-2 px-2 py-1 text-xs font-medium ring-1 ring-inset",
-                              event.type === EVENT_TYPES.CONTRACT_START ? 'bg-green-50 text-green-700 ring-green-600/20' : '',
-                              event.type === EVENT_TYPES.CLAIM_START ? 'bg-blue-50 text-blue-700 ring-blue-600/20' : '',
-                              event.type === EVENT_TYPES.CONTRACT_END ? 'bg-red-50 text-red-700 ring-red-600/20' : '',
-                            )
-                            }>
-                        {convertEventTypeToKorean(event.type)}
-                      </span>
+                            className={classNames(
+                              'inline-flex items-center rounded-md ml-2 px-2 py-1 text-xs font-medium ring-1 ring-inset',
+                              event.type === EVENT_TYPES.CONTRACT_START
+                                ? 'bg-green-50 text-green-700 ring-green-600/20'
+                                : '',
+                              event.type === EVENT_TYPES.CLAIM_START
+                                ? 'bg-blue-50 text-blue-700 ring-blue-600/20'
+                                : '',
+                              event.type === EVENT_TYPES.CONTRACT_END
+                                ? 'bg-red-50 text-red-700 ring-red-600/20'
+                                : ''
+                            )}
+                          >
+                            {convertEventTypeToKorean(event.type)}
+                          </span>
                         </p>
                         <time
                           dateTime={event.date}
@@ -125,7 +130,11 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
                       </a>
                     </li>
                   ))}
-                  {day.events.length > 2 && <li className="text-gray-500">+ {day.events.length - 2} more</li>}
+                  {day.events.length > 2 && (
+                    <li className="text-gray-500">
+                      + {day.events.length - 2} more
+                    </li>
+                  )}
                 </ol>
               )}
             </div>
@@ -140,21 +149,27 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
               type="button"
               className={classNames(
                 day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-                (day.isSelected || day.isToday) ? 'font-semibold' : '',
+                day.isSelected || day.isToday ? 'font-semibold' : '',
                 day.isSelected ? 'text-white' : '',
                 !day.isSelected && day.isToday ? 'text-indigo-600' : '',
-                !day.isSelected && day.isCurrentMonth && !day.isToday ? 'text-gray-900' : '',
-                !day.isSelected && !day.isCurrentMonth && !day.isToday ? 'text-gray-500' : '',
-                'flex h-14 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10',
+                !day.isSelected && day.isCurrentMonth && !day.isToday
+                  ? 'text-gray-900'
+                  : '',
+                !day.isSelected && !day.isCurrentMonth && !day.isToday
+                  ? 'text-gray-500'
+                  : '',
+                'flex h-14 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10'
               )}
             >
               <time
                 dateTime={day.date}
                 className={classNames(
-                  day.isSelected ? 'flex h-6 w-6 items-center justify-center rounded-full' : '',
+                  day.isSelected
+                    ? 'flex h-6 w-6 items-center justify-center rounded-full'
+                    : '',
                   day.isSelected && day.isToday ? 'bg-indigo-600' : '',
                   day.isSelected && !day.isToday ? 'bg-gray-900' : '',
-                  'ml-auto',
+                  'ml-auto'
                 )}
               >
                 {day.date.split('-').pop()?.replace(/^0/, '')}
@@ -162,10 +177,13 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
               <span className="sr-only">{day.events.length} events</span>
               {day.events.length > 0 && (
                 <span className="-mx-0.5 mt-auto flex flex-wrap-reverse">
-                    {day.events.map((event) => (
-                      <span key={event.id} className="mx-0.5 mb-1 h-1.5 w-1.5 rounded-full bg-gray-400" />
-                    ))}
-                  </span>
+                  {day.events.map((event) => (
+                    <span
+                      key={event.id}
+                      className="mx-0.5 mb-1 h-1.5 w-1.5 rounded-full bg-gray-400"
+                    />
+                  ))}
+                </span>
               )}
             </button>
           ))}
@@ -176,11 +194,22 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
         <div className="px-4 py-10 sm:px-6 lg:hidden">
           <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow ring-1 ring-black ring-opacity-5">
             {events.map((event) => (
-              <li key={event.id} className="group flex p-4 pr-6 focus-within:bg-gray-50 hover:bg-gray-50">
+              <li
+                key={event.id}
+                className="group flex p-4 pr-6 focus-within:bg-gray-50 hover:bg-gray-50"
+              >
                 <div className="flex-auto">
-                  <p className="font-semibold text-gray-900">{event.customerName}</p>
-                  <time dateTime={event.date} className="mt-2 flex items-center text-gray-700">
-                    <ClockIcon className="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <p className="font-semibold text-gray-900">
+                    {event.customerName}
+                  </p>
+                  <time
+                    dateTime={event.date}
+                    className="mt-2 flex items-center text-gray-700"
+                  >
+                    <ClockIcon
+                      className="mr-2 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
                   </time>
                 </div>
                 <a

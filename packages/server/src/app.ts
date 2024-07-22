@@ -49,35 +49,40 @@ server
   })
 
 server.register(fastifyJwt, {
-  secret: "supersecret",
+  secret: 'supersecret',
 })
 
-server.setErrorHandler((error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
-  if (error instanceof CustomError) {
-    reply.status(error.statusCode).send({
-      error: error.name,
-      message: error.message,
-    });
-  } else {
-    reply.status(500).send({
-      error: 'InternalServerError',
-      message: 'An unexpected error occurred',
-    });
+server.setErrorHandler(
+  (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
+    if (error instanceof CustomError) {
+      reply.status(error.statusCode).send({
+        error: error.name,
+        message: error.message,
+      })
+    } else {
+      reply.status(500).send({
+        error: 'InternalServerError',
+        message: 'An unexpected error occurred',
+      })
+    }
   }
-})
+)
 
-server.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply) => {
-  const token = request.headers.authorization?.replace('Bearer ', '');
-  if (!token) {
-    throw new CustomError('Unauthorized', 401);
-  }
+server.decorate(
+  'authenticate',
+  async (request: FastifyRequest, reply: FastifyReply) => {
+    const token = request.headers.authorization?.replace('Bearer ', '')
+    if (!token) {
+      throw new CustomError('Unauthorized', 401)
+    }
 
-  try {
-    request.user = await server.jwt.verify(token);
-  } catch (error) {
-    throw new CustomError('Unauthorized', 401);
+    try {
+      request.user = await server.jwt.verify(token)
+    } catch (error) {
+      throw new CustomError('Unauthorized', 401)
+    }
   }
-})
+)
 
 server.register(postgresConnector)
 server.register(fastifySwagger)
