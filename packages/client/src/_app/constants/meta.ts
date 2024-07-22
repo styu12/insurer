@@ -1,4 +1,5 @@
+import InsurerLogo from '../assets/logo/insurer_logo_simple_solid_160.png'
 export const COMPANY_META = {
-  LOGO_URL: 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600',
+  LOGO_URL: InsurerLogo,
   NAME: 'INSURER',
 } as const
