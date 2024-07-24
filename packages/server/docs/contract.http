@@ -1,0 +1,19 @@
+### List all contracts
+GET {{http-host}}/api/v1/contracts
+
+### Get a contract
+GET {{http-host}}/api/v1/contracts/1
+
+### Add a new contract
+POST {{http-host}}/api/v1/contracts
+Content-Type: application/json
+
+{
+  "title": "자동차 보험 신규 계약",
+  "description": "20대 남성 고객님 자동차 보험 신규계약!",
+  "customerId": 1,
+  "productId": 3,
+  "startDate": "2024-07-11",
+  "renewalDate": "2025-07-11",
+  "claimDate": "2024-10-11"
+}

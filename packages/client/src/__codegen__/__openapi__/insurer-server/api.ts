@@ -22,7 +22,7 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
- * a contract object
+ * 
  * @export
  * @interface ApiV1ContractsGet200ResponseInner
  */
@@ -79,6 +79,19 @@ export interface ApiV1ContractsGet200ResponseInner {
 /**
  * 
  * @export
+ * @interface ApiV1ContractsGet400Response
+ */
+export interface ApiV1ContractsGet400Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet400Response
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ApiV1ContractsGetRequest
  */
 export interface ApiV1ContractsGetRequest {
@@ -87,7 +100,7 @@ export interface ApiV1ContractsGetRequest {
      * @type {string}
      * @memberof ApiV1ContractsGetRequest
      */
-    'title'?: string;
+    'title': string;
     /**
      * 
      * @type {string}
@@ -99,7 +112,7 @@ export interface ApiV1ContractsGetRequest {
      * @type {number}
      * @memberof ApiV1ContractsGetRequest
      */
-    'customerId'?: number;
+    'customerId': number;
     /**
      * 
      * @type {number}
@@ -111,7 +124,7 @@ export interface ApiV1ContractsGetRequest {
      * @type {string}
      * @memberof ApiV1ContractsGetRequest
      */
-    'startDate'?: string;
+    'startDate': string;
     /**
      * 
      * @type {string}
@@ -126,7 +139,7 @@ export interface ApiV1ContractsGetRequest {
     'endDate'?: string;
 }
 /**
- * a customer object
+ * 
  * @export
  * @interface ApiV1CustomersGet200ResponseInner
  */
@@ -191,19 +204,19 @@ export interface ApiV1CustomersGetRequest {
      * @type {string}
      * @memberof ApiV1CustomersGetRequest
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1CustomersGetRequest
      */
-    'email'?: string;
+    'email': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1CustomersGetRequest
      */
-    'phone'?: string;
+    'phone': string;
     /**
      * 
      * @type {string}
@@ -230,20 +243,56 @@ export interface ApiV1CustomersGetRequest {
     'kakaoNotification'?: boolean;
 }
 /**
- * Succesful response
+ * 
  * @export
- * @interface ApiV1CustomersIdDelete200Response
+ * @interface ApiV1CustomersIdDeleteRequest
  */
-export interface ApiV1CustomersIdDelete200Response {
+export interface ApiV1CustomersIdDeleteRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiV1CustomersIdDelete200Response
+     * @memberof ApiV1CustomersIdDeleteRequest
      */
-    'message'?: string;
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'address'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'emailNotification'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'smsNotification'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ApiV1CustomersIdDeleteRequest
+     */
+    'kakaoNotification'?: boolean;
 }
 /**
- * Succesful response
+ * 
  * @export
  * @interface ApiV1NotificationsEmailPost200Response
  */
@@ -272,28 +321,28 @@ export interface ApiV1NotificationsEmailPostRequest {
      * @type {string}
      * @memberof ApiV1NotificationsEmailPostRequest
      */
-    'to'?: string;
+    'to': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1NotificationsEmailPostRequest
      */
-    'subject'?: string;
+    'subject': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1NotificationsEmailPostRequest
      */
-    'contractStartDate'?: string;
+    'contractStartDate': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1NotificationsEmailPostRequest
      */
-    'customerName'?: string;
+    'customerName': string;
 }
 /**
- * a product object
+ * 
  * @export
  * @interface ApiV1ProductsGet200ResponseInner
  */
@@ -328,16 +377,35 @@ export interface ApiV1ProductsGetRequest {
      * @type {string}
      * @memberof ApiV1ProductsGetRequest
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1ProductsGetRequest
      */
+    'description': string;
+}
+/**
+ * 
+ * @export
+ * @interface ApiV1ProductsIdDeleteRequest
+ */
+export interface ApiV1ProductsIdDeleteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ProductsIdDeleteRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ProductsIdDeleteRequest
+     */
     'description'?: string;
 }
 /**
- * Succesful response
+ * 
  * @export
  * @interface ApiV1UsersLoginPost200Response
  */
@@ -360,29 +428,16 @@ export interface ApiV1UsersLoginPostRequest {
      * @type {string}
      * @memberof ApiV1UsersLoginPostRequest
      */
-    'username'?: string;
+    'username': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1UsersLoginPostRequest
      */
-    'password'?: string;
+    'password': string;
 }
 /**
- * Successful response
- * @export
- * @interface ApiV1UsersLogoutPost200Response
- */
-export interface ApiV1UsersLogoutPost200Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiV1UsersLogoutPost200Response
-     */
-    'message'?: string;
-}
-/**
- * a user object
+ * 
  * @export
  * @interface ApiV1UsersRegisterPost201Response
  */
@@ -435,19 +490,19 @@ export interface ApiV1UsersRegisterPostRequest {
      * @type {string}
      * @memberof ApiV1UsersRegisterPostRequest
      */
-    'username'?: string;
+    'username': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1UsersRegisterPostRequest
      */
-    'password'?: string;
+    'password': string;
     /**
      * 
      * @type {string}
      * @memberof ApiV1UsersRegisterPostRequest
      */
-    'email'?: string;
+    'email': string;
     /**
      * 
      * @type {boolean}
@@ -468,7 +523,7 @@ export interface ApiV1UsersRegisterPostRequest {
     'kakaoNotification'?: boolean;
 }
 /**
- * a customer object
+ * 
  * @export
  * @interface Def0
  */
@@ -523,7 +578,7 @@ export interface Def0 {
     'kakaoNotification'?: boolean;
 }
 /**
- * a product object
+ * 
  * @export
  * @interface Def1
  */
@@ -548,7 +603,7 @@ export interface Def1 {
     'description'?: string;
 }
 /**
- * a contract object
+ * 
  * @export
  * @interface Def2
  */
@@ -603,7 +658,7 @@ export interface Def2 {
     'endDate'?: string;
 }
 /**
- * a user object
+ * 
  * @export
  * @interface Def3
  */
@@ -644,6 +699,19 @@ export interface Def3 {
      * @memberof Def3
      */
     'kakaoNotification'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Def4
+ */
+export interface Def4 {
+    /**
+     * 
+     * @type {string}
+     * @memberof Def4
+     */
+    'message'?: string;
 }
 
 /**
@@ -719,11 +787,13 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * create a contract
          * @summary create a contract
-         * @param {ApiV1ContractsGetRequest} [apiV1ContractsGetRequest] 
+         * @param {ApiV1ContractsGetRequest} apiV1ContractsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ContractsPost: async (apiV1ContractsGetRequest?: ApiV1ContractsGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1ContractsPost: async (apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1ContractsGetRequest' is not null or undefined
+            assertParamExists('apiV1ContractsPost', 'apiV1ContractsGetRequest', apiV1ContractsGetRequest)
             const localVarPath = `/api/v1/contracts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -784,11 +854,11 @@ export const ContractsApiFp = function(configuration?: Configuration) {
         /**
          * create a contract
          * @summary create a contract
-         * @param {ApiV1ContractsGetRequest} [apiV1ContractsGetRequest] 
+         * @param {ApiV1ContractsGetRequest} apiV1ContractsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ContractsPost(apiV1ContractsGetRequest?: ApiV1ContractsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet200ResponseInner>> {
+        async apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet200ResponseInner>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ContractsPost(apiV1ContractsGetRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -824,11 +894,11 @@ export const ContractsApiFactory = function (configuration?: Configuration, base
         /**
          * create a contract
          * @summary create a contract
-         * @param {ApiV1ContractsGetRequest} [apiV1ContractsGetRequest] 
+         * @param {ApiV1ContractsGetRequest} apiV1ContractsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ContractsPost(apiV1ContractsGetRequest?: ApiV1ContractsGetRequest, options?: any): AxiosPromise<ApiV1ContractsGet200ResponseInner> {
+        apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: any): AxiosPromise<ApiV1ContractsGet200ResponseInner> {
             return localVarFp.apiV1ContractsPost(apiV1ContractsGetRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -867,12 +937,12 @@ export class ContractsApi extends BaseAPI {
     /**
      * create a contract
      * @summary create a contract
-     * @param {ApiV1ContractsGetRequest} [apiV1ContractsGetRequest] 
+     * @param {ApiV1ContractsGetRequest} apiV1ContractsGetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContractsApi
      */
-    public apiV1ContractsPost(apiV1ContractsGetRequest?: ApiV1ContractsGetRequest, options?: AxiosRequestConfig) {
+    public apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: AxiosRequestConfig) {
         return ContractsApiFp(this.configuration).apiV1ContractsPost(apiV1ContractsGetRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -986,11 +1056,11 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
          * update a customer by id
          * @summary update a customer by id
          * @param {string} id 
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1CustomersIdPut: async (id: string, apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1CustomersIdPut: async (id: string, apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiV1CustomersIdPut', 'id', id)
             const localVarPath = `/api/v1/customers/{id}`
@@ -1013,7 +1083,7 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(apiV1CustomersGetRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(apiV1CustomersIdDeleteRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1023,11 +1093,13 @@ export const CustomersApiAxiosParamCreator = function (configuration?: Configura
         /**
          * create a customer
          * @summary create a customer
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersGetRequest} apiV1CustomersGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1CustomersPost: async (apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1CustomersPost: async (apiV1CustomersGetRequest: ApiV1CustomersGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1CustomersGetRequest' is not null or undefined
+            assertParamExists('apiV1CustomersPost', 'apiV1CustomersGetRequest', apiV1CustomersGetRequest)
             const localVarPath = `/api/v1/customers/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1081,7 +1153,7 @@ export const CustomersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1CustomersIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersIdDelete200Response>> {
+        async apiV1CustomersIdDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet400Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomersIdDelete(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1100,22 +1172,22 @@ export const CustomersApiFp = function(configuration?: Configuration) {
          * update a customer by id
          * @summary update a customer by id
          * @param {string} id 
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1CustomersIdPut(id: string, apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersGet200ResponseInner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomersIdPut(id, apiV1CustomersGetRequest, options);
+        async apiV1CustomersIdPut(id: string, apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersGet200ResponseInner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomersIdPut(id, apiV1CustomersIdDeleteRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * create a customer
          * @summary create a customer
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersGetRequest} apiV1CustomersGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1CustomersPost(apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersGet200ResponseInner>> {
+        async apiV1CustomersPost(apiV1CustomersGetRequest: ApiV1CustomersGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersGet200ResponseInner>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1CustomersPost(apiV1CustomersGetRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1145,7 +1217,7 @@ export const CustomersApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1CustomersIdDelete(id: string, options?: any): AxiosPromise<ApiV1CustomersIdDelete200Response> {
+        apiV1CustomersIdDelete(id: string, options?: any): AxiosPromise<ApiV1ContractsGet400Response> {
             return localVarFp.apiV1CustomersIdDelete(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1162,21 +1234,21 @@ export const CustomersApiFactory = function (configuration?: Configuration, base
          * update a customer by id
          * @summary update a customer by id
          * @param {string} id 
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1CustomersIdPut(id: string, apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: any): AxiosPromise<ApiV1CustomersGet200ResponseInner> {
-            return localVarFp.apiV1CustomersIdPut(id, apiV1CustomersGetRequest, options).then((request) => request(axios, basePath));
+        apiV1CustomersIdPut(id: string, apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest, options?: any): AxiosPromise<ApiV1CustomersGet200ResponseInner> {
+            return localVarFp.apiV1CustomersIdPut(id, apiV1CustomersIdDeleteRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * create a customer
          * @summary create a customer
-         * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+         * @param {ApiV1CustomersGetRequest} apiV1CustomersGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1CustomersPost(apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: any): AxiosPromise<ApiV1CustomersGet200ResponseInner> {
+        apiV1CustomersPost(apiV1CustomersGetRequest: ApiV1CustomersGetRequest, options?: any): AxiosPromise<ApiV1CustomersGet200ResponseInner> {
             return localVarFp.apiV1CustomersPost(apiV1CustomersGetRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -1228,24 +1300,24 @@ export class CustomersApi extends BaseAPI {
      * update a customer by id
      * @summary update a customer by id
      * @param {string} id 
-     * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+     * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApi
      */
-    public apiV1CustomersIdPut(id: string, apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: AxiosRequestConfig) {
-        return CustomersApiFp(this.configuration).apiV1CustomersIdPut(id, apiV1CustomersGetRequest, options).then((request) => request(this.axios, this.basePath));
+    public apiV1CustomersIdPut(id: string, apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest, options?: AxiosRequestConfig) {
+        return CustomersApiFp(this.configuration).apiV1CustomersIdPut(id, apiV1CustomersIdDeleteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * create a customer
      * @summary create a customer
-     * @param {ApiV1CustomersGetRequest} [apiV1CustomersGetRequest] 
+     * @param {ApiV1CustomersGetRequest} apiV1CustomersGetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CustomersApi
      */
-    public apiV1CustomersPost(apiV1CustomersGetRequest?: ApiV1CustomersGetRequest, options?: AxiosRequestConfig) {
+    public apiV1CustomersPost(apiV1CustomersGetRequest: ApiV1CustomersGetRequest, options?: AxiosRequestConfig) {
         return CustomersApiFp(this.configuration).apiV1CustomersPost(apiV1CustomersGetRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1354,11 +1426,13 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * send an email notification
          * @summary send an email notification
-         * @param {ApiV1NotificationsEmailPostRequest} [apiV1NotificationsEmailPostRequest] 
+         * @param {ApiV1NotificationsEmailPostRequest} apiV1NotificationsEmailPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1NotificationsEmailPost: async (apiV1NotificationsEmailPostRequest?: ApiV1NotificationsEmailPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1NotificationsEmailPost: async (apiV1NotificationsEmailPostRequest: ApiV1NotificationsEmailPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1NotificationsEmailPostRequest' is not null or undefined
+            assertParamExists('apiV1NotificationsEmailPost', 'apiV1NotificationsEmailPostRequest', apiV1NotificationsEmailPostRequest)
             const localVarPath = `/api/v1/notifications/email`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1398,11 +1472,11 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * send an email notification
          * @summary send an email notification
-         * @param {ApiV1NotificationsEmailPostRequest} [apiV1NotificationsEmailPostRequest] 
+         * @param {ApiV1NotificationsEmailPostRequest} apiV1NotificationsEmailPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest?: ApiV1NotificationsEmailPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1NotificationsEmailPost200Response>> {
+        async apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest: ApiV1NotificationsEmailPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1NotificationsEmailPost200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1419,11 +1493,11 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         /**
          * send an email notification
          * @summary send an email notification
-         * @param {ApiV1NotificationsEmailPostRequest} [apiV1NotificationsEmailPostRequest] 
+         * @param {ApiV1NotificationsEmailPostRequest} apiV1NotificationsEmailPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest?: ApiV1NotificationsEmailPostRequest, options?: any): AxiosPromise<ApiV1NotificationsEmailPost200Response> {
+        apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest: ApiV1NotificationsEmailPostRequest, options?: any): AxiosPromise<ApiV1NotificationsEmailPost200Response> {
             return localVarFp.apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -1439,12 +1513,12 @@ export class NotificationsApi extends BaseAPI {
     /**
      * send an email notification
      * @summary send an email notification
-     * @param {ApiV1NotificationsEmailPostRequest} [apiV1NotificationsEmailPostRequest] 
+     * @param {ApiV1NotificationsEmailPostRequest} apiV1NotificationsEmailPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest?: ApiV1NotificationsEmailPostRequest, options?: AxiosRequestConfig) {
+    public apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest: ApiV1NotificationsEmailPostRequest, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).apiV1NotificationsEmailPost(apiV1NotificationsEmailPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1558,11 +1632,11 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * update a product by id
          * @summary update a product by id
          * @param {number} id 
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsIdDeleteRequest} [apiV1ProductsIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ProductsIdPut: async (id: number, apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1ProductsIdPut: async (id: number, apiV1ProductsIdDeleteRequest?: ApiV1ProductsIdDeleteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiV1ProductsIdPut', 'id', id)
             const localVarPath = `/api/v1/products/{id}`
@@ -1585,7 +1659,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(apiV1ProductsGetRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(apiV1ProductsIdDeleteRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1595,11 +1669,13 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * create a product
          * @summary create a product
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsGetRequest} apiV1ProductsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ProductsPost: async (apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1ProductsPost: async (apiV1ProductsGetRequest: ApiV1ProductsGetRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1ProductsGetRequest' is not null or undefined
+            assertParamExists('apiV1ProductsPost', 'apiV1ProductsGetRequest', apiV1ProductsGetRequest)
             const localVarPath = `/api/v1/products/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1653,7 +1729,7 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ProductsIdDelete(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1CustomersIdDelete200Response>> {
+        async apiV1ProductsIdDelete(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet400Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ProductsIdDelete(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1672,22 +1748,22 @@ export const ProductsApiFp = function(configuration?: Configuration) {
          * update a product by id
          * @summary update a product by id
          * @param {number} id 
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsIdDeleteRequest} [apiV1ProductsIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ProductsIdPut(id: number, apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ProductsGet200ResponseInner>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ProductsIdPut(id, apiV1ProductsGetRequest, options);
+        async apiV1ProductsIdPut(id: number, apiV1ProductsIdDeleteRequest?: ApiV1ProductsIdDeleteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ProductsGet200ResponseInner>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ProductsIdPut(id, apiV1ProductsIdDeleteRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * create a product
          * @summary create a product
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsGetRequest} apiV1ProductsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ProductsPost(apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ProductsGet200ResponseInner>> {
+        async apiV1ProductsPost(apiV1ProductsGetRequest: ApiV1ProductsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ProductsGet200ResponseInner>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ProductsPost(apiV1ProductsGetRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1717,7 +1793,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ProductsIdDelete(id: number, options?: any): AxiosPromise<ApiV1CustomersIdDelete200Response> {
+        apiV1ProductsIdDelete(id: number, options?: any): AxiosPromise<ApiV1ContractsGet400Response> {
             return localVarFp.apiV1ProductsIdDelete(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1734,21 +1810,21 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * update a product by id
          * @summary update a product by id
          * @param {number} id 
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsIdDeleteRequest} [apiV1ProductsIdDeleteRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ProductsIdPut(id: number, apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: any): AxiosPromise<ApiV1ProductsGet200ResponseInner> {
-            return localVarFp.apiV1ProductsIdPut(id, apiV1ProductsGetRequest, options).then((request) => request(axios, basePath));
+        apiV1ProductsIdPut(id: number, apiV1ProductsIdDeleteRequest?: ApiV1ProductsIdDeleteRequest, options?: any): AxiosPromise<ApiV1ProductsGet200ResponseInner> {
+            return localVarFp.apiV1ProductsIdPut(id, apiV1ProductsIdDeleteRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * create a product
          * @summary create a product
-         * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+         * @param {ApiV1ProductsGetRequest} apiV1ProductsGetRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ProductsPost(apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: any): AxiosPromise<ApiV1ProductsGet200ResponseInner> {
+        apiV1ProductsPost(apiV1ProductsGetRequest: ApiV1ProductsGetRequest, options?: any): AxiosPromise<ApiV1ProductsGet200ResponseInner> {
             return localVarFp.apiV1ProductsPost(apiV1ProductsGetRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -1800,24 +1876,24 @@ export class ProductsApi extends BaseAPI {
      * update a product by id
      * @summary update a product by id
      * @param {number} id 
-     * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+     * @param {ApiV1ProductsIdDeleteRequest} [apiV1ProductsIdDeleteRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public apiV1ProductsIdPut(id: number, apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: AxiosRequestConfig) {
-        return ProductsApiFp(this.configuration).apiV1ProductsIdPut(id, apiV1ProductsGetRequest, options).then((request) => request(this.axios, this.basePath));
+    public apiV1ProductsIdPut(id: number, apiV1ProductsIdDeleteRequest?: ApiV1ProductsIdDeleteRequest, options?: AxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).apiV1ProductsIdPut(id, apiV1ProductsIdDeleteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * create a product
      * @summary create a product
-     * @param {ApiV1ProductsGetRequest} [apiV1ProductsGetRequest] 
+     * @param {ApiV1ProductsGetRequest} apiV1ProductsGetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public apiV1ProductsPost(apiV1ProductsGetRequest?: ApiV1ProductsGetRequest, options?: AxiosRequestConfig) {
+    public apiV1ProductsPost(apiV1ProductsGetRequest: ApiV1ProductsGetRequest, options?: AxiosRequestConfig) {
         return ProductsApiFp(this.configuration).apiV1ProductsPost(apiV1ProductsGetRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1832,11 +1908,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * login
          * @summary login
-         * @param {ApiV1UsersLoginPostRequest} [apiV1UsersLoginPostRequest] 
+         * @param {ApiV1UsersLoginPostRequest} apiV1UsersLoginPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersLoginPost: async (apiV1UsersLoginPostRequest?: ApiV1UsersLoginPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1UsersLoginPost: async (apiV1UsersLoginPostRequest: ApiV1UsersLoginPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1UsersLoginPostRequest' is not null or undefined
+            assertParamExists('apiV1UsersLoginPost', 'apiV1UsersLoginPostRequest', apiV1UsersLoginPostRequest)
             const localVarPath = `/api/v1/users/login`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1896,15 +1974,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * get profile
          * @summary get profile
-         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersMeGet: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiV1UsersMeGet', 'id', id)
-            const localVarPath = `/api/v1/users/me`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        apiV1UsersMeGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/users/me`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1930,11 +2004,13 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * register new user
          * @summary register new user
-         * @param {ApiV1UsersRegisterPostRequest} [apiV1UsersRegisterPostRequest] 
+         * @param {ApiV1UsersRegisterPostRequest} apiV1UsersRegisterPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersRegisterPost: async (apiV1UsersRegisterPostRequest?: ApiV1UsersRegisterPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1UsersRegisterPost: async (apiV1UsersRegisterPostRequest: ApiV1UsersRegisterPostRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'apiV1UsersRegisterPostRequest' is not null or undefined
+            assertParamExists('apiV1UsersRegisterPost', 'apiV1UsersRegisterPostRequest', apiV1UsersRegisterPostRequest)
             const localVarPath = `/api/v1/users/register`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1974,11 +2050,11 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * login
          * @summary login
-         * @param {ApiV1UsersLoginPostRequest} [apiV1UsersLoginPostRequest] 
+         * @param {ApiV1UsersLoginPostRequest} apiV1UsersLoginPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1UsersLoginPost(apiV1UsersLoginPostRequest?: ApiV1UsersLoginPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersLoginPost200Response>> {
+        async apiV1UsersLoginPost(apiV1UsersLoginPostRequest: ApiV1UsersLoginPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersLoginPost200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UsersLoginPost(apiV1UsersLoginPostRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1988,29 +2064,28 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1UsersLogoutPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersLogoutPost200Response>> {
+        async apiV1UsersLogoutPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet400Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UsersLogoutPost(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * get profile
          * @summary get profile
-         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1UsersMeGet(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersRegisterPost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UsersMeGet(id, options);
+        async apiV1UsersMeGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersRegisterPost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UsersMeGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * register new user
          * @summary register new user
-         * @param {ApiV1UsersRegisterPostRequest} [apiV1UsersRegisterPostRequest] 
+         * @param {ApiV1UsersRegisterPostRequest} apiV1UsersRegisterPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest?: ApiV1UsersRegisterPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersRegisterPost201Response>> {
+        async apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest: ApiV1UsersRegisterPostRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1UsersRegisterPost201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2027,11 +2102,11 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * login
          * @summary login
-         * @param {ApiV1UsersLoginPostRequest} [apiV1UsersLoginPostRequest] 
+         * @param {ApiV1UsersLoginPostRequest} apiV1UsersLoginPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersLoginPost(apiV1UsersLoginPostRequest?: ApiV1UsersLoginPostRequest, options?: any): AxiosPromise<ApiV1UsersLoginPost200Response> {
+        apiV1UsersLoginPost(apiV1UsersLoginPostRequest: ApiV1UsersLoginPostRequest, options?: any): AxiosPromise<ApiV1UsersLoginPost200Response> {
             return localVarFp.apiV1UsersLoginPost(apiV1UsersLoginPostRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2040,27 +2115,26 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersLogoutPost(options?: any): AxiosPromise<ApiV1UsersLogoutPost200Response> {
+        apiV1UsersLogoutPost(options?: any): AxiosPromise<ApiV1ContractsGet400Response> {
             return localVarFp.apiV1UsersLogoutPost(options).then((request) => request(axios, basePath));
         },
         /**
          * get profile
          * @summary get profile
-         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersMeGet(id: number, options?: any): AxiosPromise<ApiV1UsersRegisterPost201Response> {
-            return localVarFp.apiV1UsersMeGet(id, options).then((request) => request(axios, basePath));
+        apiV1UsersMeGet(options?: any): AxiosPromise<ApiV1UsersRegisterPost201Response> {
+            return localVarFp.apiV1UsersMeGet(options).then((request) => request(axios, basePath));
         },
         /**
          * register new user
          * @summary register new user
-         * @param {ApiV1UsersRegisterPostRequest} [apiV1UsersRegisterPostRequest] 
+         * @param {ApiV1UsersRegisterPostRequest} apiV1UsersRegisterPostRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest?: ApiV1UsersRegisterPostRequest, options?: any): AxiosPromise<ApiV1UsersRegisterPost201Response> {
+        apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest: ApiV1UsersRegisterPostRequest, options?: any): AxiosPromise<ApiV1UsersRegisterPost201Response> {
             return localVarFp.apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -2076,12 +2150,12 @@ export class UserApi extends BaseAPI {
     /**
      * login
      * @summary login
-     * @param {ApiV1UsersLoginPostRequest} [apiV1UsersLoginPostRequest] 
+     * @param {ApiV1UsersLoginPostRequest} apiV1UsersLoginPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public apiV1UsersLoginPost(apiV1UsersLoginPostRequest?: ApiV1UsersLoginPostRequest, options?: AxiosRequestConfig) {
+    public apiV1UsersLoginPost(apiV1UsersLoginPostRequest: ApiV1UsersLoginPostRequest, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).apiV1UsersLoginPost(apiV1UsersLoginPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2099,24 +2173,23 @@ export class UserApi extends BaseAPI {
     /**
      * get profile
      * @summary get profile
-     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public apiV1UsersMeGet(id: number, options?: AxiosRequestConfig) {
-        return UserApiFp(this.configuration).apiV1UsersMeGet(id, options).then((request) => request(this.axios, this.basePath));
+    public apiV1UsersMeGet(options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).apiV1UsersMeGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * register new user
      * @summary register new user
-     * @param {ApiV1UsersRegisterPostRequest} [apiV1UsersRegisterPostRequest] 
+     * @param {ApiV1UsersRegisterPostRequest} apiV1UsersRegisterPostRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest?: ApiV1UsersRegisterPostRequest, options?: AxiosRequestConfig) {
+    public apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest: ApiV1UsersRegisterPostRequest, options?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).apiV1UsersRegisterPost(apiV1UsersRegisterPostRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -1,0 +1,28 @@
+### product - Create
+POST {{http-host}}/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "자동차 보험",
+  "description": "자동차 보험 상품입니다."
+}
+
+### product - Read All
+GET {{http-host}}/api/v1/products
+
+### product - Read
+GET {{http-host}}/api/v1/products/1
+
+### product - Update
+PUT {{http-host}}/api/v1/products/1
+Content-Type: application/json
+
+{
+  "name": "생명 보험",
+  "description": "생명 보험 상품입니다."
+}
+
+### product - Delete
+DELETE {{http-host}}/api/v1/products/1
+
+

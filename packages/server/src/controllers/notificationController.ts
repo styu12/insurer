@@ -27,15 +27,32 @@ export const notificationRoutes = async (
             contractStartDate: { type: 'string' },
             customerName: { type: 'string' },
           },
+          required: ['to', 'subject', 'contractStartDate', 'customerName'],
         },
         response: {
           200: {
-            description: 'Succesful response',
-            type: 'object',
-            properties: {
-              success: { type: 'boolean' },
-              message: { type: 'string' },
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: { type: 'boolean' },
+                    message: { type: 'string' },
+                  },
+                },
+              },
             },
+            title: 'ApiV1NotificationsEmailPost200Response',
+          },
+          500: {
+            description: 'Failed to send email',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1NotificationsEmailPost500Response',
           },
         },
       },

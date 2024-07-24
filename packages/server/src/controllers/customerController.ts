@@ -22,9 +22,16 @@ export const customerRoutes = async (
         summary: 'list all customers',
         response: {
           200: {
-            description: 'Succesful response',
-            type: 'array',
-            items: server.getSchema('Customer'),
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items: server.getSchema('Customer'),
+                },
+              },
+            },
+            title: 'ApiV1CustomersGet200Response',
           },
         },
       },
@@ -47,9 +54,27 @@ export const customerRoutes = async (
           properties: {
             id: { type: 'number' },
           },
+          required: ['id'],
         },
         response: {
-          200: server.getSchema('Customer'),
+          200: {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Customer'),
+              },
+            },
+            title: 'ApiV1CustomersIdGet200Response',
+          },
+          404: {
+            description: 'Customer not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1CustomersIdGet404Response',
+          },
         },
       },
     },
@@ -82,9 +107,27 @@ export const customerRoutes = async (
             smsNotification: { type: 'boolean' },
             kakaoNotification: { type: 'boolean' },
           },
+          required: ['name', 'email', 'phone'],
         },
         response: {
-          201: server.getSchema('Customer'),
+          201: {
+            description: 'Customer created successfully',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Customer'),
+              },
+            },
+            title: 'ApiV1CustomersPost201Response',
+          },
+          400: {
+            description: 'Invalid request data',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1CustomersPost400Response',
+          },
         },
       },
     },
@@ -124,6 +167,7 @@ export const customerRoutes = async (
           properties: {
             id: { type: 'string' },
           },
+          required: ['id'],
         },
         body: {
           type: 'object',
@@ -138,7 +182,24 @@ export const customerRoutes = async (
           },
         },
         response: {
-          200: server.getSchema('Customer'),
+          200: {
+            description: 'Customer updated successfully',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Customer'),
+              },
+            },
+            title: 'ApiV1CustomersPut200Response',
+          },
+          404: {
+            description: 'Customer not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1CustomersPut404Response',
+          },
         },
       },
     },
@@ -184,14 +245,31 @@ export const customerRoutes = async (
           properties: {
             id: { type: 'string' },
           },
+          required: ['id'],
         },
         response: {
           200: {
-            description: 'Succesful response',
-            type: 'object',
-            properties: {
-              message: { type: 'string' },
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    message: { type: 'string' },
+                  },
+                },
+              },
             },
+            title: 'ApiV1CustomersDelete200Response',
+          },
+          404: {
+            description: 'Customer not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1CustomersDelete404Response',
           },
         },
       },

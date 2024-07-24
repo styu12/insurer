@@ -19,9 +19,16 @@ export const contractRoutes = async (server: FastifyInstance) => {
         summary: 'list all contracts',
         response: {
           200: {
-            description: 'Succesful response',
-            type: 'array',
-            items: server.getSchema('Contract'),
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items: server.getSchema('Contract'),
+                },
+              },
+            },
+            title: 'ApiV1ContractsGet200Response',
           },
         },
       },
@@ -44,9 +51,27 @@ export const contractRoutes = async (server: FastifyInstance) => {
           properties: {
             id: { type: 'number' },
           },
+          required: ['id'],
         },
         response: {
-          200: server.getSchema('Contract'),
+          200: {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Contract'),
+              },
+            },
+            title: 'ApiV1ContractsIdGet200Response',
+          },
+          404: {
+            description: 'Contract not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ContractsIdGet404Response',
+          },
         },
       },
     },
@@ -79,9 +104,36 @@ export const contractRoutes = async (server: FastifyInstance) => {
             claimDate: { type: 'string' },
             endDate: { type: 'string' },
           },
+          required: ['title', 'customerId', 'startDate'],
         },
         response: {
-          201: server.getSchema('Contract'),
+          201: {
+            description: 'Contract created successfully',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Contract'),
+              },
+            },
+            title: 'ApiV1ContractsPost201Response',
+          },
+          400: {
+            description: 'Invalid request data',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ContractsPost400Response',
+          },
+          404: {
+            description: 'Customer or Product not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ContractsPost404Response',
+          },
         },
       },
     },

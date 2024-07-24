@@ -13,9 +13,30 @@
         "in": "header"
       }
     },
+    "externalDocs": {
+      "url": "https://swagger.io",
+      "description": "Find more info here"
+    },
+    "tags": [
+      {
+        "name": "contracts",
+        "description": "Contract related end-points"
+      },
+      {
+        "name": "customers",
+        "description": "Customer related end-points"
+      },
+      {
+        "name": "products",
+        "description": "Product related end-points"
+      },
+      {
+        "name": "notifications",
+        "description": "Notification related end-points"
+      }
+    ],
     "schemas": {
       "def-0": {
-        "description": "a customer object",
         "type": "object",
         "properties": {
           "id": {
@@ -46,7 +67,6 @@
         "title": "Customer"
       },
       "def-1": {
-        "description": "a product object",
         "type": "object",
         "properties": {
           "id": {
@@ -62,7 +82,6 @@
         "title": "Product"
       },
       "def-2": {
-        "description": "a contract object",
         "type": "object",
         "properties": {
           "id": {
@@ -93,7 +112,6 @@
         "title": "Contract"
       },
       "def-3": {
-        "description": "a user object",
         "type": "object",
         "properties": {
           "id": {
@@ -116,6 +134,15 @@
           }
         },
         "title": "User"
+      },
+      "def-4": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "title": "Error"
       }
     }
   },
@@ -132,18 +159,18 @@
     "/api/v1/contracts/": {
       "get": {
         "summary": "list all contracts",
-        "tags": ["contracts"],
+        "tags": [
+          "contracts"
+        ],
         "description": "list all contracts",
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
                   "type": "array",
                   "items": {
-                    "description": "a contract object",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -180,7 +207,9 @@
       },
       "post": {
         "summary": "create a contract",
-        "tags": ["contracts"],
+        "tags": [
+          "contracts"
+        ],
         "description": "create a contract",
         "requestBody": {
           "content": {
@@ -209,18 +238,23 @@
                   "endDate": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "customerId",
+                  "startDate"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
-            "description": "a contract object",
+            "description": "Contract created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a contract object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -245,6 +279,36 @@
                       "type": "string"
                     },
                     "endDate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Customer or Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
                       "type": "string"
                     }
                   }
@@ -258,7 +322,9 @@
     "/api/v1/contracts/{id}": {
       "get": {
         "summary": "list a contract by id",
-        "tags": ["contracts"],
+        "tags": [
+          "contracts"
+        ],
         "description": "list a contract by id",
         "parameters": [
           {
@@ -272,11 +338,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a contract object",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a contract object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -307,6 +372,21 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Contract not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -314,18 +394,18 @@
     "/api/v1/customers/": {
       "get": {
         "summary": "list all customers",
-        "tags": ["customers"],
+        "tags": [
+          "customers"
+        ],
         "description": "list all customers",
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
                   "type": "array",
                   "items": {
-                    "description": "a customer object",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -362,7 +442,9 @@
       },
       "post": {
         "summary": "create a customer",
-        "tags": ["customers"],
+        "tags": [
+          "customers"
+        ],
         "description": "create a customer",
         "requestBody": {
           "content": {
@@ -391,18 +473,23 @@
                   "kakaoNotification": {
                     "type": "boolean"
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "phone"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
-            "description": "a customer object",
+            "description": "Customer created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a customer object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -433,6 +520,21 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -440,7 +542,9 @@
     "/api/v1/customers/{id}": {
       "get": {
         "summary": "get a customer by id",
-        "tags": ["customers"],
+        "tags": [
+          "customers"
+        ],
         "description": "get a customer by id",
         "parameters": [
           {
@@ -454,11 +558,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a customer object",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a customer object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -489,12 +592,29 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Customer not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "put": {
         "summary": "update a customer by id",
-        "tags": ["customers"],
+        "tags": [
+          "customers"
+        ],
         "description": "update a customer by id",
         "requestBody": {
           "content": {
@@ -540,11 +660,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a customer object",
+            "description": "Customer updated successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a customer object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -575,12 +694,29 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Customer not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "delete": {
         "summary": "delete a customer by id",
-        "tags": ["customers"],
+        "tags": [
+          "customers"
+        ],
         "description": "delete a customer by id",
         "parameters": [
           {
@@ -594,11 +730,25 @@
         ],
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Customer not found",
+            "content": {
+              "application/json": {
+                "schema": {
                   "type": "object",
                   "properties": {
                     "message": {
@@ -615,7 +765,9 @@
     "/api/v1/products/": {
       "get": {
         "summary": "list all products",
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "description": "list all products",
         "responses": {
           "200": {
@@ -623,10 +775,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Successful response",
                   "type": "array",
                   "items": {
-                    "description": "a product object",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -648,7 +798,9 @@
       },
       "post": {
         "summary": "create a product",
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "description": "create a product",
         "requestBody": {
           "content": {
@@ -662,18 +814,22 @@
                   "description": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "description"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
-            "description": "a product object",
+            "description": "Product created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a product object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -683,6 +839,21 @@
                       "type": "string"
                     },
                     "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
                       "type": "string"
                     }
                   }
@@ -696,7 +867,9 @@
     "/api/v1/products/{id}": {
       "get": {
         "summary": "get a product by id",
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "description": "get a product by id",
         "parameters": [
           {
@@ -710,11 +883,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a product object",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a product object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -730,12 +902,29 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "put": {
         "summary": "update a product by id",
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "description": "update a product by id",
         "requestBody": {
           "content": {
@@ -766,11 +955,10 @@
         ],
         "responses": {
           "200": {
-            "description": "a product object",
+            "description": "Product updated successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a product object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -786,12 +974,29 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "delete": {
         "summary": "delete a product by id",
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "description": "delete a product by id",
         "parameters": [
           {
@@ -805,11 +1010,25 @@
         ],
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
                   "type": "object",
                   "properties": {
                     "message": {
@@ -826,7 +1045,9 @@
     "/api/v1/notifications/email": {
       "post": {
         "summary": "send an email notification",
-        "tags": ["notifications"],
+        "tags": [
+          "notifications"
+        ],
         "description": "send an email notification",
         "requestBody": {
           "content": {
@@ -846,23 +1067,44 @@
                   "customerName": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "to",
+                  "subject",
+                  "contractStartDate",
+                  "customerName"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
                   "type": "object",
                   "properties": {
                     "success": {
                       "type": "boolean"
                     },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to send email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
                     "message": {
                       "type": "string"
                     }
@@ -877,7 +1119,9 @@
     "/api/v1/users/register": {
       "post": {
         "summary": "register new user",
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "register new user",
         "requestBody": {
           "content": {
@@ -903,18 +1147,23 @@
                   "kakaoNotification": {
                     "type": "boolean"
                   }
-                }
+                },
+                "required": [
+                  "username",
+                  "password",
+                  "email"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
-            "description": "a user object",
+            "description": "User created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a user object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -939,6 +1188,21 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -946,7 +1210,9 @@
     "/api/v1/users/login": {
       "post": {
         "summary": "login",
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "login",
         "requestBody": {
           "content": {
@@ -960,21 +1226,55 @@
                   "password": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "Succesful response",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Succesful response",
                   "type": "object",
                   "properties": {
                     "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
                       "type": "string"
                     }
                   }
@@ -988,7 +1288,9 @@
     "/api/v1/users/logout": {
       "post": {
         "summary": "logout",
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "logout",
         "responses": {
           "200": {
@@ -996,7 +1298,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Successful response",
                   "type": "object",
                   "properties": {
                     "message": {
@@ -1013,25 +1314,16 @@
     "/api/v1/users/me": {
       "get": {
         "summary": "get profile",
-        "tags": ["user"],
-        "description": "get profile",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number"
-            },
-            "in": "path",
-            "name": "id",
-            "required": true
-          }
+        "tags": [
+          "user"
         ],
+        "description": "get profile",
         "responses": {
           "200": {
-            "description": "a user object",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "a user object",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -1056,6 +1348,21 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1066,27 +1373,5 @@
       "url": "http://localhost:3000",
       "description": "Development server"
     }
-  ],
-  "tags": [
-    {
-      "name": "contracts",
-      "description": "Contract related end-points"
-    },
-    {
-      "name": "customers",
-      "description": "Customer related end-points"
-    },
-    {
-      "name": "products",
-      "description": "Product related end-points"
-    },
-    {
-      "name": "notifications",
-      "description": "Notification related end-points"
-    }
-  ],
-  "externalDocs": {
-    "url": "https://swagger.io",
-    "description": "Find more info here"
-  }
+  ]
 }
