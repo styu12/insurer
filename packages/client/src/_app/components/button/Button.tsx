@@ -39,10 +39,18 @@ interface ButtonProps
   key?: string | number
   primary?: boolean
   secondary?: boolean
+  DANGEROUSLY_ovveride_style?: boolean
 }
 
 const Button = (props: ButtonProps) => {
-  const { key, className, primary, secondary, ...defaultButtonProps } = props
+  const {
+    key,
+    className,
+    primary,
+    secondary,
+    DANGEROUSLY_ovveride_style,
+    ...defaultButtonProps
+  } = props
 
   const buttonClasses = useMemo(() => {
     if (secondary) {
@@ -55,7 +63,10 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       key={key}
-      className={classNames(buttonClasses, className)}
+      className={classNames(
+        !DANGEROUSLY_ovveride_style && buttonClasses,
+        className
+      )}
       {...defaultButtonProps}
     >
       {props.children}
