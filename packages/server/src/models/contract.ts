@@ -13,7 +13,11 @@ export interface Contract {
   endDate: string // YYYY-MM-DD
 }
 
-function convertToCamelCase(row: any): Contract {
+export interface ContractWithCustomer extends Contract {
+  customerName: string
+}
+
+function convertToCamelCaseContract(row: any): Contract {
   return {
     id: row.id,
     title: row.title,
@@ -23,6 +27,20 @@ function convertToCamelCase(row: any): Contract {
     startDate: row.start_date,
     claimDate: row.claim_date,
     endDate: row.end_date,
+  }
+}
+
+function convertToCamelCaseContractWithCustomer(row: any): ContractWithCustomer {
+  return {
+    id: row.id,
+    title: row.title,
+    description: row.description,
+    customerId: row.customer_id,
+    productId: row.product_id,
+    startDate: row.start_date,
+    claimDate: row.claim_date,
+    endDate: row.end_date,
+    customerName: row.customer_name,
   }
 }
 
@@ -41,38 +59,65 @@ export const createContract = async (
       'INSERT INTO contracts (title, description, customer_id, product_id, start_date, claim_date, end_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
       [title, description, customerId, productId, startDate, claimDate, endDate]
     )
-    return convertToCamelCase(rows[0])
+    return convertToCamelCaseContract(rows[0])
   } catch (e) {
     server.log.error(e)
     throw new CustomError('failed to create contract', 500)
   }
 }
 
-export const findAllContracts = async (
+export const findAllContractsWithCustomer = async (
   server: FastifyInstance
-): Promise<Contract[]> => {
+): Promise<ContractWithCustomer[]> => {
   try {
-    const { rows } = await server.pg.query('SELECT * FROM contracts')
-    return rows.map(convertToCamelCase)
+    const { rows } = await server.pg.query(`
+SELECT 
+  contracts.id,
+  contracts.title,
+  contracts.description,
+  contracts.customer_id,
+  contracts.product_id,
+  contracts.start_date,
+  contracts.claim_date,
+  contracts.end_date,
+  customers.name as customer_name 
+FROM contracts
+LEFT JOIN customers 
+ON contracts.customer_id = customers.id
+`)
+    return rows.map(convertToCamelCaseContractWithCustomer)
   } catch (e) {
     server.log.error(e)
     throw new CustomError('failed to find all contracts', 500)
   }
 }
 
-export const findContractById = async (
+export const findContractWithCustomerById = async (
   server: FastifyInstance,
   id: number
-): Promise<Contract | null> => {
+): Promise<ContractWithCustomer | null> => {
   try {
-    const { rows } = await server.pg.query(
-      'SELECT * FROM contracts WHERE id = $1',
+    const { rows } = await server.pg.query(`
+      SELECT 
+        contracts.id,
+        contracts.title,
+        contracts.description,
+        contracts.customer_id,
+        contracts.product_id,
+        contracts.start_date,
+        contracts.claim_date,
+        contracts.end_date,
+        customers.name as customer_name 
+      FROM contracts WHERE id = $1
+      LEFT JOIN customers
+      ON contracts.customer_id = customers.id
+    `,
       [id]
     )
     if (rows.length === 0) {
       return null
     }
-    return convertToCamelCase(rows[0])
+    return convertToCamelCaseContractWithCustomer(rows[0])
   } catch (e) {
     server.log.error(e)
     throw new CustomError('failed to find contract by id', 500)

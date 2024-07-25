@@ -10,10 +10,10 @@ Content-Type: application/json
 
 {
   "title": "자동차 보험 신규 계약",
-  "description": "20대 남성 고객님 자동차 보험 신규계약!",
-  "customerId": 1,
-  "productId": 3,
-  "startDate": "2024-07-11",
-  "renewalDate": "2025-07-11",
-  "claimDate": "2024-10-11"
+  "description": "제리 고객님 자동차 보험 신규계약!",
+  "customerId": 2,
+  "productId": 1,
+  "startDate": "2024-07-16",
+  "claimDate": "2024-10-16",
+  "endDate": "2025-07-16"
 }

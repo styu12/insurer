@@ -2,8 +2,8 @@ import { FastifyInstance } from 'fastify'
 import {
   Contract,
   createContract,
-  findAllContracts,
-  findContractById,
+  findAllContractsWithCustomer,
+  findContractWithCustomerById,
 } from '../models/contract'
 import { findCustomerById } from '../models/customer'
 import CustomError from '../errors/CustomError'
@@ -24,7 +24,7 @@ export const contractRoutes = async (server: FastifyInstance) => {
               'application/json': {
                 schema: {
                   type: 'array',
-                  items: server.getSchema('Contract'),
+                  items: server.getSchema('ContractWithCustomer'),
                 },
               },
             },
@@ -34,8 +34,8 @@ export const contractRoutes = async (server: FastifyInstance) => {
       },
     },
     async (request, reply) => {
-      const result = await findAllContracts(server)
-      reply.status(200).send(result)
+      const contractsWithCustomerName = await findAllContractsWithCustomer(server)
+      reply.status(200).send(contractsWithCustomerName)
     }
   )
 
@@ -77,12 +77,12 @@ export const contractRoutes = async (server: FastifyInstance) => {
     },
     async (request, reply) => {
       const { id } = request.params as { id: number }
-      const result = await findContractById(server, id)
-      if (!result) {
+      const contractWithCustomerName = await findContractWithCustomerById(server, id)
+      if (!contractWithCustomerName) {
         throw new CustomError('Contract not found', 404)
       }
 
-      reply.status(200).send(result)
+      reply.status(200).send(contractWithCustomerName)
     }
   )
 

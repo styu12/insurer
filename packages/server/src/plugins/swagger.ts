@@ -92,6 +92,22 @@ const registerSchemas = (server: FastifyInstance) => {
   })
 
   server.addSchema({
+    $id: 'ContractWithCustomer',
+    type: 'object',
+    properties: {
+      id: { type: 'number' },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      customerId: { type: 'number' },
+      customerName: { type: 'string' },
+      productId: { type: 'number' },
+      startDate: { type: 'string' },
+      claimDate: { type: 'string' },
+      endDate: { type: 'string' },
+    },
+  })
+
+  server.addSchema({
     $id: 'User',
     type: 'object',
     properties: {

@@ -1,6 +1,7 @@
 import fastify, { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import fastifyEnv from '@fastify/env'
 import fastifyJwt from '@fastify/jwt'
+import cors from '@fastify/cors'
 import postgresConnector from './plugins/postgres'
 import fastifySwagger from './plugins/swagger'
 import routes from './routes'
@@ -51,6 +52,12 @@ server
 server.register(fastifyJwt, {
   secret: 'supersecret',
 })
+
+server.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
 
 server.setErrorHandler(
   (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {

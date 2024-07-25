@@ -14,7 +14,10 @@ const postgresConnector = async (server: FastifyInstance) => {
             id SERIAL PRIMARY KEY,
             username VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL
+            email VARCHAR(255) NOT NULL,
+            email_notification BOOLEAN NOT NULL DEFAULT FALSE,
+            sms_notification BOOLEAN NOT NULL DEFAULT FALSE,
+            kakao_notification BOOLEAN NOT NULL DEFAULT FALSE
         );
     `)
 
@@ -25,7 +28,10 @@ const postgresConnector = async (server: FastifyInstance) => {
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
             phone VARCHAR(255) NOT NULL,
-            address VARCHAR(255) NOT NULL
+            address VARCHAR(255),
+            email_notification BOOLEAN NOT NULL DEFAULT FALSE,
+            sms_notification BOOLEAN NOT NULL DEFAULT FALSE,
+            kakao_notification BOOLEAN NOT NULL DEFAULT FALSE
         );
     `)
 

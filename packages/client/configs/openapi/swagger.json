@@ -117,6 +117,39 @@
           "id": {
             "type": "number"
           },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "number"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "number"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "claimDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "title": "ContractWithCustomer"
+      },
+      "def-4": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
           "username": {
             "type": "string"
           },
@@ -135,7 +168,7 @@
         },
         "title": "User"
       },
-      "def-4": {
+      "def-5": {
         "type": "object",
         "properties": {
           "message": {
@@ -184,6 +217,9 @@
                       },
                       "customerId": {
                         "type": "number"
+                      },
+                      "customerName": {
+                        "type": "string"
                       },
                       "productId": {
                         "type": "number"

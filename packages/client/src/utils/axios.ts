@@ -8,7 +8,7 @@ export function makeBaseUrl() {
     return `http://localhost:${SERVER_PORT ?? 3000}`
   }
 
-  return ''
+  return 'http://localhost:3000'
 }
 
 // export const useRemoteWithAuth = () => {

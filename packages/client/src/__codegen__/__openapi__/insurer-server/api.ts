@@ -53,6 +53,12 @@ export interface ApiV1ContractsGet200ResponseInner {
     'customerId'?: number;
     /**
      * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet200ResponseInner
+     */
+    'customerName'?: string;
+    /**
+     * 
      * @type {number}
      * @memberof ApiV1ContractsGet200ResponseInner
      */
@@ -73,6 +79,61 @@ export interface ApiV1ContractsGet200ResponseInner {
      * 
      * @type {string}
      * @memberof ApiV1ContractsGet200ResponseInner
+     */
+    'endDate'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ApiV1ContractsGet201Response
+ */
+export interface ApiV1ContractsGet201Response {
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'customerId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'productId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'startDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet201Response
+     */
+    'claimDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiV1ContractsGet201Response
      */
     'endDate'?: string;
 }
@@ -674,31 +735,49 @@ export interface Def3 {
      * @type {string}
      * @memberof Def3
      */
-    'username'?: string;
+    'title'?: string;
     /**
      * 
      * @type {string}
      * @memberof Def3
      */
-    'email'?: string;
+    'description'?: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof Def3
      */
-    'emailNotification'?: boolean;
+    'customerId'?: number;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof Def3
      */
-    'smsNotification'?: boolean;
+    'customerName'?: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof Def3
      */
-    'kakaoNotification'?: boolean;
+    'productId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Def3
+     */
+    'startDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Def3
+     */
+    'claimDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Def3
+     */
+    'endDate'?: string;
 }
 /**
  * 
@@ -708,8 +787,51 @@ export interface Def3 {
 export interface Def4 {
     /**
      * 
+     * @type {number}
+     * @memberof Def4
+     */
+    'id'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof Def4
+     */
+    'username'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Def4
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Def4
+     */
+    'emailNotification'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Def4
+     */
+    'smsNotification'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Def4
+     */
+    'kakaoNotification'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Def5
+ */
+export interface Def5 {
+    /**
+     * 
+     * @type {string}
+     * @memberof Def5
      */
     'message'?: string;
 }
@@ -847,7 +969,7 @@ export const ContractsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ContractsIdGet(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet200ResponseInner>> {
+        async apiV1ContractsIdGet(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ContractsIdGet(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -858,7 +980,7 @@ export const ContractsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet200ResponseInner>> {
+        async apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiV1ContractsGet201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1ContractsPost(apiV1ContractsGetRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -888,7 +1010,7 @@ export const ContractsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ContractsIdGet(id: number, options?: any): AxiosPromise<ApiV1ContractsGet200ResponseInner> {
+        apiV1ContractsIdGet(id: number, options?: any): AxiosPromise<ApiV1ContractsGet201Response> {
             return localVarFp.apiV1ContractsIdGet(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -898,7 +1020,7 @@ export const ContractsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: any): AxiosPromise<ApiV1ContractsGet200ResponseInner> {
+        apiV1ContractsPost(apiV1ContractsGetRequest: ApiV1ContractsGetRequest, options?: any): AxiosPromise<ApiV1ContractsGet201Response> {
             return localVarFp.apiV1ContractsPost(apiV1ContractsGetRequest, options).then((request) => request(axios, basePath));
         },
     };

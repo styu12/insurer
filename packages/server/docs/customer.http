@@ -4,13 +4,13 @@ POST {{http-host}}/api/v1/customers
 Content-Type: application/json
 
 {
-  "name": "크리스",
-  "email": "chris@gmail.com",
+  "name": "제리",
+  "email": "jarry@gmail.com",
   "phone": "1234567890",
   "address": "송파구 석촌동",
-  "emailNotification": true,
+  "emailNotification": false,
   "smsNotification": false,
-  "kakaoNotification": false
+  "kakaoNotification": true
 }
 
 ### customer - Read All
