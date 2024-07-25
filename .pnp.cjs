@@ -882,6 +882,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@fastify/cors", [\
+      ["npm:9.0.1", {\
+        "packageLocation": "./.yarn/cache/@fastify-cors-npm-9.0.1-738ce8930b-4db9d3d02e.zip/node_modules/@fastify/cors/",\
+        "packageDependencies": [\
+          ["@fastify/cors", "npm:9.0.1"],\
+          ["fastify-plugin", "npm:4.5.1"],\
+          ["mnemonist", "npm:0.39.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@fastify/env", [\
       ["npm:4.3.0", {\
         "packageLocation": "./.yarn/cache/@fastify-env-npm-4.3.0-b3043deb79-29cc217c41.zip/node_modules/@fastify/env/",\
@@ -1201,6 +1212,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/server/",\
         "packageDependencies": [\
           ["@insurer/server", "workspace:packages/server"],\
+          ["@fastify/cors", "npm:9.0.1"],\
           ["@fastify/env", "npm:4.3.0"],\
           ["@fastify/jwt", "npm:8.0.1"],\
           ["@fastify/postgres", "virtual:fe57eec919e8b6767d7f10cf5d126334be9c4f54eaf03d9a4f3f287996b4a6d5d09ea1347c36318273b063c6eff39575f0333c4711ecb2b8f7eb4484f63a11b5#npm:5.2.2"],\
@@ -5242,6 +5254,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["mnemonist", [\
+      ["npm:0.39.6", {\
+        "packageLocation": "./.yarn/cache/mnemonist-npm-0.39.6-a69a970c11-a538945ea5.zip/node_modules/mnemonist/",\
+        "packageDependencies": [\
+          ["mnemonist", "npm:0.39.6"],\
+          ["obliterator", "npm:2.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.39.8", {\
         "packageLocation": "./.yarn/cache/mnemonist-npm-0.39.8-3018bb953d-fa810768d2.zip/node_modules/mnemonist/",\
         "packageDependencies": [\

@@ -20,8 +20,15 @@ export const productRoutes = async (server: FastifyInstance) => {
         response: {
           200: {
             description: 'Successful response',
-            type: 'array',
-            items: server.getSchema('Product'),
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items: server.getSchema('Product'),
+                },
+              },
+            },
+            title: 'ApiV1ProductsGet200Response',
           },
         },
       },
@@ -44,9 +51,27 @@ export const productRoutes = async (server: FastifyInstance) => {
           properties: {
             id: { type: 'number' },
           },
+          required: ['id'],
         },
         response: {
-          200: server.getSchema('Product'),
+          200: {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Product'),
+              },
+            },
+            title: 'ApiV1ProductsIdGet200Response',
+          },
+          404: {
+            description: 'Product not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ProductsIdGet404Response',
+          },
         },
       },
     },
@@ -74,9 +99,27 @@ export const productRoutes = async (server: FastifyInstance) => {
             name: { type: 'string' },
             description: { type: 'string' },
           },
+          required: ['name', 'description'],
         },
         response: {
-          201: server.getSchema('Product'),
+          201: {
+            description: 'Product created successfully',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Product'),
+              },
+            },
+            title: 'ApiV1ProductsPost201Response',
+          },
+          400: {
+            description: 'Invalid request data',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ProductsPost400Response',
+          },
         },
       },
     },
@@ -99,6 +142,7 @@ export const productRoutes = async (server: FastifyInstance) => {
           properties: {
             id: { type: 'number' },
           },
+          required: ['id'],
         },
         body: {
           type: 'object',
@@ -108,7 +152,24 @@ export const productRoutes = async (server: FastifyInstance) => {
           },
         },
         response: {
-          200: server.getSchema('Product'),
+          200: {
+            description: 'Product updated successfully',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Product'),
+              },
+            },
+            title: 'ApiV1ProductsPut200Response',
+          },
+          404: {
+            description: 'Product not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ProductsPut404Response',
+          },
         },
       },
     },
@@ -136,14 +197,31 @@ export const productRoutes = async (server: FastifyInstance) => {
           properties: {
             id: { type: 'number' },
           },
+          required: ['id'],
         },
         response: {
           200: {
-            description: 'Succesful response',
-            type: 'object',
-            properties: {
-              message: { type: 'string' },
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    message: { type: 'string' },
+                  },
+                },
+              },
             },
+            title: 'ApiV1ProductsDelete200Response',
+          },
+          404: {
+            description: 'Product not found',
+            content: {
+              'application/json': {
+                schema: server.getSchema('Error'),
+              },
+            },
+            title: 'ApiV1ProductsDelete404Response',
           },
         },
       },

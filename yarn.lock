@@ -698,6 +698,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fastify/cors@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@fastify/cors@npm:9.0.1"
+  dependencies:
+    fastify-plugin: "npm:^4.0.0"
+    mnemonist: "npm:0.39.6"
+  checksum: 10c0/4db9d3d02edbca741c8ed053819bf3b235ecd70e07c640ed91ba0fc1ee2dc8abedbbffeb79ae1a38ccbf59832e414cad90a554ee44227d0811d5a2d062940611
+  languageName: node
+  linkType: hard
+
 "@fastify/env@npm:^4.3.0":
   version: 4.3.0
   resolution: "@fastify/env@npm:4.3.0"
@@ -925,6 +935,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@insurer/server@workspace:packages/server"
   dependencies:
+    "@fastify/cors": "npm:^9.0.1"
     "@fastify/env": "npm:^4.3.0"
     "@fastify/jwt": "npm:^8.0.1"
     "@fastify/postgres": "npm:^5.2.2"
@@ -4337,6 +4348,15 @@ __metadata:
     pkg-types: "npm:^1.1.1"
     ufo: "npm:^1.5.3"
   checksum: 10c0/d836a7b0adff4d118af41fb93ad4d9e57f80e694a681185280ba220a4607603c19e86c80f9a6c57512b04280567f2599e3386081705c5b5fd74c9ddfd571d0fa
+  languageName: node
+  linkType: hard
+
+"mnemonist@npm:0.39.6":
+  version: 0.39.6
+  resolution: "mnemonist@npm:0.39.6"
+  dependencies:
+    obliterator: "npm:^2.0.1"
+  checksum: 10c0/a538945ea547976136ee6e16f224c0a50983143619941f6c4d2c82159e36eb6f8ee93d69d3a1267038fc5b16f88e2d43390023de10dfb145fa15c5e2befa1cdf
   languageName: node
   linkType: hard
 

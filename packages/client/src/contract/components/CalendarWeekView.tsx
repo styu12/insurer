@@ -150,10 +150,16 @@ const CalendarWeekView: React.FC<CalendarWeekViewProps> = ({
                   const dayIndex = days.findIndex((day) =>
                     isSameDay(new Date(day.date), eventDate)
                   )
-                  const start =
-                    ((eventDate.getHours() * 60 + eventDate.getMinutes()) /
-                      1440) *
-                    48
+
+                  if (dayIndex === -1) {
+                    return null
+                  }
+
+                  // const start =
+                  //   ((eventDate.getHours() * 60 + eventDate.getMinutes()) /
+                  //     1440) *
+                  //   48
+                  const start = 6
                   const duration = 12 // 예제에서는 모든 이벤트가 1시간으로 가정
 
                   return (

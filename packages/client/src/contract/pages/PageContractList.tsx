@@ -1,15 +1,16 @@
 import CalendarHeader from '../components/CalendarHeader.tsx'
 import CalendarMonthView from '../components/CalendarMonthView.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EVENT_TYPES, EventType, View, VIEWS } from '../constants'
 import CalendarWeekView from '../components/CalendarWeekView.tsx'
 import CalendarYearView from '../components/CalendarYearView.tsx'
 import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
 import SectionPage from '../../_app/components/section/SectionPage.tsx'
 import SectionBody from '../../_app/components/section/SectionBody.tsx'
+import { useListContracts } from '../hooks/useContractService.ts'
 
 export interface Event {
-  id: string
+  id: number
   customerName: string
   href: string
   date: string
@@ -19,59 +20,43 @@ export interface Event {
 const PageContractList = () => {
   const [date, setDate] = useState(new Date())
   const [view, setView] = useState<View>(VIEWS.MONTH)
+  const [events, setEvents] = useState<Event[]>([])
+  const { contracts, loading, error, fetchAllContracts } = useListContracts()
+
+  useEffect(() => {
+    fetchAllContracts()
+  }, [fetchAllContracts])
+
+  useEffect(() => {
+    if (Array.isArray(contracts) && contracts.length > 0) {
+      const newEvents: Event[] = contracts.flatMap((contract) => [
+        {
+          id: contract.id || 0,
+          customerName: contract.customerName || '',
+          href: `/contracts/${contract.id}`,
+          date: contract.startDate || '',
+          type: EVENT_TYPES.CONTRACT_START,
+        },
+        {
+          id: contract.id || 0,
+          customerName: contract.customerName || '',
+          href: `/contracts/${contract.id}`,
+          date: contract.claimDate || '',
+          type: EVENT_TYPES.CLAIM_START,
+        },
+        {
+          id: contract.id || 0,
+          customerName: contract.customerName || '',
+          href: `/contracts/${contract.id}`,
+          date: contract.endDate || '',
+          type: EVENT_TYPES.CONTRACT_END,
+        },
+      ]);
+      setEvents(newEvents);
+    }
+  }, [contracts])
 
   const today = new Date()
-  const allEvents: Event[] = [
-    {
-      id: '1',
-      customerName: '제리',
-      href: '#',
-      date: '2024-07-29T12:00',
-      type: EVENT_TYPES.CONTRACT_START,
-    },
-    {
-      id: '2',
-      customerName: '테디',
-      href: '#',
-      date: '2024-07-02T12:00',
-      type: EVENT_TYPES.CONTRACT_START,
-    },
-    {
-      id: '3',
-      customerName: '테디',
-      href: '#',
-      date: '2024-07-08T13:00',
-      type: EVENT_TYPES.CLAIM_START,
-    },
-    {
-      id: '4',
-      customerName: '좌니',
-      href: '#',
-      date: '2024-07-10T12:00',
-      type: EVENT_TYPES.CONTRACT_START,
-    },
-    {
-      id: '5',
-      customerName: '좌니',
-      href: '#',
-      date: '2024-07-14T13:00',
-      type: EVENT_TYPES.CLAIM_START,
-    },
-    {
-      id: '5',
-      customerName: '크리스',
-      href: '#',
-      date: '2024-07-17T14:00',
-      type: EVENT_TYPES.CONTRACT_START,
-    },
-    {
-      id: '6',
-      customerName: '크리스',
-      href: '#',
-      date: '2024-07-19T14:00',
-      type: EVENT_TYPES.CLAIM_START,
-    },
-  ]
 
   const renderCalendarView = () => {
     switch (view) {
@@ -79,20 +64,20 @@ const PageContractList = () => {
         return (
           <CalendarMonthView
             date={date}
-            events={allEvents}
+            events={events}
             today={today}
             onDateChange={handleDateChange}
           />
         )
       case VIEWS.WEEK:
-        return <CalendarWeekView date={date} events={allEvents} today={today} />
+        return <CalendarWeekView date={date} events={events} today={today} />
       case VIEWS.YEAR:
-        return <CalendarYearView date={date} events={allEvents} today={today} />
+        return <CalendarYearView date={date} events={events} today={today} />
       default:
         return (
           <CalendarMonthView
             date={date}
-            events={allEvents}
+            events={events}
             today={today}
             onDateChange={handleDateChange}
           />
@@ -106,6 +91,28 @@ const PageContractList = () => {
 
   const handleViewChange = (newView: View) => {
     setView(newView)
+  }
+
+  if (loading) {
+    return (
+      <SectionPage>
+        <SectionHeading title="계약관리" />
+        <SectionBody>
+          <div>Loading...</div>
+        </SectionBody>
+      </SectionPage>
+    )
+  }
+
+  if (error) {
+    return (
+      <SectionPage>
+        <SectionHeading title="계약관리" />
+        <SectionBody>
+          <div>Error: {error.message}</div>
+        </SectionBody>
+      </SectionPage>
+    )
   }
 
   return (

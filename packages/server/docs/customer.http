@@ -1,0 +1,37 @@
+### customer - Create
+
+POST {{http-host}}/api/v1/customers
+Content-Type: application/json
+
+{
+  "name": "제리",
+  "email": "jarry@gmail.com",
+  "phone": "1234567890",
+  "address": "송파구 석촌동",
+  "emailNotification": false,
+  "smsNotification": false,
+  "kakaoNotification": true
+}
+
+### customer - Read All
+GET {{http-host}}/api/v1/customers
+
+### customer - Read
+GET {{http-host}}/api/v1/customers/2
+
+### customer - Update
+PUT {{http-host}}/api/v1/customers/1
+Content-Type: application/json
+
+{
+  "name": "테디",
+  "email": "jarry@gmail.com",
+  "phone": "1234567890",
+  "address": "송파구 석촌동",
+  "emailNotification": false,
+  "smsNotification": false,
+  "kakaoNotification": true
+}
+
+### customer - Delete
+DELETE {{http-host}}/api/v1/customers/1
