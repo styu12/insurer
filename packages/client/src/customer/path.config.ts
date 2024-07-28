@@ -12,7 +12,7 @@ export const customerPaths = {
   'customer-create': {
     id: 'customer-create',
     path: '/customer/create',
-    element: LazyLoadRetryOnce(() => import('./pages/PageCustomerEdit')),
+    element: LazyLoadRetryOnce(() => import('./pages/PageCustomerCreate')),
   },
   'customer-edit': {
     id: 'customer-edit',
