@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Customer } from '../../__codegen__/__openapi__/insurer-server'
 
 interface FormCustomerProps {
-  initialData: Customer | null
+  initialData?: Customer
   onSubmit: (_: Customer) => void
   onCancel: () => void
 }

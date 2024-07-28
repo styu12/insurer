@@ -1,13 +1,13 @@
+import to from 'await-to-js'
+import type { AxiosResponse } from 'axios'
+import type { ApiV1ContractsGetRequest } from '../../__codegen__/__openapi__/insurer-server'
 import {
-  ApiV1ContractsGetRequest,
   Configuration,
   Contract,
   ContractWithCustomer,
   ContractsApiFactory,
 } from '../../__codegen__/__openapi__/insurer-server'
 import { createRemote } from '../../utils/axios.ts'
-import { AxiosResponse } from 'axios'
-import to from 'await-to-js'
 
 export const contractService = () => {
   const remote = createRemote()
