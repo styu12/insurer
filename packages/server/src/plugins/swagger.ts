@@ -36,7 +36,10 @@ const fastifySwagger = async (server: FastifyInstance) => {
           { name: 'contracts', description: 'Contract related end-points' },
           { name: 'customers', description: 'Customer related end-points' },
           { name: 'products', description: 'Product related end-points' },
-          { name: 'notifications', description: 'Notification related end-points' },
+          {
+            name: 'notifications',
+            description: 'Notification related end-points',
+          },
         ],
       },
     },

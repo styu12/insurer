@@ -8,16 +8,19 @@ import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
 import SectionPage from '../../_app/components/section/SectionPage.tsx'
 import SectionBody from '../../_app/components/section/SectionBody.tsx'
 import { useListContracts } from '../hooks/useContractService.ts'
+import { useNavigate } from 'react-router-dom'
 
 export interface Event {
   id: number
+  contractId: number
   customerName: string
-  href: string
   date: string
   type: EventType
 }
 
 const PageContractList = () => {
+  const navigate = useNavigate()
+
   const [date, setDate] = useState(new Date())
   const [view, setView] = useState<View>(VIEWS.MONTH)
   const [events, setEvents] = useState<Event[]>([])
@@ -29,30 +32,32 @@ const PageContractList = () => {
 
   useEffect(() => {
     if (Array.isArray(contracts) && contracts.length > 0) {
+      let eventId = 0
       const newEvents: Event[] = contracts.flatMap((contract) => [
         {
-          id: contract.id || 0,
+          id: eventId++,
+          contractId: contract.id || 0,
           customerName: contract.customerName || '',
-          href: `/contracts/${contract.id}`,
           date: contract.startDate || '',
           type: EVENT_TYPES.CONTRACT_START,
         },
         {
-          id: contract.id || 0,
+          id: eventId++,
+          contractId: contract.id || 0,
           customerName: contract.customerName || '',
-          href: `/contracts/${contract.id}`,
           date: contract.claimDate || '',
           type: EVENT_TYPES.CLAIM_START,
         },
         {
-          id: contract.id || 0,
+          id: eventId++,
+          contractId: contract.id || 0,
           customerName: contract.customerName || '',
-          href: `/contracts/${contract.id}`,
           date: contract.endDate || '',
           type: EVENT_TYPES.CONTRACT_END,
         },
-      ]);
-      setEvents(newEvents);
+      ])
+
+      setEvents(newEvents)
     }
   }, [contracts])
 
@@ -93,6 +98,10 @@ const PageContractList = () => {
     setView(newView)
   }
 
+  const handleAddContract = () => {
+    navigate('/contract/create')
+  }
+
   if (loading) {
     return (
       <SectionPage>
@@ -124,6 +133,7 @@ const PageContractList = () => {
           date={date}
           onDateChange={handleDateChange}
           onViewChange={handleViewChange}
+          onAdd={handleAddContract}
         />
 
         {renderCalendarView()}

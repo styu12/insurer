@@ -1,5 +1,6 @@
 import {
-  ApiV1ContractsGet200ResponseInner, ApiV1ContractsGetRequest,
+  ApiV1ContractsGet200ResponseInner,
+  ApiV1ContractsGetRequest,
   Configuration,
   ContractsApiFactory,
 } from '../../__codegen__/__openapi__/insurer-server'
@@ -8,7 +9,7 @@ import { AxiosResponse } from 'axios'
 import to from 'await-to-js'
 
 export const contractService = () => {
-  const remote = createRemote();
+  const remote = createRemote()
   const client = ContractsApiFactory(new Configuration(), '', remote)
 
   return {
@@ -16,7 +17,9 @@ export const contractService = () => {
      * 계약 목록 조회
      */
     listContracts: async () => {
-      const [error, resp] = await to<AxiosResponse<Array<ApiV1ContractsGet200ResponseInner>>>(client.apiV1ContractsGet())
+      const [error, resp] = await to<
+        AxiosResponse<Array<ApiV1ContractsGet200ResponseInner>>
+      >(client.apiV1ContractsGet())
 
       if (error) {
         throw error
@@ -28,12 +31,10 @@ export const contractService = () => {
     /**
      * 계약 단건 조회
      */
-    getContractById: async ({
-      id,
-    }: {
-      id: number
-    }) => {
-      const [error, resp] = await to<AxiosResponse<ApiV1ContractsGet200ResponseInner>>(client.apiV1ContractsIdGet(id))
+    getContractById: async ({ id }: { id: number }) => {
+      const [error, resp] = await to<
+        AxiosResponse<ApiV1ContractsGet200ResponseInner>
+      >(client.apiV1ContractsIdGet(id))
 
       if (error) {
         throw error
@@ -45,18 +46,20 @@ export const contractService = () => {
     /**
      * 계약 생성
      */
-    createContract: async({
+    createContract: async ({
       payload,
     }: {
       payload: ApiV1ContractsGetRequest
     }) => {
-      const [error, resp] = await to<AxiosResponse<ApiV1ContractsGet200ResponseInner>>(client.apiV1ContractsPost(payload))
+      const [error, resp] = await to<
+        AxiosResponse<ApiV1ContractsGet200ResponseInner>
+      >(client.apiV1ContractsPost(payload))
 
       if (error) {
         throw error
       }
 
       return resp?.data ?? null
-    }
+    },
   }
 }

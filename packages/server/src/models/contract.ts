@@ -30,7 +30,9 @@ function convertToCamelCaseContract(row: any): Contract {
   }
 }
 
-function convertToCamelCaseContractWithCustomer(row: any): ContractWithCustomer {
+function convertToCamelCaseContractWithCustomer(
+  row: any
+): ContractWithCustomer {
   return {
     id: row.id,
     title: row.title,
@@ -97,7 +99,8 @@ export const findContractWithCustomerById = async (
   id: number
 ): Promise<ContractWithCustomer | null> => {
   try {
-    const { rows } = await server.pg.query(`
+    const { rows } = await server.pg.query(
+      `
       SELECT 
         contracts.id,
         contracts.title,
@@ -108,9 +111,10 @@ export const findContractWithCustomerById = async (
         contracts.claim_date,
         contracts.end_date,
         customers.name as customer_name 
-      FROM contracts WHERE id = $1
+      FROM contracts
       LEFT JOIN customers
       ON contracts.customer_id = customers.id
+      WHERE contracts.id = $1
     `,
       [id]
     )

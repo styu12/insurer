@@ -13,6 +13,7 @@ interface CalendarHeaderProps {
   date: Date
   onDateChange: (newDate: Date) => void
   onViewChange: (newView: View) => void
+  onAdd: () => void
 }
 
 const CalendarHeader: React.FC<CalendarHeaderProps> = ({
@@ -20,6 +21,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   date,
   onDateChange,
   onViewChange,
+  onAdd,
 }) => {
   const handlePrevious = () => {
     const newDate = new Date(date)
@@ -145,7 +147,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
           </Menu>
           <div className="ml-6 h-6 w-px bg-gray-300" />
           <button
-            type="button"
+            onClick={onAdd}
             className="ml-6 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Add event
@@ -163,22 +165,19 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
           >
             <div className="py-1">
               <MenuItem>
-                <a
-                  href="#"
+                <button
+                  onClick={onAdd}
                   className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                 >
-                  Create event
-                </a>
+                  Add event
+                </button>
               </MenuItem>
             </div>
             <div className="py-1">
               <MenuItem>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                >
+                <button className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
                   Go to today
-                </a>
+                </button>
               </MenuItem>
             </div>
             <div className="py-1">

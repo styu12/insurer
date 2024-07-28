@@ -34,7 +34,8 @@ export const contractRoutes = async (server: FastifyInstance) => {
       },
     },
     async (request, reply) => {
-      const contractsWithCustomerName = await findAllContractsWithCustomer(server)
+      const contractsWithCustomerName =
+        await findAllContractsWithCustomer(server)
       reply.status(200).send(contractsWithCustomerName)
     }
   )
@@ -77,7 +78,10 @@ export const contractRoutes = async (server: FastifyInstance) => {
     },
     async (request, reply) => {
       const { id } = request.params as { id: number }
-      const contractWithCustomerName = await findContractWithCustomerById(server, id)
+      const contractWithCustomerName = await findContractWithCustomerById(
+        server,
+        id
+      )
       if (!contractWithCustomerName) {
         throw new CustomError('Contract not found', 404)
       }
