@@ -212,73 +212,72 @@ const FormContract: React.FC<FormContractProps> = ({
         {/*    고객, 설계사 모두 알림을 받을 수 있습니다.*/}
         {/*  </p>*/}
 
-        {/*  */}
-        {/*  <div className="mt-10 space-y-10">*/}
-        {/*    <fieldset>*/}
-        {/*      <legend className="text-sm font-semibold leading-6 text-gray-900">*/}
-        {/*        고객 알림*/}
-        {/*      </legend>*/}
-        {/*      <p className="mt-3 text-sm leading-6 text-gray-600">*/}
-        {/*        고객 알림 활성화 시, 고객에게 보험금 청구 가능 기간이 다가올 때*/}
-        {/*        알림을 보냅니다.*/}
-        {/*      </p>*/}
-        {/*      <div className="mt-6 space-y-6">*/}
-        {/*        <div className="relative flex gap-x-3">*/}
-        {/*          <div className="flex h-6 items-center">*/}
-        {/*            <input*/}
-        {/*              id="email"*/}
-        {/*              name="email"*/}
-        {/*              type="checkbox"*/}
-        {/*              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
-        {/*            />*/}
-        {/*          </div>*/}
-        {/*          <div className="text-sm leading-6">*/}
-        {/*            <label*/}
-        {/*              htmlFor="email"*/}
-        {/*              className="font-medium text-gray-900"*/}
-        {/*            >*/}
-        {/*              Email*/}
-        {/*            </label>*/}
-        {/*            <p className="text-gray-500">Email 알림 활성화</p>*/}
-        {/*          </div>*/}
+        {/*<div className="mt-10 space-y-10">*/}
+        {/*  <fieldset>*/}
+        {/*    <legend className="text-sm font-semibold leading-6 text-gray-900">*/}
+        {/*      고객 알림*/}
+        {/*    </legend>*/}
+        {/*    <p className="mt-3 text-sm leading-6 text-gray-600">*/}
+        {/*      고객 알림 활성화 시, 고객에게 보험금 청구 가능 기간이 다가올 때*/}
+        {/*      알림을 보냅니다.*/}
+        {/*    </p>*/}
+        {/*    <div className="mt-6 space-y-6">*/}
+        {/*      <div className="relative flex gap-x-3">*/}
+        {/*        <div className="flex h-6 items-center">*/}
+        {/*          <input*/}
+        {/*            id="email"*/}
+        {/*            name="email"*/}
+        {/*            type="checkbox"*/}
+        {/*            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
+        {/*          />*/}
         {/*        </div>*/}
-        {/*        <div className="relative flex gap-x-3">*/}
-        {/*          <div className="flex h-6 items-center">*/}
-        {/*            <input*/}
-        {/*              id="kakao"*/}
-        {/*              name="kakao"*/}
-        {/*              type="checkbox"*/}
-        {/*              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
-        {/*            />*/}
-        {/*          </div>*/}
-        {/*          <div className="text-sm leading-6">*/}
-        {/*            <label*/}
-        {/*              htmlFor="kakao"*/}
-        {/*              className="font-medium text-gray-900"*/}
-        {/*            >*/}
-        {/*              카카오톡*/}
-        {/*            </label>*/}
-        {/*            <p className="text-gray-500">카카오톡 알림 활성화</p>*/}
-        {/*          </div>*/}
-        {/*        </div>*/}
-        {/*        <div className="relative flex gap-x-3">*/}
-        {/*          <div className="flex h-6 items-center">*/}
-        {/*            <input*/}
-        {/*              id="sms"*/}
-        {/*              name="sms"*/}
-        {/*              type="checkbox"*/}
-        {/*              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
-        {/*            />*/}
-        {/*          </div>*/}
-        {/*          <div className="text-sm leading-6">*/}
-        {/*            <label htmlFor="sms" className="font-medium text-gray-900">*/}
-        {/*              SMS*/}
-        {/*            </label>*/}
-        {/*            <p className="text-gray-500">SMS 알림 활성화</p>*/}
-        {/*          </div>*/}
+        {/*        <div className="text-sm leading-6">*/}
+        {/*          <label*/}
+        {/*            htmlFor="email"*/}
+        {/*            className="font-medium text-gray-900"*/}
+        {/*          >*/}
+        {/*            Email*/}
+        {/*          </label>*/}
+        {/*          <p className="text-gray-500">Email 알림 활성화</p>*/}
         {/*        </div>*/}
         {/*      </div>*/}
-        {/*    </fieldset>*/}
+        {/*      <div className="relative flex gap-x-3">*/}
+        {/*        <div className="flex h-6 items-center">*/}
+        {/*          <input*/}
+        {/*            id="kakao"*/}
+        {/*            name="kakao"*/}
+        {/*            type="checkbox"*/}
+        {/*            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
+        {/*          />*/}
+        {/*        </div>*/}
+        {/*        <div className="text-sm leading-6">*/}
+        {/*          <label*/}
+        {/*            htmlFor="kakao"*/}
+        {/*            className="font-medium text-gray-900"*/}
+        {/*          >*/}
+        {/*            카카오톡*/}
+        {/*          </label>*/}
+        {/*          <p className="text-gray-500">카카오톡 알림 활성화</p>*/}
+        {/*        </div>*/}
+        {/*      </div>*/}
+        {/*      <div className="relative flex gap-x-3">*/}
+        {/*        <div className="flex h-6 items-center">*/}
+        {/*          <input*/}
+        {/*            id="sms"*/}
+        {/*            name="sms"*/}
+        {/*            type="checkbox"*/}
+        {/*            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
+        {/*          />*/}
+        {/*        </div>*/}
+        {/*        <div className="text-sm leading-6">*/}
+        {/*          <label htmlFor="sms" className="font-medium text-gray-900">*/}
+        {/*            SMS*/}
+        {/*          </label>*/}
+        {/*          <p className="text-gray-500">SMS 알림 활성화</p>*/}
+        {/*        </div>*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*  </fieldset>*/}
 
         {/*    <fieldset>*/}
         {/*      <legend className="text-sm font-semibold leading-6 text-gray-900">*/}

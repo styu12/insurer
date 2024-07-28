@@ -4,7 +4,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": ["dist", ".eslintrc"],
   "parser": "@typescript-eslint/parser",
@@ -12,7 +12,8 @@
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
-      { "allowConstantExport": true },
+      { "allowConstantExport": true }
     ],
-  },
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+  }
 }
