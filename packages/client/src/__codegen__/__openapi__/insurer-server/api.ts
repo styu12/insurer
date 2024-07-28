@@ -1251,12 +1251,12 @@ export const CustomersApiAxiosParamCreator = function (
     /**
      * delete a customer by id
      * @summary delete a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1CustomersIdDelete: async (
-      id: string,
+      id: number,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1343,13 +1343,13 @@ export const CustomersApiAxiosParamCreator = function (
     /**
      * update a customer by id
      * @summary update a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1CustomersIdPut: async (
-      id: string,
+      id: number,
       apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
@@ -1485,12 +1485,12 @@ export const CustomersApiFp = function (configuration?: Configuration) {
     /**
      * delete a customer by id
      * @summary delete a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1CustomersIdDelete(
-      id: string,
+      id: number,
       options?: AxiosRequestConfig
     ): Promise<
       (
@@ -1535,13 +1535,13 @@ export const CustomersApiFp = function (configuration?: Configuration) {
     /**
      * update a customer by id
      * @summary update a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async apiV1CustomersIdPut(
-      id: string,
+      id: number,
       apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest,
       options?: AxiosRequestConfig
     ): Promise<
@@ -1621,12 +1621,12 @@ export const CustomersApiFactory = function (
     /**
      * delete a customer by id
      * @summary delete a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1CustomersIdDelete(
-      id: string,
+      id: number,
       options?: any
     ): AxiosPromise<ApiV1ContractsGet400Response> {
       return localVarFp
@@ -1651,13 +1651,13 @@ export const CustomersApiFactory = function (
     /**
      * update a customer by id
      * @summary update a customer by id
-     * @param {string} id
+     * @param {number} id
      * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     apiV1CustomersIdPut(
-      id: string,
+      id: number,
       apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest,
       options?: any
     ): AxiosPromise<ApiV1CustomersGet200ResponseInner> {
@@ -1706,12 +1706,12 @@ export class CustomersApi extends BaseAPI {
   /**
    * delete a customer by id
    * @summary delete a customer by id
-   * @param {string} id
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CustomersApi
    */
-  public apiV1CustomersIdDelete(id: string, options?: AxiosRequestConfig) {
+  public apiV1CustomersIdDelete(id: number, options?: AxiosRequestConfig) {
     return CustomersApiFp(this.configuration)
       .apiV1CustomersIdDelete(id, options)
       .then((request) => request(this.axios, this.basePath))
@@ -1734,14 +1734,14 @@ export class CustomersApi extends BaseAPI {
   /**
    * update a customer by id
    * @summary update a customer by id
-   * @param {string} id
+   * @param {number} id
    * @param {ApiV1CustomersIdDeleteRequest} [apiV1CustomersIdDeleteRequest]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CustomersApi
    */
   public apiV1CustomersIdPut(
-    id: string,
+    id: number,
     apiV1CustomersIdDeleteRequest?: ApiV1CustomersIdDeleteRequest,
     options?: AxiosRequestConfig
   ) {

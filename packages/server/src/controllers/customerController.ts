@@ -165,7 +165,7 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' },
+            id: { type: 'number' },
           },
           required: ['id'],
         },
@@ -243,7 +243,7 @@ export const customerRoutes = async (
         params: {
           type: 'object',
           properties: {
-            id: { type: 'string' },
+            id: { type: 'number' },
           },
           required: ['id'],
         },

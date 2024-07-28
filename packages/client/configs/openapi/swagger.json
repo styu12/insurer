@@ -192,9 +192,7 @@
     "/api/v1/contracts/": {
       "get": {
         "summary": "list all contracts",
-        "tags": [
-          "contracts"
-        ],
+        "tags": ["contracts"],
         "description": "list all contracts",
         "responses": {
           "200": {
@@ -243,9 +241,7 @@
       },
       "post": {
         "summary": "create a contract",
-        "tags": [
-          "contracts"
-        ],
+        "tags": ["contracts"],
         "description": "create a contract",
         "requestBody": {
           "content": {
@@ -275,11 +271,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "title",
-                  "customerId",
-                  "startDate"
-                ]
+                "required": ["title", "customerId", "startDate"]
               }
             }
           },
@@ -358,9 +350,7 @@
     "/api/v1/contracts/{id}": {
       "get": {
         "summary": "list a contract by id",
-        "tags": [
-          "contracts"
-        ],
+        "tags": ["contracts"],
         "description": "list a contract by id",
         "parameters": [
           {
@@ -430,9 +420,7 @@
     "/api/v1/customers/": {
       "get": {
         "summary": "list all customers",
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "list all customers",
         "responses": {
           "200": {
@@ -478,9 +466,7 @@
       },
       "post": {
         "summary": "create a customer",
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "create a customer",
         "requestBody": {
           "content": {
@@ -510,11 +496,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "name",
-                  "email",
-                  "phone"
-                ]
+                "required": ["name", "email", "phone"]
               }
             }
           },
@@ -578,9 +560,7 @@
     "/api/v1/customers/{id}": {
       "get": {
         "summary": "get a customer by id",
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "get a customer by id",
         "parameters": [
           {
@@ -648,9 +628,7 @@
       },
       "put": {
         "summary": "update a customer by id",
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "update a customer by id",
         "requestBody": {
           "content": {
@@ -687,7 +665,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -750,14 +728,12 @@
       },
       "delete": {
         "summary": "delete a customer by id",
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "delete a customer by id",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "path",
             "name": "id",
@@ -801,9 +777,7 @@
     "/api/v1/products/": {
       "get": {
         "summary": "list all products",
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "description": "list all products",
         "responses": {
           "200": {
@@ -834,9 +808,7 @@
       },
       "post": {
         "summary": "create a product",
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "description": "create a product",
         "requestBody": {
           "content": {
@@ -851,10 +823,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "name",
-                  "description"
-                ]
+                "required": ["name", "description"]
               }
             }
           },
@@ -903,9 +872,7 @@
     "/api/v1/products/{id}": {
       "get": {
         "summary": "get a product by id",
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "description": "get a product by id",
         "parameters": [
           {
@@ -958,9 +925,7 @@
       },
       "put": {
         "summary": "update a product by id",
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "description": "update a product by id",
         "requestBody": {
           "content": {
@@ -1030,9 +995,7 @@
       },
       "delete": {
         "summary": "delete a product by id",
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "description": "delete a product by id",
         "parameters": [
           {
@@ -1081,9 +1044,7 @@
     "/api/v1/notifications/email": {
       "post": {
         "summary": "send an email notification",
-        "tags": [
-          "notifications"
-        ],
+        "tags": ["notifications"],
         "description": "send an email notification",
         "requestBody": {
           "content": {
@@ -1155,9 +1116,7 @@
     "/api/v1/users/register": {
       "post": {
         "summary": "register new user",
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "register new user",
         "requestBody": {
           "content": {
@@ -1184,11 +1143,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "username",
-                  "password",
-                  "email"
-                ]
+                "required": ["username", "password", "email"]
               }
             }
           },
@@ -1246,9 +1201,7 @@
     "/api/v1/users/login": {
       "post": {
         "summary": "login",
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "login",
         "requestBody": {
           "content": {
@@ -1263,10 +1216,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "username",
-                  "password"
-                ]
+                "required": ["username", "password"]
               }
             }
           },
@@ -1324,9 +1274,7 @@
     "/api/v1/users/logout": {
       "post": {
         "summary": "logout",
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "logout",
         "responses": {
           "200": {
@@ -1350,9 +1298,7 @@
     "/api/v1/users/me": {
       "get": {
         "summary": "get profile",
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "get profile",
         "responses": {
           "200": {
