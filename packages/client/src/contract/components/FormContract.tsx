@@ -1,11 +1,11 @@
-import { customers } from '../../customer/components/TableCustomer'
-import { Contract } from '../pages/PageContractEdit'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useEffect } from 'react'
+import { ContractWithCustomer } from '../../__codegen__/__openapi__/insurer-server'
+import { useListCustomers } from '../../customer/hooks/useCustomerService.ts'
 
 interface FormContractProps {
-  initialData: Contract | null
-  onSubmit: (data: Contract) => void
+  initialData: ContractWithCustomer | null
+  onSubmit: (_: ContractWithCustomer) => void
   onCancel: () => void
 }
 
@@ -14,12 +14,18 @@ const FormContract: React.FC<FormContractProps> = ({
   onSubmit,
   onCancel,
 }) => {
+  const { customers, loading, error, fetchAllCustomers } = useListCustomers()
+
+  useEffect(() => {
+    fetchAllCustomers()
+  }, [fetchAllCustomers])
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Contract>({
+  } = useForm<ContractWithCustomer>({
     defaultValues: initialData || {
       id: 0,
       title: '',
@@ -33,19 +39,27 @@ const FormContract: React.FC<FormContractProps> = ({
 
   useEffect(() => {
     if (initialData) {
-      initialData.startDate = initialData.startDate.split('T')[0]
-      initialData.claimDate = initialData.claimDate.split('T')[0]
-      initialData.endDate = initialData.endDate.split('T')[0]
+      initialData.startDate = initialData.startDate?.split('T')[0]
+      initialData.claimDate = initialData.claimDate?.split('T')[0]
+      initialData.endDate = initialData.endDate?.split('T')[0]
       reset(initialData)
     }
   }, [initialData, reset])
 
-  const onSubmitForm: SubmitHandler<Contract> = (data) => {
+  const onSubmitForm: SubmitHandler<ContractWithCustomer> = (data) => {
     onSubmit(data)
   }
 
   const onFormCancel = () => {
     onCancel()
+  }
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>
   }
 
   return (
@@ -125,7 +139,7 @@ const FormContract: React.FC<FormContractProps> = ({
                   autoComplete="customer"
                   className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
-                  {customers.map((customer) => (
+                  {customers?.map((customer) => (
                     <option key={customer.email}>{customer.name}</option>
                   ))}
                 </select>

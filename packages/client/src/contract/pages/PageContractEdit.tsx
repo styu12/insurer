@@ -5,26 +5,16 @@ import SectionPage from '../../_app/components/section/SectionPage'
 import SectionBody from '../../_app/components/section/SectionBody'
 import { useGetContractById } from '../hooks/useContractService'
 import SectionHeading from '../../_app/components/section/SectionHeading'
-import { useEffect, useState } from 'react'
-
-export interface Contract {
-  id: number
-  title: string
-  description: string
-  customerName: string
-  startDate: string
-  claimDate: string
-  endDate: string
-}
+import { useEffect } from 'react'
+import { ContractWithCustomer } from '../../__codegen__/__openapi__/insurer-server'
 
 const PageContractEdit = () => {
   const navigate = useNavigate()
   const params = useParams<ContractEditPathParamsType>()
   console.log(params.contractId)
 
-  const [targetContract, setTargetContract] = useState<Contract | null>(null)
-
-  const { contract, loading, error, fetchContractById } = useGetContractById()
+  const { contractWithCustomer, loading, error, fetchContractById } =
+    useGetContractById()
 
   useEffect(() => {
     if (params.contractId) {
@@ -32,23 +22,7 @@ const PageContractEdit = () => {
     }
   }, [fetchContractById, params.contractId])
 
-  useEffect(() => {
-    if (contract) {
-      const newContract: Contract = {
-        id: contract.id || 0,
-        title: contract.title || '',
-        description: contract.description || '',
-        customerName: contract.customerName || '',
-        startDate: contract.startDate || '',
-        claimDate: contract.claimDate || '',
-        endDate: contract.endDate || '',
-      }
-
-      setTargetContract(newContract)
-    }
-  }, [contract])
-
-  const handleFormSubmit = (values: Contract) => {
+  const handleFormSubmit = (values: ContractWithCustomer) => {
     if (params.contractId) {
       console.log('Update Contract', values)
     } else {
@@ -87,7 +61,7 @@ const PageContractEdit = () => {
       <SectionHeading title="계약관리" />
       <SectionBody>
         <FormContract
-          initialData={targetContract}
+          initialData={contractWithCustomer}
           onSubmit={handleFormSubmit}
           onCancel={handleCancel}
         />

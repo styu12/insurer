@@ -30,22 +30,10 @@ export const userRoutes = async (server: FastifyInstance) => {
         },
         response: {
           201: {
-            description: 'User created successfully',
-            content: {
-              'application/json': {
-                schema: server.getSchema('User'),
-              },
-            },
-            title: 'ApiV1UsersRegisterPost201Response',
+            $ref: 'User#',
           },
           400: {
-            description: 'Invalid request data',
-            content: {
-              'application/json': {
-                schema: server.getSchema('Error'),
-              },
-            },
-            title: 'ApiV1UsersRegisterPost400Response',
+            $ref: 'Error#',
           },
         },
       },
@@ -95,36 +83,18 @@ export const userRoutes = async (server: FastifyInstance) => {
         },
         response: {
           200: {
-            description: 'Successful response',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    token: { type: 'string' },
-                  },
-                },
+            schema: {
+              type: 'object',
+              properties: {
+                token: { type: 'string' },
               },
             },
-            title: 'ApiV1UsersLoginPost200Response',
           },
           400: {
-            description: 'Invalid request data',
-            content: {
-              'application/json': {
-                schema: server.getSchema('Error'),
-              },
-            },
-            title: 'ApiV1UsersLoginPost400Response',
+            $ref: 'Error#',
           },
           404: {
-            description: 'User not found',
-            content: {
-              'application/json': {
-                schema: server.getSchema('Error'),
-              },
-            },
-            title: 'ApiV1UsersLoginPost404Response',
+            $ref: 'Error#',
           },
         },
       },
@@ -157,18 +127,12 @@ export const userRoutes = async (server: FastifyInstance) => {
         summary: 'logout',
         response: {
           200: {
-            description: 'Successful response',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    message: { type: 'string' },
-                  },
-                },
+            schema: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
               },
             },
-            title: 'ApiV1UsersLogoutPost200Response',
           },
         },
       },
@@ -189,22 +153,10 @@ export const userRoutes = async (server: FastifyInstance) => {
         summary: 'get profile',
         response: {
           200: {
-            description: 'Successful response',
-            content: {
-              'application/json': {
-                schema: server.getSchema('User'),
-              },
-            },
-            title: 'ApiV1UsersMeGet200Response',
+            $ref: 'User#',
           },
           404: {
-            description: 'User not found',
-            content: {
-              'application/json': {
-                schema: server.getSchema('Error'),
-              },
-            },
-            title: 'ApiV1UsersMeGet404Response',
+            $ref: 'Error#',
           },
         },
       },

@@ -7,7 +7,7 @@ const fastifySwagger = async (server: FastifyInstance) => {
   registerSchemas(server)
 
   await server.register(swagger, {
-    openapi: {
+    swagger: {
       openapi: '3.0.0',
       info: {
         title: 'Insurer',
@@ -41,6 +41,12 @@ const fastifySwagger = async (server: FastifyInstance) => {
             description: 'Notification related end-points',
           },
         ],
+      },
+    },
+    refResolver: {
+      buildLocalReference(json: any, baseUri: any, fragment: any, i: any) {
+        // #ref path naming: $id instead of def-${i}
+        return json.$id || `my-fragment-${i}`
       },
     },
   })

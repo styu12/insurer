@@ -1,8 +1,8 @@
 import { customerService } from '../services/customerService.ts'
 import { useCallback, useMemo, useState } from 'react'
 import {
-  ApiV1CustomersGet200ResponseInner,
   ApiV1CustomersGetRequest,
+  Customer,
 } from '../../__codegen__/__openapi__/insurer-server'
 
 const getCustomerService = () => {
@@ -10,8 +10,7 @@ const getCustomerService = () => {
 }
 
 export const useListCustomers = () => {
-  const [customers, setCustomers] =
-    useState<Array<ApiV1CustomersGet200ResponseInner> | null>(null)
+  const [customers, setCustomers] = useState<Array<Customer> | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
@@ -40,8 +39,7 @@ export const useListCustomers = () => {
 }
 
 export const useGetCustomerById = () => {
-  const [customer, setCustomer] =
-    useState<ApiV1CustomersGet200ResponseInner | null>(null)
+  const [customer, setCustomer] = useState<Customer | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
@@ -73,8 +71,7 @@ export const useGetCustomerById = () => {
 }
 
 export const useCreateCustomer = () => {
-  const [customer, setCustomer] =
-    useState<ApiV1CustomersGet200ResponseInner | null>(null)
+  const [customer, setCustomer] = useState<Customer | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
@@ -108,8 +105,7 @@ export const useCreateCustomer = () => {
 }
 
 export const useUpdateCustomer = () => {
-  const [customer, setCustomer] =
-    useState<ApiV1CustomersGet200ResponseInner | null>(null)
+  const [customer, setCustomer] = useState<Customer | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
@@ -137,5 +133,34 @@ export const useUpdateCustomer = () => {
     loading,
     error,
     updateCustomer,
+  }
+}
+
+export const useDeleteCustomer = () => {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<Error | null>(null)
+
+  const services = useMemo(() => getCustomerService(), [])
+
+  const deleteCustomer = useCallback(
+    async (id: number) => {
+      setLoading(true)
+      setError(null)
+
+      try {
+        await services.deleteCustomer({ id })
+      } catch (err) {
+        setError(err as Error)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [services]
+  )
+
+  return {
+    loading,
+    error,
+    deleteCustomer,
   }
 }

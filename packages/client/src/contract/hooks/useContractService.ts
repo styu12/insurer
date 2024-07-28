@@ -1,8 +1,9 @@
 import { contractService } from '../services/contractService'
 import { useCallback, useMemo, useState } from 'react'
 import {
-  ApiV1ContractsGet200ResponseInner,
   ApiV1ContractsGetRequest,
+  Contract,
+  ContractWithCustomer,
 } from '../../__codegen__/__openapi__/insurer-server'
 
 const getContractService = () => {
@@ -10,8 +11,8 @@ const getContractService = () => {
 }
 
 export const useListContracts = () => {
-  const [contracts, setContracts] = useState<
-    ApiV1ContractsGet200ResponseInner[] | null
+  const [contractsWithCustomer, setContractsWithCustomer] = useState<
+    ContractWithCustomer[] | null
   >(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
@@ -24,7 +25,7 @@ export const useListContracts = () => {
 
     try {
       const data = await services.listContracts()
-      setContracts(data)
+      setContractsWithCustomer(data)
     } catch (err) {
       setError(err as Error)
     } finally {
@@ -33,7 +34,7 @@ export const useListContracts = () => {
   }, [services])
 
   return {
-    contracts,
+    contractsWithCustomer,
     loading,
     error,
     fetchAllContracts,
@@ -41,8 +42,8 @@ export const useListContracts = () => {
 }
 
 export const useGetContractById = () => {
-  const [contract, setContract] =
-    useState<ApiV1ContractsGet200ResponseInner | null>(null)
+  const [contractWithCustomer, setContractWithCustomer] =
+    useState<ContractWithCustomer | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
@@ -55,7 +56,7 @@ export const useGetContractById = () => {
 
       try {
         const data = await services.getContractById({ id })
-        setContract(data)
+        setContractWithCustomer(data)
       } catch (err) {
         setError(err as Error)
       } finally {
@@ -66,7 +67,7 @@ export const useGetContractById = () => {
   )
 
   return {
-    contract,
+    contractWithCustomer,
     loading,
     error,
     fetchContractById,
@@ -74,8 +75,7 @@ export const useGetContractById = () => {
 }
 
 export const useCreateContract = () => {
-  const [contract, setContract] =
-    useState<ApiV1ContractsGet200ResponseInner | null>(null)
+  const [contract, setContract] = useState<Contract | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 

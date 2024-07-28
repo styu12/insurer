@@ -24,16 +24,20 @@ const PageContractList = () => {
   const [date, setDate] = useState(new Date())
   const [view, setView] = useState<View>(VIEWS.MONTH)
   const [events, setEvents] = useState<Event[]>([])
-  const { contracts, loading, error, fetchAllContracts } = useListContracts()
+  const { contractsWithCustomer, loading, error, fetchAllContracts } =
+    useListContracts()
 
   useEffect(() => {
     fetchAllContracts()
   }, [fetchAllContracts])
 
   useEffect(() => {
-    if (Array.isArray(contracts) && contracts.length > 0) {
+    if (
+      Array.isArray(contractsWithCustomer) &&
+      contractsWithCustomer.length > 0
+    ) {
       let eventId = 0
-      const newEvents: Event[] = contracts.flatMap((contract) => [
+      const newEvents: Event[] = contractsWithCustomer.flatMap((contract) => [
         {
           id: eventId++,
           contractId: contract.id || 0,
@@ -59,7 +63,7 @@ const PageContractList = () => {
 
       setEvents(newEvents)
     }
-  }, [contracts])
+  }, [contractsWithCustomer])
 
   const today = new Date()
 

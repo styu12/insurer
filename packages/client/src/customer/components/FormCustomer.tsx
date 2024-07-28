@@ -1,10 +1,10 @@
-import { Customer } from '../pages/PageCustomerList.tsx'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useEffect } from 'react'
+import { Customer } from '../../__codegen__/__openapi__/insurer-server'
 
 interface FormCustomerProps {
   initialData: Customer | null
-  onSubmit: (values: Customer) => void
+  onSubmit: (_: Customer) => void
   onCancel: () => void
 }
 
