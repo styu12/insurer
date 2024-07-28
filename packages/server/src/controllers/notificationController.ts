@@ -31,28 +31,16 @@ export const notificationRoutes = async (
         },
         response: {
           200: {
-            description: 'Successful response',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    success: { type: 'boolean' },
-                    message: { type: 'string' },
-                  },
-                },
+            schema: {
+              type: 'object',
+              properties: {
+                success: { type: 'boolean' },
+                message: { type: 'string' },
               },
             },
-            title: 'ApiV1NotificationsEmailPost200Response',
           },
           500: {
-            description: 'Failed to send email',
-            content: {
-              'application/json': {
-                schema: server.getSchema('Error'),
-              },
-            },
-            title: 'ApiV1NotificationsEmailPost500Response',
+            $ref: 'Error#',
           },
         },
       },

@@ -8,15 +8,14 @@ import {
   useGetCustomerById,
 } from '../hooks/useCustomerService.ts'
 import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
-import { Customer } from './PageCustomerList.tsx'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { Customer } from '../../__codegen__/__openapi__/insurer-server'
 
 const PageCustomerEdit = () => {
   const navigate = useNavigate()
   const params = useParams<CustomerEditPathParamsType>()
   console.log(params.customerId)
 
-  const [targetCustomer, setTargetCustomer] = useState<Customer | null>(null)
   const {
     customer: customerById,
     loading: getCustomerLoading,
@@ -25,7 +24,7 @@ const PageCustomerEdit = () => {
   } = useGetCustomerById()
   const {
     customer: createdCustomer,
-    _,
+    loading: createCustomerLoading,
     error: createCustomerError,
     createCustomer,
   } = useCreateCustomer()
@@ -36,37 +35,18 @@ const PageCustomerEdit = () => {
     }
   }, [fetchCustomerById, params.customerId])
 
-  useEffect(() => {
-    if (customerById) {
-      const newCustomer: Customer = {
-        id: customerById.id || 0,
-        name: customerById.name || '',
-        email: customerById.email || '',
-        phone: customerById.phone || '',
-        address: customerById.address || '',
-        emailNotification: customerById.emailNotification || false,
-        smsNotification: customerById.smsNotification || false,
-        kakaoNotification: customerById.kakaoNotification || false,
-      }
-
-      setTargetCustomer(newCustomer)
-    }
-  }, [customerById])
-
   const handleFormSubmit = async (value: Customer) => {
     if (params.customerId) {
       console.log('Update Customer', value)
     } else {
       await createCustomer({
-        payload: {
-          name: value.name,
-          email: value.email,
-          phone: value.phone,
-          address: value.address,
-          emailNotification: value.emailNotification,
-          smsNotification: value.smsNotification,
-          kakaoNotification: value.kakaoNotification,
-        },
+        name: value.name ?? '',
+        email: value.email ?? '',
+        phone: value.phone ?? '',
+        address: value.address,
+        emailNotification: value.emailNotification,
+        smsNotification: value.smsNotification,
+        kakaoNotification: value.kakaoNotification,
       })
 
       if (createCustomerError) {
@@ -84,7 +64,7 @@ const PageCustomerEdit = () => {
     navigate('/customer')
   }
 
-  if (getCustomerLoading) {
+  if (getCustomerLoading || createCustomerLoading) {
     return (
       <SectionPage>
         <SectionHeading title="고객관리" />
@@ -111,7 +91,7 @@ const PageCustomerEdit = () => {
       <SectionHeading title="고객관리" />
       <SectionBody>
         <FormCustomer
-          initialData={targetCustomer}
+          initialData={customerById}
           onSubmit={handleFormSubmit}
           onCancel={handleCancel}
         />

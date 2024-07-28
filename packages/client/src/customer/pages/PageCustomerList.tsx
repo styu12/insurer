@@ -5,46 +5,17 @@ import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
 import SectionPage from '../../_app/components/section/SectionPage.tsx'
 import TableCustomer from '../components/TableCustomer.tsx'
 import { useListCustomers } from '../hooks/useCustomerService.ts'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-export interface Customer {
-  id: number
-  name: string
-  email: string
-  phone: string
-  address: string
-  emailNotification: boolean
-  smsNotification: boolean
-  kakaoNotification: boolean
-}
 
 const PageCustomerList = () => {
   const navigate = useNavigate()
 
-  const [customerList, setCustomerList] = useState<Customer[]>([])
   const { customers, loading, error, fetchAllCustomers } = useListCustomers()
 
   useEffect(() => {
     fetchAllCustomers()
   }, [fetchAllCustomers])
-
-  useEffect(() => {
-    if (Array.isArray(customers) && customers.length > 0) {
-      setCustomerList(
-        customers.map((customer) => ({
-          id: customer.id || 0,
-          name: customer.name || '',
-          email: customer.email || '',
-          phone: customer.phone || '',
-          address: customer.address || '',
-          emailNotification: customer.emailNotification || false,
-          smsNotification: customer.smsNotification || false,
-          kakaoNotification: customer.kakaoNotification || false,
-        }))
-      )
-    }
-  }, [customers])
 
   if (loading) {
     return (
@@ -92,7 +63,7 @@ const PageCustomerList = () => {
         }
       />
       <SectionBody>
-        <TableCustomer customers={customerList} />
+        <TableCustomer customers={customers} />
 
         <Pagination
           totalItems={1000}

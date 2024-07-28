@@ -1,7 +1,8 @@
 import {
-  ApiV1ContractsGet200ResponseInner,
   ApiV1ContractsGetRequest,
   Configuration,
+  Contract,
+  ContractWithCustomer,
   ContractsApiFactory,
 } from '../../__codegen__/__openapi__/insurer-server'
 import { createRemote } from '../../utils/axios.ts'
@@ -18,7 +19,7 @@ export const contractService = () => {
      */
     listContracts: async () => {
       const [error, resp] = await to<
-        AxiosResponse<Array<ApiV1ContractsGet200ResponseInner>>
+        AxiosResponse<Array<ContractWithCustomer>>
       >(client.apiV1ContractsGet())
 
       if (error) {
@@ -32,9 +33,9 @@ export const contractService = () => {
      * 계약 단건 조회
      */
     getContractById: async ({ id }: { id: number }) => {
-      const [error, resp] = await to<
-        AxiosResponse<ApiV1ContractsGet200ResponseInner>
-      >(client.apiV1ContractsIdGet(id))
+      const [error, resp] = await to<AxiosResponse<ContractWithCustomer>>(
+        client.apiV1ContractsIdGet(id)
+      )
 
       if (error) {
         throw error
@@ -51,9 +52,9 @@ export const contractService = () => {
     }: {
       payload: ApiV1ContractsGetRequest
     }) => {
-      const [error, resp] = await to<
-        AxiosResponse<ApiV1ContractsGet200ResponseInner>
-      >(client.apiV1ContractsPost(payload))
+      const [error, resp] = await to<AxiosResponse<Contract>>(
+        client.apiV1ContractsPost(payload)
+      )
 
       if (error) {
         throw error

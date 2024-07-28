@@ -1,9 +1,9 @@
-import { Customer } from '../pages/PageCustomerList.tsx'
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
+import { Customer } from '../../__codegen__/__openapi__/insurer-server'
 
 interface TableCustomerProps {
-  customers: Customer[]
+  customers: Customer[] | null
 }
 
 const TableCustomer: React.FC<TableCustomerProps> = ({ customers }) => {
@@ -64,7 +64,7 @@ const TableCustomer: React.FC<TableCustomerProps> = ({ customers }) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {customers.map((customer) => (
+              {customers?.map((customer) => (
                 <tr key={customer.email}>
                   <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                     <div className="flex items-center">
