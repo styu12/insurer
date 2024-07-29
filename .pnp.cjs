@@ -882,6 +882,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@fastify/cookie", [\
+      ["npm:9.3.1", {\
+        "packageLocation": "./.yarn/cache/@fastify-cookie-npm-9.3.1-d203993f38-817acbda0c.zip/node_modules/@fastify/cookie/",\
+        "packageDependencies": [\
+          ["@fastify/cookie", "npm:9.3.1"],\
+          ["cookie-signature", "npm:1.2.1"],\
+          ["fastify-plugin", "npm:4.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@fastify/cors", [\
       ["npm:9.0.1", {\
         "packageLocation": "./.yarn/cache/@fastify-cors-npm-9.0.1-738ce8930b-4db9d3d02e.zip/node_modules/@fastify/cors/",\
@@ -1212,6 +1223,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/server/",\
         "packageDependencies": [\
           ["@insurer/server", "workspace:packages/server"],\
+          ["@fastify/cookie", "npm:9.3.1"],\
           ["@fastify/cors", "npm:9.0.1"],\
           ["@fastify/env", "npm:4.3.0"],\
           ["@fastify/jwt", "npm:8.0.1"],\
@@ -3410,6 +3422,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/cookie-npm-0.6.0-362d6a2e45-f2318b31af.zip/node_modules/cookie/",\
         "packageDependencies": [\
           ["cookie", "npm:0.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cookie-signature", [\
+      ["npm:1.2.1", {\
+        "packageLocation": "./.yarn/cache/cookie-signature-npm-1.2.1-850c88b1c6-1f71acf649.zip/node_modules/cookie-signature/",\
+        "packageDependencies": [\
+          ["cookie-signature", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\

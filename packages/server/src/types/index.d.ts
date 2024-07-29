@@ -1,5 +1,6 @@
 import { Pool } from 'pg'
 import { User } from '../models/user'
+import type { setCookieWrapper } from '@fastify/cookie'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -12,9 +13,30 @@ declare module 'fastify' {
       request: FastifyRequest,
       reply: FastifyReply
     ) => Promise<void>
+    config: {
+      JWT_SECRET: string
+      PORT: string,
+      POSTGRES_URL: string,
+      NAVER_USER: string,
+      NAVER_PASS: string,
+      NAVER_EMAIL: string,
+      NAVER_SMTP_HOST: string,
+      NAVER_SMTP_PORT: string,
+    }
   }
 
   interface FastifyRequest {
     user: User
+  }
+
+  interface FastifyReply {
+    /**
+     * Set response cookie
+     * @name setCookie
+     * @param name Cookie name
+     * @param value Cookie value
+     * @param options Serialize options
+     */
+    setCookie: setCookieWrapper;
   }
 }
