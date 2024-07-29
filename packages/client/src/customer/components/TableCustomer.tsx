@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 import { Customer } from '../../__codegen__/__openapi__/insurer-server'
+import { useCallback } from 'react'
+import { useDeleteMutationCustomer } from '../stores/useMutationCustomer'
 
 interface TableCustomerProps {
   customers: Customer[] | null
@@ -8,6 +10,19 @@ interface TableCustomerProps {
 
 const TableCustomer: React.FC<TableCustomerProps> = ({ customers }) => {
   const navigate = useNavigate()
+  const deleteCustomerMutation = useDeleteMutationCustomer()
+  const onClickDeleteCustomer = useCallback(
+    ({ id }: { id: number }) =>
+      async () => {
+        try {
+          await deleteCustomerMutation.mutateAsync({ id: id })
+        } catch (error) {
+          console.error(error)
+          alert('고객 삭제에 실패했습니다.')
+        }
+      },
+    [deleteCustomerMutation]
+  )
 
   return (
     <div className="mt-8 flow-root">
@@ -144,9 +159,12 @@ const TableCustomer: React.FC<TableCustomerProps> = ({ customers }) => {
                     </button>
                   </td>
                   <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <a href="#" className="text-red-600 hover:text-red-900">
+                    <button
+                      onClick={onClickDeleteCustomer({ id: customer.id })}
+                      className="text-red-600 hover:text-red-900"
+                    >
                       삭제<span className="sr-only">, {customer.name}</span>
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))}
