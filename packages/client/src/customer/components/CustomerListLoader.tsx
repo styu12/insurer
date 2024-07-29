@@ -14,7 +14,7 @@ export interface Customer {
   kakaoNotification: boolean
 }
 
-const ContentCustomerList = () => {
+const CustomerListLoader = () => {
   const payload = useSuspenseQueryCustomerList()
   const customers = useMemo(() => {
     return payload.data?.map((item) => {
@@ -45,4 +45,4 @@ const ContentCustomerList = () => {
     </>
   )
 }
-export default ContentCustomerList
+export default CustomerListLoader

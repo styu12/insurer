@@ -6,7 +6,7 @@ import { useSuspenseQueryCustomerById } from '../stores/useQueryCustomer'
 import { useUpdateMutationCustomer } from '../stores/useMutationCustomer'
 import { useMemo } from 'react'
 
-const ContentFormEditCustomer = () => {
+const FormEditCustomerLoader = () => {
   const navigate = useNavigate()
   const params = useParams<CustomerEditPathParamsType>()
   const customerId = useMemo(
@@ -61,4 +61,4 @@ const ContentFormEditCustomer = () => {
   )
 }
 
-export default ContentFormEditCustomer
+export default FormEditCustomerLoader
