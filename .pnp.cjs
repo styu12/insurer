@@ -882,6 +882,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@fastify/cookie", [\
+      ["npm:9.0.4", {\
+        "packageLocation": "./.yarn/cache/@fastify-cookie-npm-9.0.4-f13b1b8832-987a94501a.zip/node_modules/@fastify/cookie/",\
+        "packageDependencies": [\
+          ["@fastify/cookie", "npm:9.0.4"],\
+          ["cookie", "npm:0.5.0"],\
+          ["fastify", "npm:4.28.1"],\
+          ["fastify-plugin", "npm:4.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@fastify/cors", [\
       ["npm:9.0.1", {\
         "packageLocation": "./.yarn/cache/@fastify-cors-npm-9.0.1-738ce8930b-4db9d3d02e.zip/node_modules/@fastify/cors/",\
@@ -924,13 +936,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@fastify/jwt", [\
-      ["npm:8.0.1", {\
-        "packageLocation": "./.yarn/cache/@fastify-jwt-npm-8.0.1-fa5ed1f8d3-54abc7f94d.zip/node_modules/@fastify/jwt/",\
+      ["npm:7.2.4", {\
+        "packageLocation": "./.yarn/cache/@fastify-jwt-npm-7.2.4-b402b30311-f9807d9163.zip/node_modules/@fastify/jwt/",\
         "packageDependencies": [\
-          ["@fastify/jwt", "npm:8.0.1"],\
+          ["@fastify/jwt", "npm:7.2.4"],\
           ["@fastify/error", "npm:3.4.1"],\
           ["@lukeed/ms", "npm:2.0.2"],\
-          ["fast-jwt", "npm:4.0.1"],\
+          ["fast-jwt", "npm:3.3.3"],\
+          ["fastify", "npm:4.28.1"],\
           ["fastify-plugin", "npm:4.5.1"],\
           ["steed", "npm:1.1.3"]\
         ],\
@@ -1212,9 +1225,10 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/server/",\
         "packageDependencies": [\
           ["@insurer/server", "workspace:packages/server"],\
+          ["@fastify/cookie", "npm:9.0.4"],\
           ["@fastify/cors", "npm:9.0.1"],\
           ["@fastify/env", "npm:4.3.0"],\
-          ["@fastify/jwt", "npm:8.0.1"],\
+          ["@fastify/jwt", "npm:7.2.4"],\
           ["@fastify/postgres", "virtual:fe57eec919e8b6767d7f10cf5d126334be9c4f54eaf03d9a4f3f287996b4a6d5d09ea1347c36318273b063c6eff39575f0333c4711ecb2b8f7eb4484f63a11b5#npm:5.2.2"],\
           ["@fastify/swagger", "npm:8.14.0"],\
           ["@fastify/swagger-ui", "npm:4.0.0"],\
@@ -1223,7 +1237,7 @@ const RAW_RUNTIME_STATE =
           ["@types/nodemailer", "npm:6.4.15"],\
           ["@types/pg", "npm:8.11.6"],\
           ["bcrypt", "npm:5.1.1"],\
-          ["fastify", "npm:4.28.0"],\
+          ["fastify", "npm:4.28.1"],\
           ["fastify-plugin", "npm:4.5.1"],\
           ["nodemailer", "npm:6.9.14"],\
           ["pg", "virtual:fe57eec919e8b6767d7f10cf5d126334be9c4f54eaf03d9a4f3f287996b4a6d5d09ea1347c36318273b063c6eff39575f0333c4711ecb2b8f7eb4484f63a11b5#npm:8.12.0"],\
@@ -3406,6 +3420,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cookie", [\
+      ["npm:0.5.0", {\
+        "packageLocation": "./.yarn/cache/cookie-npm-0.5.0-e2d58a161a-c01ca3ef8d.zip/node_modules/cookie/",\
+        "packageDependencies": [\
+          ["cookie", "npm:0.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.6.0", {\
         "packageLocation": "./.yarn/cache/cookie-npm-0.6.0-362d6a2e45-f2318b31af.zip/node_modules/cookie/",\
         "packageDependencies": [\
@@ -4136,10 +4157,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fast-jwt", [\
-      ["npm:4.0.1", {\
-        "packageLocation": "./.yarn/cache/fast-jwt-npm-4.0.1-49d3a9258e-b4bf52720b.zip/node_modules/fast-jwt/",\
+      ["npm:3.3.3", {\
+        "packageLocation": "./.yarn/cache/fast-jwt-npm-3.3.3-7442a2ccbb-3904b99d5b.zip/node_modules/fast-jwt/",\
         "packageDependencies": [\
-          ["fast-jwt", "npm:4.0.1"],\
+          ["fast-jwt", "npm:3.3.3"],\
           ["@lukeed/ms", "npm:2.0.2"],\
           ["asn1.js", "npm:5.4.1"],\
           ["ecdsa-sig-formatter", "npm:1.0.11"],\
@@ -4205,10 +4226,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fastify", [\
-      ["npm:4.28.0", {\
-        "packageLocation": "./.yarn/cache/fastify-npm-4.28.0-c1debfba3b-24307900a5.zip/node_modules/fastify/",\
+      ["npm:4.28.1", {\
+        "packageLocation": "./.yarn/cache/fastify-npm-4.28.1-b5ef7d871c-9c212e9a72.zip/node_modules/fastify/",\
         "packageDependencies": [\
-          ["fastify", "npm:4.28.0"],\
+          ["fastify", "npm:4.28.1"],\
           ["@fastify/ajv-compiler", "npm:3.6.0"],\
           ["@fastify/error", "npm:3.4.1"],\
           ["@fastify/fast-json-stringify-compiler", "npm:4.3.0"],\

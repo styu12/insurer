@@ -4,7 +4,7 @@ import fastifyPostgres from '@fastify/postgres'
 
 const postgresConnector = async (server: FastifyInstance) => {
   server.register(fastifyPostgres, {
-    connectionString: process.env.POSTGRES_URL,
+    connectionString: server.config.POSTGRES_URL,
   })
 
   server.after(async () => {

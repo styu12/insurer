@@ -3,9 +3,12 @@ POST {{http-host}}/api/v1/users/register
 Content-Type: application/json
 
 {
-  "username": "styu1234",
-  "password": "12345678",
-  "email": "styu12@naver.com"
+  "username": "styu12",
+  "password": "123456",
+  "email": "styu12@kakao.com",
+  "emailNotification": true,
+  "smsNotification": false,
+  "kakaoNotification": true
 }
 
 ### users - Login
@@ -13,13 +16,9 @@ POST {{http-host}}/api/v1/users/login
 Content-Type: application/json
 
 {
-  "username": "styu12345",
-  "password": "12345678"
+  "username": "styu12",
+  "password": "123456"
 }
-
-> {%
-  client.global.set("access_token", response.body.token);
-%}
 
 
 ### users - Logout
@@ -27,4 +26,3 @@ POST {{http-host}}/api/v1/users/logout
 
 ### users - Profile
 GET {{http-host}}/api/v1/users/me
-Authorization: Bearer {{access_token}}

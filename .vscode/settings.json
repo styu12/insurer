@@ -8,5 +8,13 @@
   "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "eslint.nodePath": ".yarn/sdks"
+  "eslint.nodePath": ".yarn/sdks",
+  "rest-client.environmentVariables": {
+    "local": {
+      "http-host": "http://localhost:3000"
+    },
+    "production": {
+      "http-host": "https://your-production-url.com"
+    }
+  }
 }
