@@ -8,11 +8,11 @@ interface FormCustomerProps {
   onCancel: () => void
 }
 
-const FormCustomer: React.FC<FormCustomerProps> = ({
+const FormCustomer = ({
   initialData,
   onSubmit,
   onCancel,
-}) => {
+}: FormCustomerProps) => {
   const {
     register,
     handleSubmit,

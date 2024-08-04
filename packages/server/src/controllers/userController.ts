@@ -190,4 +190,32 @@ export const userRoutes = async (server: FastifyInstance) => {
       })
     }
   )
+
+  server.get(
+    '/status',
+    {
+      preHandler: [server.authenticate],
+      schema: {
+        tags: ['user'],
+        description: 'check auth status',
+        summary: 'check auth status',
+        response: {
+          200: {
+            schema: {
+              type: 'object',
+              properties: {
+                 message: { type: 'string' },
+              },
+            },
+          },
+          401: {
+            $ref: 'Error#',
+          },
+        },
+      },
+    },
+    async (_, reply) => {
+      reply.status(200).send({ message: 'Authenticated' })
+    }
+  )
 }

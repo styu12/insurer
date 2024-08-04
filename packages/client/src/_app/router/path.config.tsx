@@ -1,3 +1,4 @@
+import { authPaths } from '../../auth/path.config'
 import {
   contractNavigationPaths,
   contractPaths,
@@ -12,6 +13,7 @@ export const routePaths = {
   ...homePaths,
   ...contractPaths,
   ...customerPaths,
+  ...authPaths,
 } as const
 
 export const navigationPaths = {

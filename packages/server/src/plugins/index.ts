@@ -48,9 +48,10 @@ const basePlugins = async (server: FastifyInstance) => {
   server.register(fastifyCookie, {} as FastifyCookieOptions)
 
   server.register(cors, {
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   })
 }
 
