@@ -26,3 +26,6 @@ POST {{http-host}}/api/v1/users/logout
 
 ### users - Profile
 GET {{http-host}}/api/v1/users/me
+
+### users - Check status
+GET {{http-host}}/api/v1/users/status

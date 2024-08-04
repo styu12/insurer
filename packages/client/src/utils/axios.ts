@@ -25,5 +25,6 @@ export function makeBaseUrl() {
 export const createRemote = () => {
   return axios.create({
     baseURL: makeBaseUrl(),
+    withCredentials: true,
   })
 }
