@@ -144,8 +144,9 @@ export const userRoutes = async (server: FastifyInstance) => {
       },
     },
     async (request, reply) => {
-      // token should be removed from client side
-      reply.status(200).send({ message: 'Logout successful' })
+      reply.clearCookie('token', {
+        path: '/',
+      }).send({ message: 'Logout success' });
     }
   )
 

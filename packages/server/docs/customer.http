@@ -1,5 +1,6 @@
-### customer - Create
+# cmd + opt + E: configure environment
 
+### customer - Create
 POST {{http-host}}/api/v1/customers
 Content-Type: application/json
 

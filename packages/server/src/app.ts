@@ -11,6 +11,8 @@ const server = fastify({
 
 server.setErrorHandler(
   (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
+    server.log.error(error)
+
     if (error instanceof CustomError) {
       reply.status(error.statusCode).send({
         error: error.name,

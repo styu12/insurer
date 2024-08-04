@@ -1,5 +1,6 @@
 import { Pool } from 'pg'
 import { User } from '../models/user'
+import { JWT } from '@fastify/jwt'
 import type { setCookieWrapper } from '@fastify/cookie'
 
 declare module 'fastify' {
@@ -8,7 +9,7 @@ declare module 'fastify' {
     swagger: ((opts?: { yaml?: false }) => OpenAPI.Document) &
       ((opts: { yaml: true }) => string) &
       ((opts: { yaml: boolean }) => OpenAPI.Document | string)
-    jwt: fastifyJwt.JWT
+    jwt: JWT,
     authenticate: (
       request: FastifyRequest,
       reply: FastifyReply
@@ -27,16 +28,5 @@ declare module 'fastify' {
 
   interface FastifyRequest {
     user: User
-  }
-
-  interface FastifyReply {
-    /**
-     * Set response cookie
-     * @name setCookie
-     * @param name Cookie name
-     * @param value Cookie value
-     * @param options Serialize options
-     */
-    setCookie: setCookieWrapper;
   }
 }

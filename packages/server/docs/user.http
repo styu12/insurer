@@ -20,24 +20,11 @@ Content-Type: application/json
   "password": "12345678"
 }
 
-> {%
-  client.test("로그인 응답 상태 코드가 200 이어야 한다.", function() {
-    client.assert(response.status === 200, "응답 상태 코드: " + response.status);
-  });
-
-  // Set-Cookie 헤더에서 토큰 추출
-  var setCookieHeader = response.headers['set-cookie'];
-  var tokenMatch = /token=([^;]+)/.exec(setCookieHeader);
-  if (tokenMatch) {
-    var token = tokenMatch[1];
-    client.global.set("access_token", token);
-  }
-%}
-
 
 ### users - Logout
 POST {{http-host}}/api/v1/users/logout
 
 ### users - Profile
 GET {{http-host}}/api/v1/users/me
-Authorization: Bearer {{access_token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzdHl1MTIzNCIsImlhdCI6MTcyMjc3MzM3OX0.vAA2lS73-jOxbMXWdjsN56Ev6r4Gd4lmEFnVCnm7qgw.zdQlns8bp7PJ8diCc6NBghpxnjbDieC1G31dgkZeenU
+# Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzdHl1MTIzNCIsImlhdCI6MTcyMjc2NjkyM30.-cA6OGYRtWqkegLIJwGs8swmMcNbwEs40Dl3-opDeEo.bpFtMxSJ3PhJI6NiUwZmjPlWiiXG96A6OyIZeZd7tjc
