@@ -19,9 +19,12 @@ server.setErrorHandler(
         message: error.message,
       })
     } else {
+      const errorMessage =
+        error instanceof Error ? error.message : 'An error occurred'
+
       reply.status(500).send({
         error: 'InternalServerError',
-        message: 'An unexpected error occurred',
+        message: `Unexpected: ${errorMessage}`,
       })
     }
   }
@@ -30,19 +33,15 @@ server.setErrorHandler(
 server.decorate(
   'authenticate',
   async (request: FastifyRequest, reply: FastifyReply) => {
-    const token = request.headers.authorization?.replace('Bearer ', '')
-    if (!token) {
-      throw new CustomError('Unauthorized', 401)
-    }
-
     try {
-      request.user = await server.jwt.verify(token)
+      request.jwtVerify({ onlyCookie: true })
     } catch (error) {
-      throw new CustomError('Unauthorized', 401)
+      const errorMessage =
+        error instanceof Error ? error.message : 'An error occurred'
+      throw new CustomError(`Unauthorized: ${errorMessage}`, 401)
     }
   }
 )
-
 
 server.register(basePlugins)
 server.register(postgresConnector)

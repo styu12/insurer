@@ -32,17 +32,20 @@ const basePlugins = async (server: FastifyInstance) => {
   }
 
   await server.register(fastifyEnv, {
-      schema: envSchema,
-      dotenv: true,
+    schema: envSchema,
+    dotenv: true,
   })
 
   server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,
+    cookie: {
+      cookieName: 'token',
+      signed: false,
+    },
   })
 
-  server.register(fastifyCookie, {
-    secret: "my-secret", // for cookies signature
-  } as FastifyCookieOptions)
+  // TODO: cookie secret option 설정하면 좋은 점 알아보기
+  server.register(fastifyCookie, {} as FastifyCookieOptions)
 
   server.register(cors, {
     origin: '*',

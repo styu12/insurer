@@ -115,12 +115,14 @@ export const userRoutes = async (server: FastifyInstance) => {
 
       const token = server.jwt.sign({ id: user.id, username: user.username })
 
-      reply.setCookie('token', token, {
-        httpOnly: true,
-        sameSite: 'strict',
-        path: '/',
-        signed: true, // 서명된 쿠키로 설정
-      }).send({ message: 'Login success' });
+      reply
+        .setCookie('token', token, {
+          httpOnly: true,
+          sameSite: 'strict',
+          path: '/',
+          // signed: true, // 서명된 쿠키로 설정
+        })
+        .send({ message: 'Login success' })
     }
   )
 
@@ -144,9 +146,11 @@ export const userRoutes = async (server: FastifyInstance) => {
       },
     },
     async (request, reply) => {
-      reply.clearCookie('token', {
-        path: '/',
-      }).send({ message: 'Logout success' });
+      reply
+        .clearCookie('token', {
+          path: '/',
+        })
+        .send({ message: 'Logout success' })
     }
   )
 

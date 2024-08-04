@@ -744,16 +744,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fastify/jwt@npm:^8.0.1":
-  version: 8.0.1
-  resolution: "@fastify/jwt@npm:8.0.1"
+"@fastify/jwt@npm:^7.2.4":
+  version: 7.2.4
+  resolution: "@fastify/jwt@npm:7.2.4"
   dependencies:
     "@fastify/error": "npm:^3.0.0"
     "@lukeed/ms": "npm:^2.0.0"
-    fast-jwt: "npm:^4.0.0"
+    fast-jwt: "npm:^3.3.2"
     fastify-plugin: "npm:^4.0.0"
     steed: "npm:^1.1.3"
-  checksum: 10c0/54abc7f94d7fe327eca90e362f800c1d7a5483e293933935e78a424dea709d29d691401d4f757a23f13f35bc546e886b0ca617dd573e90d47725ea09b7348cfe
+  checksum: 10c0/f9807d9163a669c2aa1d3733e47beafaa0562fca93a0eeafcea5adfdd4d9d801c94fd326d0354b6702462d6bcad81fdceaa7a763eb3f63afc97a3eaf1d4e8ce8
   languageName: node
   linkType: hard
 
@@ -948,7 +948,7 @@ __metadata:
     "@fastify/cookie": "npm:9.0.4"
     "@fastify/cors": "npm:^9.0.1"
     "@fastify/env": "npm:^4.3.0"
-    "@fastify/jwt": "npm:^8.0.1"
+    "@fastify/jwt": "npm:^7.2.4"
     "@fastify/postgres": "npm:^5.2.2"
     "@fastify/swagger": "npm:^8.14.0"
     "@fastify/swagger-ui": "npm:^4.0.0"
@@ -3336,15 +3336,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-jwt@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "fast-jwt@npm:4.0.1"
+"fast-jwt@npm:^3.3.2":
+  version: 3.3.3
+  resolution: "fast-jwt@npm:3.3.3"
   dependencies:
     "@lukeed/ms": "npm:^2.0.1"
     asn1.js: "npm:^5.4.1"
     ecdsa-sig-formatter: "npm:^1.0.11"
     mnemonist: "npm:^0.39.5"
-  checksum: 10c0/b4bf52720bdff5a5c8d57fb0c3e7b78536b8e4527063186b9443e34e10f89e95be10cc80d1739e22642634ed21b1cbde7fef59eb567f1f24d85599541868a8f1
+  checksum: 10c0/3904b99d5b1e2e375baf275e015cabb851d113aaed3a4cb47dd4129e29126db7520621021eb25372401de2d04d6baf5ba56fee9e48fd3e402ba805a6af480da9
   languageName: node
   linkType: hard
 
