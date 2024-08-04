@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import CalendarHeader from './CalendarHeader'
 import { useNavigate } from 'react-router-dom'
 import { EVENT_TYPES, VIEW_TYPES } from '../constants'
@@ -66,17 +66,21 @@ const CalendarLoader = () => {
     })
   }, [payload])
 
-  const handleDateChange = (newDate: Date) => {
+  const handleDateChange = useCallback((newDate: Date) => {
     setDate(newDate)
-  }
+  }, [])
 
-  const handleViewChange = (newView: ViewTypes) => {
+  const handleViewChange = useCallback((newView: ViewTypes) => {
     setView(newView)
-  }
+  }, [])
 
-  const handleAddContract = () => {
+  const handleAddContract = useCallback(() => {
     navigate('/contract/create')
-  }
+  }, [navigate])
+
+  useEffect(() => {
+    console.log(date)
+  }, [date])
 
   return (
     <>

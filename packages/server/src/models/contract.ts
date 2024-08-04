@@ -61,6 +61,7 @@ export const createContract = async (
       'INSERT INTO contracts (title, description, customer_id, product_id, start_date, claim_date, end_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
       [title, description, customerId, productId, startDate, claimDate, endDate]
     )
+    server.log.info(`created contract: ${rows[0].id}`)
     return convertToCamelCaseContract(rows[0])
   } catch (e) {
     server.log.error(e)

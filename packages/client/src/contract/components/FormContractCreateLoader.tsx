@@ -27,15 +27,18 @@ const FormContractCreateLoader = () => {
   const handleFormSubmit = useCallback(
     async (submitPayload: ContractWithCustomer) => {
       try {
-        console.log(submitPayload)
-        await createContractMutation.mutateAsync({
+        const payload = {
           title: submitPayload.title ?? '',
           customerId: submitPayload.customerId ?? 0,
           startDate: submitPayload.startDate ?? '',
-          productId: submitPayload.productId,
+          productId: submitPayload.productId ?? 1,
           description: submitPayload.description,
-          claimDate: submitPayload.claimDate,
-          endDate: submitPayload.endDate,
+          claimDate: submitPayload.startDate,
+          endDate: submitPayload.startDate,
+        }
+        console.log({ submitPayload, payload })
+        await createContractMutation.mutateAsync({
+          ...payload,
         })
         navigate('/contract')
       } catch (error) {
