@@ -5,7 +5,7 @@ import Button from '../../_app/components/button/Button.tsx'
 import SectionBody from '../../_app/components/section/SectionBody.tsx'
 import SectionHeading from '../../_app/components/section/SectionHeading.tsx'
 import SectionPage from '../../_app/components/section/SectionPage.tsx'
-import ContentCustomerList from '../components/ContentCustomerList.tsx'
+import CustomerListLoader from '../components/CustomerListLoader.tsx'
 import Spinner from '../../_app/components/spinner/Spinner.tsx'
 
 const PageCustomerList = () => {
@@ -29,7 +29,7 @@ const PageCustomerList = () => {
       />
       <SectionBody>
         <Suspense fallback={<Spinner />}>
-          <ContentCustomerList />
+          <CustomerListLoader />
         </Suspense>
       </SectionBody>
     </SectionPage>

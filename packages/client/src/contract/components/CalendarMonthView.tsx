@@ -1,9 +1,11 @@
 import React from 'react'
-import { ClockIcon } from '@heroicons/react/20/solid'
-import { Event } from '../pages/PageContractList.tsx'
-import { isSameDay } from '../utils/date.ts'
 import classNames from 'classnames'
-import { convertEventTypeToKorean, EVENT_TYPES } from '../constants'
+import { ClockIcon } from '@heroicons/react/20/solid'
+import type { Event } from './CalendarLoader.tsx'
+
+import { isSameDay } from '../utils/date.ts'
+import { EVENT_TYPES } from '../constants'
+import { useNavigate } from 'react-router-dom'
 
 interface Day {
   date: string
@@ -39,6 +41,7 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
 }) => {
   const year = date.getFullYear()
   const month = date.getMonth()
+  const navigate = useNavigate()
 
   const days: Day[] = getDaysInMonth(year, month).map((day) => ({
     date: day.toISOString().split('T')[0],
@@ -103,8 +106,8 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
                 <ol className="mt-2">
                   {day.events.slice(0, 2).map((event) => (
                     <li key={event.id}>
-                      <a
-                        href={`contract/edit/${event.contractId}`}
+                      <button
+                        onClick={()=>navigate(`/contract/edit/${event.contractId}`)}
                         className="group flex"
                       >
                         <p className="flex-auto truncate text-sm font-medium text-gray-900 group-hover:text-indigo-600">
@@ -123,14 +126,14 @@ const CalendarMonthView: React.FC<CalendarMonthViewProps> = ({
                                 : ''
                             )}
                           >
-                            {convertEventTypeToKorean(event.type)}
+                            {event.type.label}
                           </span>
                         </p>
                         <time
                           dateTime={event.date}
                           className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
                         />
-                      </a>
+                      </button>
                     </li>
                   ))}
                   {day.events.length > 2 && (
