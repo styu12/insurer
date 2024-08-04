@@ -1,18 +1,23 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import type { ContractWithCustomer } from '../../__codegen__/__openapi__/insurer-server'
+import type {
+  ContractWithCustomer,
+  Customer,
+} from '../../__codegen__/__openapi__/insurer-server'
 
 interface FormContractProps {
-  initialData: ContractWithCustomer | null
+  initialData?: ContractWithCustomer
+  customers: Customer[]
   onSubmit: (_: ContractWithCustomer) => void
   onCancel: () => void
 }
 
-const FormContract: React.FC<FormContractProps> = ({
+const FormContract = ({
   initialData,
+  customers,
   onSubmit,
   onCancel,
-}) => {
+}: FormContractProps) => {
   const {
     register,
     handleSubmit,
@@ -120,13 +125,15 @@ const FormContract: React.FC<FormContractProps> = ({
               <div className="mt-2">
                 <select
                   id="customer"
-                  name="customer"
                   autoComplete="customer"
                   className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register('customerId', { required: true })}
                 >
-                  {/* {customers.map((customer) => (
-                    <option key={customer.email}>{customer.name}</option>
-                  ))} */}
+                  {customers.map((customer) => (
+                    <option key={customer.id} value={customer.id}>
+                      {customer.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

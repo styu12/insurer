@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
-import { Customer } from '../../__codegen__/__openapi__/insurer-server'
+import type { Customer } from '../../__codegen__/__openapi__/insurer-server'
 import { useCallback } from 'react'
 import { useDeleteMutationCustomer } from '../stores/useMutationCustomer'
 

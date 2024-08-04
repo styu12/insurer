@@ -9,6 +9,9 @@ import {
 } from '../../__codegen__/__openapi__/insurer-server'
 import { createRemote } from '../../utils/axios.ts'
 
+export interface RequestParamsGetContractById {
+  id: number
+}
 export const contractService = () => {
   const remote = createRemote()
   const client = ContractsApiFactory(new Configuration(), '', remote)
@@ -47,11 +50,7 @@ export const contractService = () => {
     /**
      * 계약 생성
      */
-    createContract: async ({
-      payload,
-    }: {
-      payload: ApiV1ContractsGetRequest
-    }) => {
+    createContract: async (payload: ApiV1ContractsGetRequest) => {
       const [error, resp] = await to<AxiosResponse<Contract>>(
         client.apiV1ContractsPost(payload)
       )

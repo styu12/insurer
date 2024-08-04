@@ -6,10 +6,11 @@ import {
   ChevronRightIcon,
   EllipsisHorizontalIcon,
 } from '@heroicons/react/20/solid'
-import { View, VIEWS } from '../constants'
+import type { ViewTypes } from '../constants'
+import { VIEW_TYPES } from '../constants'
 
 interface CalendarHeaderProps {
-  view: View
+  view: ViewTypes
   date: Date
   onDateChange: (newDate: Date) => void
   onViewChange: (newView: View) => void
@@ -25,11 +26,9 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
 }) => {
   const handlePrevious = () => {
     const newDate = new Date(date)
-    if (view === VIEWS.MONTH) {
+    if (view === VIEW_TYPES.MONTH) {
       newDate.setMonth(newDate.getMonth() - 1)
-    } else if (view === VIEWS.WEEK) {
-      newDate.setDate(newDate.getDate() - 7)
-    } else if (view === VIEWS.YEAR) {
+    } else if (view === VIEW_TYPES.YEAR) {
       newDate.setFullYear(newDate.getFullYear() - 1)
     }
     onDateChange(newDate)
@@ -37,11 +36,9 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
 
   const handleNext = () => {
     const newDate = new Date(date)
-    if (view === VIEWS.MONTH) {
+    if (view === VIEW_TYPES.MONTH) {
       newDate.setMonth(newDate.getMonth() + 1)
-    } else if (view === VIEWS.WEEK) {
-      newDate.setDate(newDate.getDate() + 7)
-    } else if (view === VIEWS.YEAR) {
+    } else if (view === VIEW_TYPES.YEAR) {
       newDate.setFullYear(newDate.getFullYear() + 1)
     }
     onDateChange(newDate)
@@ -51,23 +48,16 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
     onDateChange(new Date())
   }
 
-  const handleViewChange = (newView: View) => {
+  const handleViewChange = (newView: ViewTypes) => {
     onViewChange(newView)
   }
 
   const formatTitle = () => {
     switch (view) {
-      case VIEWS.MONTH: {
+      case VIEW_TYPES.MONTH: {
         return `${date.toLocaleString('ko-KR', { month: 'long' })} ${date.getFullYear()}`
       }
-      case VIEWS.WEEK: {
-        const startOfWeek = new Date(date)
-        startOfWeek.setDate(date.getDate() - date.getDay())
-        const endOfWeek = new Date(startOfWeek)
-        endOfWeek.setDate(startOfWeek.getDate() + 6)
-        return `${startOfWeek.toLocaleString('ko-KR', { month: 'short', day: 'numeric' })} - ${endOfWeek.toLocaleString('ko-KR', { month: 'short', day: 'numeric' })} ${date.getFullYear()}`
-      }
-      case VIEWS.YEAR: {
+      case VIEW_TYPES.YEAR: {
         return date.getFullYear().toString()
       }
       default: {
@@ -130,11 +120,11 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
               className="absolute right-0 z-10 mt-3 w-36 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               <div className="py-1">
-                {Object.values(VIEWS).map((viewOption) => (
+                {Object.values(VIEW_TYPES).map((viewOption) => (
                   <MenuItem key={viewOption}>
                     <a
                       href="#"
-                      onClick={() => handleViewChange(viewOption as View)}
+                      onClick={() => handleViewChange(viewOption as ViewTypes)}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       {viewOption.charAt(0).toUpperCase() + viewOption.slice(1)}{' '}
@@ -181,11 +171,11 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
               </MenuItem>
             </div>
             <div className="py-1">
-              {Object.values(VIEWS).map((viewOption) => (
+              {Object.values(VIEW_TYPES).map((viewOption) => (
                 <MenuItem key={viewOption}>
                   <a
                     href="#"
-                    onClick={() => handleViewChange(viewOption as View)}
+                    onClick={() => handleViewChange(viewOption as ViewTypes)}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     {viewOption.charAt(0).toUpperCase() + viewOption.slice(1)}{' '}

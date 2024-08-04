@@ -12,7 +12,7 @@ export const contractPaths = {
   'constract-create': {
     id: 'contract-create',
     path: '/contract/create',
-    element: LazyLoadRetryOnce(() => import('./pages/PageContractEdit')),
+    element: LazyLoadRetryOnce(() => import('./pages/PageContractCreate')),
   },
   'constract-edit': {
     id: 'contract-edit',

@@ -1,21 +1,21 @@
+import { Suspense } from 'react'
 import SectionPage from '../../_app/components/section/SectionPage'
 import SectionBody from '../../_app/components/section/SectionBody'
 import SectionHeading from '../../_app/components/section/SectionHeading'
-import { Suspense } from 'react'
+import FormContractCreateLoader from '../components/FormContractCreateLoader'
 import Spinner from '../../_app/components/spinner/Spinner'
-import FormContractEditLoader from '../components/FormContractEditLoader'
 
-const PageContractEdit = () => {
+const PageContractCreate = () => {
   return (
     <SectionPage>
       <SectionHeading title="계약관리" />
       <SectionBody>
         <Suspense fallback={<Spinner />}>
-          <FormContractEditLoader />
+          <FormContractCreateLoader />
         </Suspense>
       </SectionBody>
     </SectionPage>
   )
 }
 
-export default PageContractEdit
+export default PageContractCreate
